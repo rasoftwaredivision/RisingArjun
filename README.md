@@ -1,7 +1,5 @@
 # RisingArjun
 
-This application was generated using JHipster 6.1.2, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v6.1.2](https://www.jhipster.tech/documentation-archive/v6.1.2).
-
 ## Development
 
 Before you can build this project, you must install and configure the following dependencies on your machine:
@@ -9,28 +7,21 @@ A) Preconditions (Software to be installed):
 
 1. JDK 12
 2. Eclipse IDE
-3. Install JHipster plugin in eclispe for JDL design
-4. Install gpaphviz 2.38 version for display of ER diagrams of JDL. Higher versions of graphviz has compatability issues.
-   graphviz-2.38.msi for can be installed from
-
-https://www.softpedia.com/get/Others/Miscellaneous/Graphviz.shtml#download
-Go over https://www.youtube.com/watch?v=LERTahPqVjo for eclipse JHispter plugin installation and usage.
-Set environment variable GRAPHVIZ_HOT to point to dot.exe eg C:\Program Files (x86)\Graphviz2.38\bin\dot.exe
-Also update PATH variable to point to Graphviz bin folder eg C:\Program Files (x86)\Graphviz2.38\bin\
-
+3. JHipster plugin in eclispe for JDL design
+4. gpaphviz 2.38 version for display of ER diagrams of JDL. Higher versions of graphviz has compatability issues.
+   graphviz-2.38.msi to be installed from
+   https://www.softpedia.com/get/Others/Miscellaneous/Graphviz.shtml#download
+   Set environment variable GRAPHVIZ_HOT to point to dot.exe eg C:\Program Files (x86)\Graphviz2.38\bin\dot.exe
+   Also update PATH variable to point to Graphviz bin folder eg C:\Program Files (x86)\Graphviz2.38\bin\
 5. maven for build
 6. Git client for code checkin/pull from Github
-
-7. install postgresql-12.4-1-windows-x64 with superuser (postgres, root) & listening port 5432
-
+7. install postgresql-12.4-1-windows-x64 with listening port 5432
 8. Install dbvis_windows-x64_11_0_5_jre
-9. Crate DB & DB user
+9. Create database & DB user
    CREATE DATABASE risingarjun;
    CREATE USER risingarjun WITH PASSWORD 'risingarjun';
    GRANT ALL ON DATABASE risingarjun TO risingarjun;
-
 10. [Node.js][]: We use Node to run a development web server and build the project.
-    Depending on your system, you can install Node either from source or as a pre-packaged bundle.
     After installing Node, you should be able to run the following command to install development tools.
     You will only need to run this command when dependencies change in [package.json](package.json).
     npm install
@@ -47,14 +38,13 @@ Add the `help` flag on any command to see how you can use it. For example, `npm 
 The `npm run` command will list all of the scripts available to run for this project.
 
 B)Additional Steps
-
 Refer below sites for creating dev environment
 
 1. https://www.jhipster.tech/video-tutorial/
-
 2. https://www.jhipster.tech/creating-an-app/
+3. https://www.youtube.com/watch?v=LERTahPqVjo for eclipse JHispter plugin installation and usage.
 
-3) https://github.com/mraible/jhipster6-demo/blob/master/demo.adoc
+4) https://github.com/mraible/jhipster6-demo/blob/master/demo.adoc
 
 ### Service workers
 
