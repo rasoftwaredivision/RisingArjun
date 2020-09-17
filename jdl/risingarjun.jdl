@@ -209,13 +209,13 @@ entity Studentsubject{
 }
 
 /*
-12. subjectsBaseFee:
+12. subjectbasefee:
 id, courseId, enterprise, baseFee, AcadSession
 1,   IX,	30, 1850,	2020-21
 2,   X,		20, 2150,	2020-21
 3,   XI,	50, 2450,	2020-21
 */
-entity Subjectsbasefee{	 
+entity Subjectbasefee{	 
 	baseFee Integer 
 }
 
@@ -544,9 +544,9 @@ relationship ManyToOne{
 	Userdetail{enterprise(enterprisename)} to Enterprise,
 	Studentsubject{registrationno(studentRegId)} to Student,	
 	Studentsubject{session(acadSession)} to Academicsession,		
-	Subjectsbasefee{course(course)} to Course,
-	Subjectsbasefee{enterprise(enterprisename)} to Enterprise,
-	Subjectsbasefee{session(acadSession)} to Academicsession,	
+	Subjectbasefee{course(course)} to Course,
+	Subjectbasefee{enterprise(enterprisename)} to Enterprise,
+	Subjectbasefee{session(acadSession)} to Academicsession,	
 	Discount{enterprise(enterprisename)} to Enterprise,
 	Discount{session(acadSession)} to Academicsession,
 	Scholarship{enterprise(enterprisename)} to Enterprise,	

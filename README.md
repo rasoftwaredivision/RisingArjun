@@ -5,20 +5,38 @@ This application was generated using JHipster 6.1.2, you can find documentation 
 ## Development
 
 Before you can build this project, you must install and configure the following dependencies on your machine:
+A) Preconditions (Software to be installed):
 
-1. [Node.js][]: We use Node to run a development web server and build the project.
-   Depending on your system, you can install Node either from source or as a pre-packaged bundle.
+1. JDK 12
+2. Eclipse IDE
+3. Install JHipster plugin in eclispe for JDL design
+4. Install gpaphviz 2.38 version for display of ER diagrams of JDL. Higher versions of graphviz has compatability issues.
+   graphviz-2.38.msi for can be installed from
 
-After installing Node, you should be able to run the following command to install development tools.
-You will only need to run this command when dependencies change in [package.json](package.json).
+https://www.softpedia.com/get/Others/Miscellaneous/Graphviz.shtml#download
+Go over https://www.youtube.com/watch?v=LERTahPqVjo for eclipse JHispter plugin installation and usage.
+Set environment variable GRAPHVIZ_HOT to point to dot.exe eg C:\Program Files (x86)\Graphviz2.38\bin\dot.exe
+Also update PATH variable to point to Graphviz bin folder eg C:\Program Files (x86)\Graphviz2.38\bin\
 
+5. maven for build
+6. Git client for code checkin/pull from Github
+
+7. install postgresql-12.4-1-windows-x64 with superuser (postgres, root) & listening port 5432
+
+8. Install dbvis_windows-x64_11_0_5_jre
+9. Crate DB & DB user
+   CREATE DATABASE risingarjun;
+   CREATE USER risingarjun WITH PASSWORD 'risingarjun';
+   GRANT ALL ON DATABASE risingarjun TO risingarjun;
+
+10. [Node.js][]: We use Node to run a development web server and build the project.
+    Depending on your system, you can install Node either from source or as a pre-packaged bundle.
+    After installing Node, you should be able to run the following command to install development tools.
+    You will only need to run this command when dependencies change in [package.json](package.json).
     npm install
-
-We use npm scripts and [Webpack][] as our build system.
-
-Run the following commands in two separate terminals to create a blissful development experience where your browser
-auto-refreshes when files change on your hard drive.
-
+    We use npm scripts and [Webpack][] as our build system.
+    Run the following commands in two separate terminals to create a blissful development experience where your browser
+    auto-refreshes when files change on your hard drive.
     ./mvnw
     npm start
 
@@ -28,12 +46,15 @@ Add the `help` flag on any command to see how you can use it. For example, `npm 
 
 The `npm run` command will list all of the scripts available to run for this project.
 
-install postgresql-12.4-1-windows-x64 with superuser (postgres, root) port 5432
+B)Additional Steps
 
-install dbvis_windows-x64_11_0_5_jre
-CREATE DATABASE risingarjun;
-CREATE USER risingarjun WITH PASSWORD 'risingarjun';
-GRANT ALL ON DATABASE risingarjun TO risingarjun;
+Refer below sites for creating dev environment
+
+1. https://www.jhipster.tech/video-tutorial/
+
+2. https://www.jhipster.tech/creating-an-app/
+
+3) https://github.com/mraible/jhipster6-demo/blob/master/demo.adoc
 
 ### Service workers
 
@@ -176,3 +197,18 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 [protractor]: https://angular.github.io/protractor/
 [leaflet]: http://leafletjs.com/
 [definitelytyped]: http://definitelytyped.org/
+
+## Deployment in Heroku
+
+1. Install Heroku client from https://devcenter.heroku.com/articles/heroku-cli#download-and-install
+2. Refer https://dashboard.heroku.com/apps/therisingarjun/deploy/heroku-git for using Heroku CLI
+   After installation run below commands
+   $ heroku login
+$ jhipster heroku
+   \$ heroku open
+
+Steps to access database;
+Resources
+Heroku postgres
+Dataclips
+Give title and sql query and run
