@@ -202,13 +202,26 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 
 1. Install Heroku client from https://devcenter.heroku.com/articles/heroku-cli#download-and-install
 2. Refer https://dashboard.heroku.com/apps/therisingarjun/deploy/heroku-git for using Heroku CLI
-   After installation run below commands
+   After installation run below commands to deploy app
    $ heroku login
 $ jhipster heroku
    \$ heroku open
 
-Steps to access database;
-Resources
-Heroku postgres
-Dataclips
-Give title and sql query and run
+3. Redeploy app
+   $ heroku login
+$ git add .
+   $ git commit -am "App Update"
+$heroku git:remote -a risingarjun
+   set git remote heroku to https://git.heroku.com/risingarjun.git
+   $git remote -v
+heroku  https://git.heroku.com/risingarjun.git (fetch)
+heroku  https://git.heroku.com/risingarjun.git (push)
+origin  https://github.com/rasoftwaredivision/RisingArjun.git (fetch)
+origin  https://github.com/rasoftwaredivision/RisingArjun.git (push)
+$git push heroku master
+
+4. Steps to access database;
+   Resources
+   Heroku postgres
+   Dataclips
+   Give title and sql query and run
