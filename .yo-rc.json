@@ -35,6 +35,8 @@
     "otherModules": [],
     "enableTranslation": true,
     "nativeLanguage": "en",
-    "languages": ["en", "hi", "es", "ta"]
+    "languages": ["en", "hi", "es", "ta"],
+    "herokuAppName": "risingarjun",
+    "herokuDeployType": "git"
   }
 }
