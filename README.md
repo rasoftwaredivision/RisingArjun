@@ -28,6 +28,13 @@ Add the `help` flag on any command to see how you can use it. For example, `npm 
 
 The `npm run` command will list all of the scripts available to run for this project.
 
+install postgresql-12.4-1-windows-x64 with superuser (postgres, root) port 5432
+
+install dbvis_windows-x64_11_0_5_jre
+CREATE DATABASE risingarjun;
+CREATE USER risingarjun WITH PASSWORD 'risingarjun';
+GRANT ALL ON DATABASE risingarjun TO risingarjun;
+
 ### Service workers
 
 Service workers are commented by default, to enable them please uncomment the following code.
