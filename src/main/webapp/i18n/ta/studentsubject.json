@@ -1,0 +1,26 @@
+{
+  "risingarjunApp": {
+    "studentsubject": {
+      "home": {
+        "title": "Studentsubjects",
+        "createLabel": "Studentsubject-ஐ உருவாக்கு",
+        "createOrEditLabel": "Studentsubject -ஐ மாற்று (அ) உருவாக்கு",
+        "notFound": "No Studentsubject found"
+      },
+      "created": "Studentsubject புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+      "updated": "Studentsubject மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+      "deleted": "A Studentsubject நீக்கப்பட்டது, அடையாளம {{ param }}",
+      "delete": {
+        "question": "நீக்குவதற்கு உறுதி செய் Studentsubject {{ id }}?"
+      },
+      "detail": {
+        "title": "Studentsubject"
+      },
+      "month": "Month",
+      "registrationno": "Registrationno",
+      "session": "Session",
+      "subjects": "Subjects",
+      "course": "Course"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "risingarjunApp": {
+    "teachershare": {
+      "home": {
+        "title": "Teachershares",
+        "createLabel": "Teachershare-ஐ உருவாக்கு",
+        "createOrEditLabel": "Teachershare -ஐ மாற்று (அ) உருவாக்கு",
+        "notFound": "No Teachershare found"
+      },
+      "created": "Teachershare புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+      "updated": "Teachershare மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+      "deleted": "A Teachershare நீக்கப்பட்டது, அடையாளம {{ param }}",
+      "delete": {
+        "question": "நீக்குவதற்கு உறுதி செய் Teachershare {{ id }}?"
+      },
+      "detail": {
+        "title": "Teachershare"
+      },
+      "sharePercent": "Share Percent",
+      "plannedClasses": "Planned Classes",
+      "actualClasses": "Actual Classes",
+      "shareCorrection": "Share Correction",
+      "share": "Share",
+      "month": "Month",
+      "remarks": "Remarks",
+      "teacherId": "Teacher Id",
+      "subject": "Subject",
+      "session": "Session"
+    }
+  }
+}

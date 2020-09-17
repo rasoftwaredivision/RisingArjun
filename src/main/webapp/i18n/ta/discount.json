@@ -1,0 +1,35 @@
+{
+  "risingarjunApp": {
+    "discount": {
+      "home": {
+        "title": "Discounts",
+        "createLabel": "Discount-ஐ உருவாக்கு",
+        "createOrEditLabel": "Discount -ஐ மாற்று (அ) உருவாக்கு",
+        "notFound": "No Discount found"
+      },
+      "created": "Discount புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+      "updated": "Discount மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+      "deleted": "A Discount நீக்கப்பட்டது, அடையாளம {{ param }}",
+      "delete": {
+        "question": "நீக்குவதற்கு உறுதி செய் Discount {{ id }}?"
+      },
+      "detail": {
+        "title": "Discount"
+      },
+      "subject2": "Subject 2",
+      "subject3": "Subject 3",
+      "subject4": "Subject 4",
+      "subject5": "Subject 5",
+      "subject6": "Subject 6",
+      "subject7": "Subject 7",
+      "subject8": "Subject 8",
+      "quarterly": "Quarterly",
+      "halfYearly": "Half Yearly",
+      "annually": "Annually",
+      "sibling": "Sibling",
+      "referral": "Referral",
+      "enterprise": "Enterprise",
+      "session": "Session"
+    }
+  }
+}

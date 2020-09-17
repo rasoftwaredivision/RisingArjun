@@ -1,0 +1,10 @@
+{
+  "risingarjunApp": {
+    "Studentstatus": {
+      "null": "",
+      "GRADUATED": "GRADUATED",
+      "JOINED": "JOINED",
+      "LEFT": "LEFT"
+    }
+  }
+}

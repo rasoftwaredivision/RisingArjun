@@ -1,0 +1,30 @@
+{
+  "risingarjunApp": {
+    "enterprisesettings": {
+      "home": {
+        "title": "Enterprisesettings",
+        "createLabel": "Enterprisesettings-ஐ உருவாக்கு",
+        "createOrEditLabel": "Enterprisesettings -ஐ மாற்று (அ) உருவாக்கு",
+        "notFound": "No Enterprisesettings found"
+      },
+      "created": "Enterprisesettings புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+      "updated": "Enterprisesettings மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+      "deleted": "A Enterprisesettings நீக்கப்பட்டது, அடையாளம {{ param }}",
+      "delete": {
+        "question": "நீக்குவதற்கு உறுதி செய் Enterprisesettings {{ id }}?"
+      },
+      "detail": {
+        "title": "Enterprisesettings"
+      },
+      "theme": "Theme",
+      "foreground": "Foreground",
+      "background": "Background",
+      "disclaimer": "Disclaimer",
+      "policy": "Policy",
+      "copyrights": "Copyrights",
+      "termsOfUsage": "Terms Of Usage",
+      "admin": "Admin",
+      "enterprise": "Enterprise"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "risingarjunApp": {
+    "expense": {
+      "home": {
+        "title": "Expenses",
+        "createLabel": "Expense-ஐ உருவாக்கு",
+        "createOrEditLabel": "Expense -ஐ மாற்று (அ) உருவாக்கு",
+        "notFound": "No Expense found"
+      },
+      "created": "Expense புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+      "updated": "Expense மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+      "deleted": "A Expense நீக்கப்பட்டது, அடையாளம {{ param }}",
+      "delete": {
+        "question": "நீக்குவதற்கு உறுதி செய் Expense {{ id }}?"
+      },
+      "detail": {
+        "title": "Expense"
+      },
+      "item": "Item",
+      "quantity": "Quantity",
+      "rate": "Rate",
+      "laborCost": "Labor Cost",
+      "otherExpense": "Other Expense",
+      "total": "Total",
+      "date": "Date",
+      "transactionId": "Transaction Id",
+      "expenseMode": "Expense Mode",
+      "type": "Type",
+      "bill": "Bill",
+      "remarks": "Remarks",
+      "enterprise": "Enterprise",
+      "incurredBy": "Incurred By"
+    }
+  }
+}

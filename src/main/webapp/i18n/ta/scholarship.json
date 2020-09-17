@@ -1,0 +1,25 @@
+{
+  "risingarjunApp": {
+    "scholarship": {
+      "home": {
+        "title": "Scholarships",
+        "createLabel": "Scholarship-ஐ உருவாக்கு",
+        "createOrEditLabel": "Scholarship -ஐ மாற்று (அ) உருவாக்கு",
+        "notFound": "No Scholarship found"
+      },
+      "created": "Scholarship புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+      "updated": "Scholarship மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+      "deleted": "A Scholarship நீக்கப்பட்டது, அடையாளம {{ param }}",
+      "delete": {
+        "question": "நீக்குவதற்கு உறுதி செய் Scholarship {{ id }}?"
+      },
+      "detail": {
+        "title": "Scholarship"
+      },
+      "minMarks": "Min Marks",
+      "percent": "Percent",
+      "enterprise": "Enterprise",
+      "session": "Session"
+    }
+  }
+}

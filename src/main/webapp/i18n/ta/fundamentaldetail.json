@@ -1,0 +1,24 @@
+{
+  "risingarjunApp": {
+    "fundamentaldetail": {
+      "home": {
+        "title": "Fundamentaldetails",
+        "createLabel": "Fundamentaldetail-ஐ உருவாக்கு",
+        "createOrEditLabel": "Fundamentaldetail -ஐ மாற்று (அ) உருவாக்கு",
+        "notFound": "No Fundamentaldetail found"
+      },
+      "created": "Fundamentaldetail புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+      "updated": "Fundamentaldetail மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+      "deleted": "A Fundamentaldetail நீக்கப்பட்டது, அடையாளம {{ param }}",
+      "delete": {
+        "question": "நீக்குவதற்கு உறுதி செய் Fundamentaldetail {{ id }}?"
+      },
+      "detail": {
+        "title": "Fundamentaldetail"
+      },
+      "concept": "Concept",
+      "details": "Details",
+      "question": "Question"
+    }
+  }
+}

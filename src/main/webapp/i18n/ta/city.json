@@ -1,0 +1,12 @@
+{
+  "risingarjunApp": {
+    "City": {
+      "null": "",
+      "DEHRADUN": "DEHRADUN",
+      "DELHI": "DELHI",
+      "GURGAON": "GURGAON",
+      "LONI": "LONI",
+      "TEHRI": "TEHRI"
+    }
+  }
+}

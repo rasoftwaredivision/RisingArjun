@@ -1,0 +1,30 @@
+{
+  "risingarjunApp": {
+    "center": {
+      "home": {
+        "title": "Centers",
+        "createLabel": "Center-ஐ உருவாக்கு",
+        "createOrEditLabel": "Center -ஐ மாற்று (அ) உருவாக்கு",
+        "notFound": "No Center found"
+      },
+      "created": "Center புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+      "updated": "Center மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+      "deleted": "A Center நீக்கப்பட்டது, அடையாளம {{ param }}",
+      "delete": {
+        "question": "நீக்குவதற்கு உறுதி செய் Center {{ id }}?"
+      },
+      "detail": {
+        "title": "Center"
+      },
+      "centerCode": "Center Code",
+      "centerTitle": "Center Title",
+      "street": "Street",
+      "city": "City",
+      "state": "State",
+      "country": "Country",
+      "pincode": "Pincode",
+      "enterprise": "Enterprise",
+      "centerhead": "Centerhead"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "risingarjunApp": {
+    "Questionstatus": {
+      "null": "",
+      "CREATED": "CREATED",
+      "REWRITE": "REWRITE",
+      "APPROVED": "APPROVED"
+    }
+  }
+}

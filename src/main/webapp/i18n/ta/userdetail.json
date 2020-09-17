@@ -1,0 +1,31 @@
+{
+  "risingarjunApp": {
+    "userdetail": {
+      "home": {
+        "title": "Userdetails",
+        "createLabel": "Userdetail-ஐ உருவாக்கு",
+        "createOrEditLabel": "Userdetail -ஐ மாற்று (அ) உருவாக்கு",
+        "notFound": "No Userdetail found"
+      },
+      "created": "Userdetail புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+      "updated": "Userdetail மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+      "deleted": "A Userdetail நீக்கப்பட்டது, அடையாளம {{ param }}",
+      "delete": {
+        "question": "நீக்குவதற்கு உறுதி செய் Userdetail {{ id }}?"
+      },
+      "detail": {
+        "title": "Userdetail"
+      },
+      "mobileNo": "Mobile No",
+      "dob": "Dob",
+      "houseNo": "House No",
+      "street": "Street",
+      "city": "City",
+      "state": "State",
+      "country": "Country",
+      "pincode": "Pincode",
+      "user": "User",
+      "enterprise": "Enterprise"
+    }
+  }
+}

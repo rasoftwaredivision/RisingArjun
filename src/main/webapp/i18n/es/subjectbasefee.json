@@ -1,0 +1,25 @@
+{
+  "risingarjunApp": {
+    "subjectbasefee": {
+      "home": {
+        "title": "Subjectbasefees",
+        "createLabel": "Crear nuevo Subjectbasefee",
+        "createOrEditLabel": "Crear o editar Subjectbasefee",
+        "notFound": "No Subjectbasefee found"
+      },
+      "created": "Un nuevo Subjectbasefee ha sido creado con el identificador {{ param }}",
+      "updated": "Un Subjectbasefee ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Subjectbasefee ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Subjectbasefee {{ id }}?"
+      },
+      "detail": {
+        "title": "Subjectbasefee"
+      },
+      "baseFee": "Base Fee",
+      "course": "Course",
+      "enterprise": "Enterprise",
+      "session": "Session"
+    }
+  }
+}

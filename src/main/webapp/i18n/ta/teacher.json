@@ -1,0 +1,24 @@
+{
+  "risingarjunApp": {
+    "teacher": {
+      "home": {
+        "title": "Teachers",
+        "createLabel": "Teacher-ஐ உருவாக்கு",
+        "createOrEditLabel": "Teacher -ஐ மாற்று (அ) உருவாக்கு",
+        "notFound": "No Teacher found"
+      },
+      "created": "Teacher புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+      "updated": "Teacher மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+      "deleted": "A Teacher நீக்கப்பட்டது, அடையாளம {{ param }}",
+      "delete": {
+        "question": "நீக்குவதற்கு உறுதி செய் Teacher {{ id }}?"
+      },
+      "detail": {
+        "title": "Teacher"
+      },
+      "teacherId": "Teacher Id",
+      "subjects": "Subjects",
+      "courses": "Courses"
+    }
+  }
+}

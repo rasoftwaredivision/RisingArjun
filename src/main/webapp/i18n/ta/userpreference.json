@@ -1,0 +1,23 @@
+{
+  "risingarjunApp": {
+    "userpreference": {
+      "home": {
+        "title": "Userpreferences",
+        "createLabel": "Userpreference-ஐ உருவாக்கு",
+        "createOrEditLabel": "Userpreference -ஐ மாற்று (அ) உருவாக்கு",
+        "notFound": "No Userpreference found"
+      },
+      "created": "Userpreference புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+      "updated": "Userpreference மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+      "deleted": "A Userpreference நீக்கப்பட்டது, அடையாளம {{ param }}",
+      "delete": {
+        "question": "நீக்குவதற்கு உறுதி செய் Userpreference {{ id }}?"
+      },
+      "detail": {
+        "title": "Userpreference"
+      },
+      "theme": "Theme",
+      "user": "User"
+    }
+  }
+}

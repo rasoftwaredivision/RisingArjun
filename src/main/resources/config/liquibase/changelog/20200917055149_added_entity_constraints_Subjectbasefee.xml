@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Subjectbasefee.
+    -->
+    <changeSet id="20200917055149-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="course_id"
+                                 baseTableName="subjectbasefee"
+                                 constraintName="fk_subjectbasefee_course_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="course"/>
+
+        <addForeignKeyConstraint baseColumnNames="enterprise_id"
+                                 baseTableName="subjectbasefee"
+                                 constraintName="fk_subjectbasefee_enterprise_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="enterprise"/>
+
+        <addForeignKeyConstraint baseColumnNames="session_id"
+                                 baseTableName="subjectbasefee"
+                                 constraintName="fk_subjectbasefee_session_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="academicsession"/>
+
+    </changeSet>
+</databaseChangeLog>

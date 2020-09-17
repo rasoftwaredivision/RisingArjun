@@ -1,0 +1,27 @@
+{
+  "risingarjunApp": {
+    "roleaccess": {
+      "home": {
+        "title": "Roleaccesses",
+        "createLabel": "Roleaccess-ஐ உருவாக்கு",
+        "createOrEditLabel": "Roleaccess -ஐ மாற்று (அ) உருவாக்கு",
+        "notFound": "No Roleaccess found"
+      },
+      "created": "Roleaccess புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+      "updated": "Roleaccess மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+      "deleted": "A Roleaccess நீக்கப்பட்டது, அடையாளம {{ param }}",
+      "delete": {
+        "question": "நீக்குவதற்கு உறுதி செய் Roleaccess {{ id }}?"
+      },
+      "detail": {
+        "title": "Roleaccess"
+      },
+      "create": "Create",
+      "read": "Read",
+      "update": "Update",
+      "del": "Del",
+      "role": "Role",
+      "feature": "Feature"
+    }
+  }
+}

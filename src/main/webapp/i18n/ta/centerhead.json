@@ -1,0 +1,23 @@
+{
+  "risingarjunApp": {
+    "centerhead": {
+      "home": {
+        "title": "Centerheads",
+        "createLabel": "Centerhead-ஐ உருவாக்கு",
+        "createOrEditLabel": "Centerhead -ஐ மாற்று (அ) உருவாக்கு",
+        "notFound": "No Centerhead found"
+      },
+      "created": "Centerhead புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+      "updated": "Centerhead மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+      "deleted": "A Centerhead நீக்கப்பட்டது, அடையாளம {{ param }}",
+      "delete": {
+        "question": "நீக்குவதற்கு உறுதி செய் Centerhead {{ id }}?"
+      },
+      "detail": {
+        "title": "Centerhead"
+      },
+      "centerhead": "Centerhead",
+      "center": "Center"
+    }
+  }
+}

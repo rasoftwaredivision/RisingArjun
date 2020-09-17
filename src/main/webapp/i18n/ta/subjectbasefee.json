@@ -1,0 +1,25 @@
+{
+  "risingarjunApp": {
+    "subjectbasefee": {
+      "home": {
+        "title": "Subjectbasefees",
+        "createLabel": "Subjectbasefee-ஐ உருவாக்கு",
+        "createOrEditLabel": "Subjectbasefee -ஐ மாற்று (அ) உருவாக்கு",
+        "notFound": "No Subjectbasefee found"
+      },
+      "created": "Subjectbasefee புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+      "updated": "Subjectbasefee மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+      "deleted": "A Subjectbasefee நீக்கப்பட்டது, அடையாளம {{ param }}",
+      "delete": {
+        "question": "நீக்குவதற்கு உறுதி செய் Subjectbasefee {{ id }}?"
+      },
+      "detail": {
+        "title": "Subjectbasefee"
+      },
+      "baseFee": "Base Fee",
+      "course": "Course",
+      "enterprise": "Enterprise",
+      "session": "Session"
+    }
+  }
+}

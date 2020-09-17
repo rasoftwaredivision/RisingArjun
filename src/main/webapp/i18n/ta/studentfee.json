@@ -1,0 +1,30 @@
+{
+  "risingarjunApp": {
+    "studentfee": {
+      "home": {
+        "title": "Studentfees",
+        "createLabel": "Studentfee-ஐ உருவாக்கு",
+        "createOrEditLabel": "Studentfee -ஐ மாற்று (அ) உருவாக்கு",
+        "notFound": "No Studentfee found"
+      },
+      "created": "Studentfee புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+      "updated": "Studentfee மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+      "deleted": "A Studentfee நீக்கப்பட்டது, அடையாளம {{ param }}",
+      "delete": {
+        "question": "நீக்குவதற்கு உறுதி செய் Studentfee {{ id }}?"
+      },
+      "detail": {
+        "title": "Studentfee"
+      },
+      "fee": "Fee",
+      "feeCorrection": "Fee Correction",
+      "month": "Month",
+      "feeStatus": "Fee Status",
+      "remarks": "Remarks",
+      "registrationno": "Registrationno",
+      "subject": "Subject",
+      "session": "Session",
+      "teacher": "Teacher"
+    }
+  }
+}

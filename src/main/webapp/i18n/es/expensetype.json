@@ -1,0 +1,10 @@
+{
+  "risingarjunApp": {
+    "Expensetype": {
+      "null": "",
+      "FIXASSET": "FIXASSET",
+      "MARKETING": "MARKETING",
+      "OPERATING": "OPERATING"
+    }
+  }
+}
