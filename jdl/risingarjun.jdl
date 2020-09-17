@@ -1,0 +1,594 @@
+/*jhi_authority:
+name
+ROLE_SUPERADMIN
+ROLE_ADMIN
+ROLE_CENTERHEAD		
+ROLE_ACCOUNTANT
+ROLE_TEACHER
+ROLE_STUDENT
+ROLE_MANAGER
+*/
+entity Jhiauthority{
+	name String required
+}
+
+/* 
+jhi_persistent_audit_event:
+event_id , principal , event_date , event_type 
+1, 	admin,	2020:08:12 12:45:03, AUTHENICATION_SECCESS
+
+entity jhi_persistent_audit_event{
+	event_id Integer required
+	principal String
+	event_date Date
+	event_type String
+}
+
+jhi_persistent_audit_evt_data:
+event_id, name, value
+
+3. features:
+id,	featureId,	featureDetail
+1,	STUREG,		student registration
+2,	ASNCRE,		assignment creation
+3,	SALARY,		salary generation
+*/
+
+entity Feature{
+	featureId String unique required 
+	featureDetail String unique required
+}
+
+/*
+3. roleAcess:
+roleId,		featureId,	create, read, update, delete
+ADMIN,		STUREG,		true,	true,	true,	false
+ACCOUNTANT,	SALARY,		true,	true,	true,	false
+ADMIN,		SALARY,		true,	true,	true,	false
+*/
+entity Roleaccess{
+	create Boolean
+	read Boolean
+	update Boolean
+	del Boolean
+}
+
+/*
+4. jhi_user:
+id, login, password_hash, first_name, last_name, email, image_url,activated,lang_key,activation_key,reset_key,created_by,created_date,reset_date,last_modified_by,last_modified_date
+1. kunchitGoyal, hsadksa,	Kunchit, Goel, 	abc@gmail.com, URL1,0, 		EN,	NULL,	NULL,	     ShivRaturi,2020:08:12 12:45:03,NULL,ShivRaturi,2020:08:12 12:45:03
+12, AniketKhanchi,fdsfrew, 	Aniket, Khanchi,abce@gmail.com, URL2,1, 	EN,	NULL,	NULL,	     ShivRaturi,2020:08:12 12:45:03,NULL,ShivRaturi,2020:08:12 12:45:03
+
+
+entity jhi_user{
+	login  String required
+	password_hash  String required
+	first_name  String required
+	last_name  String required
+	email  String required
+	image_url  String
+	activated Boolean
+	lang_key   String
+	activation_key String
+	reset_key  String
+	created_by  String
+	created_date LocalDate
+	reset_date LocalDate
+	last_modified_by String
+	last_modified_date LocalDate
+}
+*/
+
+enum City{
+	DEHRADUN,DELHI,GURGAON,LONI,TEHRI
+}
+
+enum State{
+	DELHI, HARYANA, MADHYAPRADESH, UTTRAKHAND,UTTARPRADESH
+}
+
+enum Country{
+	INDIA, AUSTRALIA, USA
+}
+/*
+4. Userdetail:
+id, userId, enterprise, mobileNo,	DOB, 		houseNo, street,	city, 	state, Country,	pincode
+10, 1, 		30,			999999, 	07-07-90, 	T1-801,	Taksila heights,Gurgaon, Haryana, INDIA, 122001
+12, 12, 	31, 		88888,	07-07-89, 	T2,	Taksila heights,Gurgaon, Haryana, INDIA, 122001
+*/
+
+entity Userdetail{
+	mobileNo String unique required
+	dob LocalDate required
+	houseNo String required
+	street String
+	city City required
+	state State required
+	country Country required
+	pincode Integer
+}
+
+/*
+Userpreference:
+id, userId, theme
+1,	12,	BEACH
+*/
+entity Userpreference{
+	theme String
+}
+
+/*4. studentsStatus:
+id, StatusCode, Status
+1, LF, Left
+*/
+enum Studentstatus{
+	GRADUATED, JOINED, LEFT
+}
+
+/*
+5. leavingReasons:
+id, reasonCode, reason
+1, DF, distanceFactor
+2, HF, High Fee
+*/
+enum Leavingreason{
+	NA, DISTANCEFACTOR, UNHAPPYPHYSICS, UNHAPPYMATHS, UNHAPPYBIO, UNHAPPYCHEMISTRY, UNHAPPYMANAGEMENT, HIGHFEES, CLASSESOVERLAP, COURSECOMPLETED, BREAKEXAM, BREAKHOLIDAY, PERSONALREASON
+}
+/*
+6. courses:
+id, courseId, 	course
+1,   X, 	Intermediate
+2,  CLAT, 	CLAT Entrance
+*/
+entity Course{
+	courseId String unique required	
+	course String unique required
+}
+
+/*
+7.infoSources:
+id, sourceCode, source
+1, PM,	Pamphlets
+2, BN,	Banners
+3, FR,	Friends
+*/
+enum Infosource{
+	LOCATIONDIRECTLY, FRIENDS, BANNER, INTERNET, PAMPHLET, NEWSPAPER
+}
+
+/*
+8. students:
+id, userId, studentRegId, registrationForm, course, parentMobNo1, parentMobNo2, parentEmailId, studentStatus,leavingReason, infoSource
+100, 10, RA_GGN_2019-20-001,  ImageBlob,     X, 	9999,    8888, 		abc2@gmail.com, LF,	 	DF,		FR
+*/
+entity Student{
+	studentRegId String required unique
+	registrationForm ImageBlob
+	parentMobNo1 String 
+	parentMobNo2 String
+	parentEmailId String
+    studentStatus Studentstatus
+    leavingReason Leavingreason 
+    infoSource Infosource
+}
+
+/*
+9. subjects:
+id, subjectCode, subjectTitle
+1,  PH,		Physics
+2,  CH,		Chemistry
+3,  MA,		Mathematics
+4,  IM,		IIT-Mathematics
+*/
+entity Subject{
+	subjectCode String unique required
+	subjectTitle String unique required
+}
+
+/*
+10. Academicsession:
+id, AcadSessionId, AcadSession
+1, 2020-21,	Academic Year 2020-21
+*/
+entity Academicsession{
+	acadSessionId String unique required
+	acadSession String unique required
+}
+
+enum Month{
+	JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC
+}
+
+/*
+11. studentsSubjects:
+id, studentRegId, subjectCode1, subjectCode2,subjectCode3,subjectCode4,subjectCode5,subjectCode6,subjectCode7,subjectCode8,courseId, month, AcadSessionId
+1,  RA_GGN_2019-20-001,PH,		CH,	MA,	     IIT-Math,     null,	null,		null,	null,	    XI,      JAN, 2020-21
+*/
+entity Studentsubject{	
+    month Month required
+}
+
+/*
+12. subjectsBaseFee:
+id, courseId, enterprise, baseFee, AcadSession
+1,   IX,	30, 1850,	2020-21
+2,   X,		20, 2150,	2020-21
+3,   XI,	50, 2450,	2020-21
+*/
+entity Subjectsbasefee{	 
+	baseFee Integer 
+}
+
+/*
+13. discounts:
+id, enterprise, subject2,subject3,subject4,subject5,subject6,subject7,subject8, quarterly, halfYearly, annually, sibling, referral,AcadSessionId
+1,	20, 200,	  300,	   600,	   700,	    800,   1000,    1100,    4%,	7%,		9%,	10%,	200,	2020-21
+*/
+entity Discount{
+	subject2 Integer 
+	subject3 Integer
+	subject4 Integer
+	subject5 Integer
+	subject6 Integer
+	subject7 Integer
+	subject8 Integer
+	quarterly Integer 
+	halfYearly Integer
+	annually Integer
+	sibling Integer
+	referral Integer
+}
+
+/*
+14. scholarsips:
+id, enterprise, minMarks, percent, AcadSessionId
+1,   30, 85%,	2%,		2020-21
+2,   20, 90%,	3%,		2020-21
+3,   35, 95%,	4%,		2020-21
+*/
+entity Scholarship{	
+	minMarks Integer
+	percent Integer   
+}
+
+
+/*
+15. studentsFee:
+id, studentRegId,      subjectCode, fee, feeCorrection, month, AcadSessionId, teacherId, feeStatus
+1,  RA_GGN_2019-20-001,   MA,   2200,      null, 	 JAN,    2020-21,   GGN002,  NotPaid
+2,  RA_GGN_2019-20-001,   PH,   2300,      -300, 	 JAN,    2020-21,   GGN003,  Paid
+3,  RA_GGN_2019-20-002,   PH,   2500,      400, 	 FEB,    2020-21,   GGN003,  Paid
+*/
+entity Studentfee{
+	fee Integer 
+	feeCorrection Integer 
+	month Month
+	feeStatus Boolean
+	remarks String
+}
+
+enum Jobnature{
+	PARTTIME, FULLTIME
+}
+/*
+16. employees:
+id, userId, empolyeeId, jobNature,	BGC,		resume,			PAN,		accountNo,	bank,	ifsc
+1,   12,    GGN002,	PARTTIME,	CLEAR,		resumeAttached,		AHNPR08087,	121323,		SBI,	SBI83023
+*/
+entity Employee{	
+	employeeId String required unique
+	jobNature Jobnature	
+	bgc Boolean
+	resume ImageBlob	
+	pan String
+	accountNo String	
+	bank String	
+	ifsc String
+}
+/*
+17. centers:
+id, enterprise, centerCode, centerTitle,	street,					city,	state,	country, pincode
+1,  20, GGN_SEC3, 	Gurgaon Sec3, 	Shop No 13, Sector 3 		Gurgaon,Haryana, INDIA, 122001
+2,  30, GGN_SEC4, 	Gurgaon Sec4, 	Shop No 13-14, Sector 4, 	Gurgaon,Haryana, INDIA, 122001
+3,  35, DDN_SUM, 	Ddun Sumannagar,HNo 37/C, Suman Nagar 		Dehradun,Uttrakhand, INDIA, 248001
+*/
+entity Center{
+	centerCode String unique required	
+	centerTitle String unique required
+	street String
+	city City required
+	state State required
+	country Country required
+	pincode Integer
+}
+/*
+18. centerHeads:
+id, empolyeeId, centerCode
+1, GGN003,	GGN_SEC4
+2, GGN004,	DDN_SUM
+*/
+entity Centerhead{
+
+}
+
+
+/*
+19. teachers:
+id, empolyeeId, subjectCode1, subjectCode2, subjectCode3,courseId
+1, GGN002,	PH,		MA,		CH	
+*/
+entity Teacher{
+	
+}
+/*
+20. teachersShare:
+id, teacherId, share%, plannedClasses, actualClasses, shareCorrection, subjectId, month,  AcadSessionId
+1,   GGN002,	  80%,		17,    	15,   		null,		MA,	       JAN,    2020-21
+*/
+entity Teachershare{	
+	sharePercent Integer required max(100) 
+	plannedClasses Integer required
+	actualClasses Integer required
+	shareCorrection Integer
+	share Integer
+	month Month required
+	remarks String
+}
+
+enum Mode{
+	NEFT, UPI, CASH, DEBITCARD, NETBANKING, OTHERS
+}
+
+/*
+21. Salarypayment:
+id, employeeId, salary, adacemicSession, month,   paid, 	unpaid,		date, 		transactionId, mode,	remarks
+1.  GGN002,		15000,	2020-21, 		JUL,	  13000,    2000,	31-Aug-20,      IMPS00002,	NEFT,		200 balance
+2.  GGN002,		5000,	2020-21, 		JUL,	  5000,     0,		31-Aug-20,      IMPS00003,	Paytm,		paid
+*/
+entity Salarypayment{
+	salary Integer required min(0)   
+	month Month 	required	
+	paid Integer 	min(0) required
+	unpaid Integer	min(0) required
+	date LocalDate 	required	
+	transactionId String required
+	paymentMode Mode required
+	remarks String
+}
+/*
+22. expensesTypes:
+id, expenceTypeId, Detail
+1. OPERATING, Operating expenses
+2. MARKETING, Marketing expenses
+3. FIXASSET, Fix assets
+*/
+
+enum Expensetype{
+	FIXASSET, MARKETING, OPERATING
+}
+
+/*
+23. expenses:
+id, enterprise, item, quantity,    rate, 	laborCost,  otherExpense, total, date, transactionId, mode, 	  type, 	   bill, 	   remarks
+1, 20,	 Chairs,   10,        400,       200,		1000,	   5200  07-07-20, IMPS68676, Debit Card, FIXASSET,  billAttachment, purchased from Sadar bazar
+2, 30,	Signboard, 5,       10000,      3000,	2000,	  65000  10-07-20, IMPS67676, Debit Card, MARKETING, billAttachment, purchased from xyz shop
+*/
+entity Expense{
+	item String required 
+	quantity Integer min(0)   
+	rate Integer min(0)	
+	laborCost Integer min(0) 
+	otherExpense Integer 
+	total Integer required
+	date LocalDate 
+	transactionId String required  
+	expenseMode Mode	  
+	type Expensetype
+	bill ImageBlob	   
+	remarks String
+}
+/*
+24. chapters:
+id,	courseId,	subject,	chapterId,	chapterTitle
+1, 	XII,		MA,		DE,		differential equations
+2, 	3,		MA,		ADD,		simple addition
+*/
+entity Chapter{	
+	chapterId String required	
+	chapterTitle String
+}
+/*
+25. questionLevel:
+id,	levelId,
+1,	BEGINNERS
+2,	MODERATE
+1,	ADVANCE
+*/
+enum Questionlevel{
+	BEGINNERS, MODERATE, ADVANCE
+}
+
+enum Questionstatus{
+	CREATED, REWRITE, APPROVED
+}
+
+enum Fundamental{
+	BASICPROPOTIONALITYTHEROEM, SECTIONFORMULA, SASCONGURENCE, MIDPOINTTHEOREM
+}
+
+/*Fundamentaldetail:
+Id, subject, 	concept,  						details
+1,	MA,			BASIC_PROPOTIONALITY_THEROEM,  https://risingarjun.com/resources/BASIC_PROPOTIONALITY_THEROEM	
+* 
+*/
+entity Fundamentaldetail{
+	concept Fundamental
+	details String
+}
+
+/*
+26. questions:
+
+    Question{} to Employee,
+    Question{approver} to Employee,
+id, enterprisename, courseId,subjectId,chapterId, question,diagram,	option1,option2,option3,option4, multiChoice,answer, fundamentals, maxMarks,negativeMarks, durationMins, level
+1, 	30,			3,			MA,		ADD,		29+39,	qdiagram,	48,		58,		68,			78,		0,		68,		SAS, 			4,		1,			5,	BEGINNERS
+2, 	20,			3,			MA,		ADD,		19+39,	somediagram,48,		58,		68,			78,		1,	58,		MPT, 			4,		1,			4,	MODERATE
+
+solution, video, 							 writer, approver, status
+xxxx, https://risingarjun.com/resources/xxxx, 12,      13, 		APPROVED 
+*/
+entity Question{
+	question TextBlob required
+	diagram	ImageBlob
+	option1 String 	
+	option2 String	
+	option3 String	
+	option4 String 	
+	multiChoice Boolean required
+	answer String required
+	maxMarks Integer required
+	negativeMarks Integer
+	durationMins Integer required		
+	level Questionlevel required
+	solution String
+	video String
+	status Questionstatus required
+}
+/*
+27. studentsScore:
+id, studentRegId,      	questionId, answer,	score,	date
+1,  RA_GGN_2019-20-001,	1,	     68,	4,	07-09-2020
+2,  RA_GGN_2019-20-001	2,	     78,	-1,	07-09-2020
+*/
+entity Studentscore{
+	answer String required
+	score Integer required
+	date LocalDate required
+}
+
+enum Natureofbusiness{
+	COACHING
+}
+
+/* 
+Enterprise:
+id, abbrevation, enterprisename, logo, punchline, mission, vision, principles, email,mobile,landline,fax, plotNo, street,	city, 	state,  country,	pincode
+10, RisingArjun, Rising Arjun,  logoImage, punchline, somemission, someprinciples, nancy@gmail.com, 9999, 8888,  	T1-801,	Kataria Market Sec37C,Gurgaon, Haryana, INDIA,122001
+20, NANCYCLASSES, Nancy Classes, logoImage, punchline, somemission, someprinciples, nancy@gmail.com, 9999, 8888,  	T1-801,	Kataria Market Sec37C,,Gurgaon, Haryana, INDIA, 122001
+30, JATINCOURSE, JATIN Coaching, logoImage, punchline, somemission, someprinciples, nancy@gmail.com, 9999, 8888,  	T1-801,	Kataria Market Sec37C,,Gurgaon, Haryana, INDIA, 122001
+*/ 
+entity Enterprise{
+	abbrevation 	String required minlength(3)  maxlength(20)
+	enterprisename 	String required minlength(3)  maxlength(64)
+	natureofbusiness Natureofbusiness required
+	logo			ImageBlob
+	punchline 		String
+	mission 		String
+	vision 		String
+	principles 	String
+	email 		String pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)
+	mobile 		String required
+	landline 		String
+	fax 			String
+	plotNo		String required
+	street		String
+	city 			City required
+	state 		State required
+	country 		Country required
+	pincode 		Integer
+}
+
+/* 
+Enterprisesettings:
+id, enterpriseid, admin, theme, foreground, background,  disclaimer, policy, copyrights,termsOfUsage, 
+1, 	10,			12, 	xxx,		xxx, 	xxxx, 		 somedisclaimer, somePolicyDoc, someCopyright, terms
+2, 	20,			13, 	xxrx,		xxx, 	xxxx, 		 somedisclaimer, somePolicyDoc, someCopyright, terms
+*/ 
+entity Enterprisesettings{
+	theme String
+	foreground String
+	background String
+	disclaimer String
+	policy 		String
+	copyrights String
+	termsOfUsage String
+}
+
+//DONE UPTO HERE
+
+relationship OneToOne{
+	Userdetail{user(login)} to User,
+	Userpreference{user(login)} to User,
+	Student{user(login)} to User,
+	Studentfee{registrationno(studentRegId)} to Student,
+	Employee{user(login)} to User,
+   	Centerhead{centerhead(employeeId)} to Employee,
+   	Teacher{teacherId(employeeId)} to Employee,
+   	Enterprisesettings{admin(login)} to User   	
+}
+
+relationship ManyToMany{
+    Student{course(course)} to Course{Student},    
+    Studentsubject{subjects(subjectTitle)} to Subject{studentsubject},
+    Studentsubject{course(course)} to Course{studentsubjects},    
+    Centerhead{center(centerTitle)} to Center{centerhead},    
+    Teacher{subjects(subjectTitle)} to Subject{teachers},    
+    Teacher{courses(course)} to Course{teachers},    
+    Question{fundamentals(details)} to Fundamentaldetail{Question}
+}
+
+relationship ManyToOne{
+	Roleaccess{role(name)} to Jhiauthority,
+	Roleaccess{feature(featureDetail)} to Feature,
+	Userdetail{enterprise(enterprisename)} to Enterprise,
+	Studentsubject{registrationno(studentRegId)} to Student,	
+	Studentsubject{session(acadSession)} to Academicsession,		
+	Subjectsbasefee{course(course)} to Course,
+	Subjectsbasefee{enterprise(enterprisename)} to Enterprise,
+	Subjectsbasefee{session(acadSession)} to Academicsession,	
+	Discount{enterprise(enterprisename)} to Enterprise,
+	Discount{session(acadSession)} to Academicsession,
+	Scholarship{enterprise(enterprisename)} to Enterprise,	
+	Scholarship{session(acadSession)} to Academicsession,	
+    Studentfee{subject(subjectTitle)} to Subject,        
+    Studentfee{session(acadSession)} to Academicsession,    
+    Studentfee{teacher(employeeId)} to Employee,
+    Center{enterprise(enterprisename)} to Enterprise,    
+    Teachershare{teacherId(employeeId)} to Employee,        
+    Teachershare{subject(subjectTitle)} to Subject,
+    Teachershare{session(acadSessionId)} to Academicsession,    
+    Salarypayment{employeeId(employeeId)} to  Employee,    
+    Salarypayment{session(acadSessionId)} to Academicsession,    
+    Expense{enterprise(enterprisename)} to Enterprise,
+    Expense{incurredBy(employeeId)} to Employee,        
+	Chapter{course(course)} to Course,
+	Chapter{subject(subjectTitle)} to Subject,  	  
+    Question{enterprise(enterprisename)} to Enterprise,
+	Question{course(course)} to Course,	
+    Question{subject(subjectTitle)} to Subject,   
+    Question{chapter(chapterTitle)} to Chapter,
+    Question{writer(employeeId)} to Employee,        
+    Question{approver(employeeId)} to Employee,
+    Studentscore{student(studentRegId)} to Student,	
+    Studentscore{question(question)} to Question,
+    Enterprisesettings{enterprise(enterprisename)} to Enterprise
+}
+
+// =======
+// Options
+// =======
+
+// Set pagination options
+
+//service Userdetail, Student, Studentfee, Teachershare, Salarypayment, Expense, Question, Studentscore with serviceClass
+
+paginate Userdetail, Student, Studentfee, Teachershare, Salarypayment, Expense, Question, Studentscore, Enterprise with pagination
+
+
+dto * with mapstruct
+
+// Set service options to all 
+service all with serviceImpl 
+// Set an angular suffix
+angularSuffix * with mySuffix
