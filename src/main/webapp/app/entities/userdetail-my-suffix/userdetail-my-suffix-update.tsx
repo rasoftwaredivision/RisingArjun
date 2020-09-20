@@ -117,11 +117,17 @@ export class UserdetailMySuffixUpdate extends React.Component<IUserdetailMySuffi
                   <Label id="dobLabel" for="userdetail-my-suffix-dob">
                     <Translate contentKey="risingarjunApp.userdetail.dob">Dob</Translate>
                   </Label>
+                  <AvField id="userdetail-my-suffix-dob" type="date" className="form-control" name="dob" />
+                </AvGroup>
+                <AvGroup>
+                  <Label id="joiningDateLabel" for="userdetail-my-suffix-joiningDate">
+                    <Translate contentKey="risingarjunApp.userdetail.joiningDate">Joining Date</Translate>
+                  </Label>
                   <AvField
-                    id="userdetail-my-suffix-dob"
+                    id="userdetail-my-suffix-joiningDate"
                     type="date"
                     className="form-control"
-                    name="dob"
+                    name="joiningDate"
                     validate={{
                       required: { value: true, errorMessage: translate('entity.validation.required') }
                     }}

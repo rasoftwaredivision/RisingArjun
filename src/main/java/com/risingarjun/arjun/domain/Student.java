@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.risingarjun.arjun.domain.enumeration.School;
+
 import com.risingarjun.arjun.domain.enumeration.Studentstatus;
 
 import com.risingarjun.arjun.domain.enumeration.Leavingreason;
@@ -49,6 +51,10 @@ public class Student implements Serializable {
 
     @Column(name = "parent_email_id")
     private String parentEmailId;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "school")
+    private School school;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "student_status")
@@ -160,6 +166,19 @@ public class Student implements Serializable {
         this.parentEmailId = parentEmailId;
     }
 
+    public School getSchool() {
+        return school;
+    }
+
+    public Student school(School school) {
+        this.school = school;
+        return this;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
+    }
+
     public Studentstatus getStudentStatus() {
         return studentStatus;
     }
@@ -264,6 +283,7 @@ public class Student implements Serializable {
             ", parentMobNo1='" + getParentMobNo1() + "'" +
             ", parentMobNo2='" + getParentMobNo2() + "'" +
             ", parentEmailId='" + getParentEmailId() + "'" +
+            ", school='" + getSchool() + "'" +
             ", studentStatus='" + getStudentStatus() + "'" +
             ", leavingReason='" + getLeavingReason() + "'" +
             ", infoSource='" + getInfoSource() + "'" +

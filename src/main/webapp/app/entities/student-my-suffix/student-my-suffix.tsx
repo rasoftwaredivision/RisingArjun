@@ -93,6 +93,9 @@ export class StudentMySuffix extends React.Component<IStudentMySuffixProps, IStu
                   <th className="hand" onClick={this.sort('parentEmailId')}>
                     <Translate contentKey="risingarjunApp.student.parentEmailId">Parent Email Id</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
+                  <th className="hand" onClick={this.sort('school')}>
+                    <Translate contentKey="risingarjunApp.student.school">School</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
                   <th className="hand" onClick={this.sort('studentStatus')}>
                     <Translate contentKey="risingarjunApp.student.studentStatus">Student Status</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
@@ -136,6 +139,9 @@ export class StudentMySuffix extends React.Component<IStudentMySuffixProps, IStu
                     <td>{student.parentMobNo1}</td>
                     <td>{student.parentMobNo2}</td>
                     <td>{student.parentEmailId}</td>
+                    <td>
+                      <Translate contentKey={`risingarjunApp.School.${student.school}`} />
+                    </td>
                     <td>
                       <Translate contentKey={`risingarjunApp.Studentstatus.${student.studentStatus}`} />
                     </td>

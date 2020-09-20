@@ -47,6 +47,9 @@ public class UserdetailResourceIT {
     private static final LocalDate DEFAULT_DOB = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_DOB = LocalDate.now(ZoneId.systemDefault());
 
+    private static final LocalDate DEFAULT_JOINING_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_JOINING_DATE = LocalDate.now(ZoneId.systemDefault());
+
     private static final String DEFAULT_HOUSE_NO = "AAAAAAAAAA";
     private static final String UPDATED_HOUSE_NO = "BBBBBBBBBB";
 
@@ -115,6 +118,7 @@ public class UserdetailResourceIT {
         Userdetail userdetail = new Userdetail()
             .mobileNo(DEFAULT_MOBILE_NO)
             .dob(DEFAULT_DOB)
+            .joiningDate(DEFAULT_JOINING_DATE)
             .houseNo(DEFAULT_HOUSE_NO)
             .street(DEFAULT_STREET)
             .city(DEFAULT_CITY)
@@ -133,6 +137,7 @@ public class UserdetailResourceIT {
         Userdetail userdetail = new Userdetail()
             .mobileNo(UPDATED_MOBILE_NO)
             .dob(UPDATED_DOB)
+            .joiningDate(UPDATED_JOINING_DATE)
             .houseNo(UPDATED_HOUSE_NO)
             .street(UPDATED_STREET)
             .city(UPDATED_CITY)
@@ -165,6 +170,7 @@ public class UserdetailResourceIT {
         Userdetail testUserdetail = userdetailList.get(userdetailList.size() - 1);
         assertThat(testUserdetail.getMobileNo()).isEqualTo(DEFAULT_MOBILE_NO);
         assertThat(testUserdetail.getDob()).isEqualTo(DEFAULT_DOB);
+        assertThat(testUserdetail.getJoiningDate()).isEqualTo(DEFAULT_JOINING_DATE);
         assertThat(testUserdetail.getHouseNo()).isEqualTo(DEFAULT_HOUSE_NO);
         assertThat(testUserdetail.getStreet()).isEqualTo(DEFAULT_STREET);
         assertThat(testUserdetail.getCity()).isEqualTo(DEFAULT_CITY);
@@ -215,10 +221,10 @@ public class UserdetailResourceIT {
 
     @Test
     @Transactional
-    public void checkDobIsRequired() throws Exception {
+    public void checkJoiningDateIsRequired() throws Exception {
         int databaseSizeBeforeTest = userdetailRepository.findAll().size();
         // set the field null
-        userdetail.setDob(null);
+        userdetail.setJoiningDate(null);
 
         // Create the Userdetail, which fails.
         UserdetailDTO userdetailDTO = userdetailMapper.toDto(userdetail);
@@ -321,6 +327,7 @@ public class UserdetailResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(userdetail.getId().intValue())))
             .andExpect(jsonPath("$.[*].mobileNo").value(hasItem(DEFAULT_MOBILE_NO.toString())))
             .andExpect(jsonPath("$.[*].dob").value(hasItem(DEFAULT_DOB.toString())))
+            .andExpect(jsonPath("$.[*].joiningDate").value(hasItem(DEFAULT_JOINING_DATE.toString())))
             .andExpect(jsonPath("$.[*].houseNo").value(hasItem(DEFAULT_HOUSE_NO.toString())))
             .andExpect(jsonPath("$.[*].street").value(hasItem(DEFAULT_STREET.toString())))
             .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY.toString())))
@@ -342,6 +349,7 @@ public class UserdetailResourceIT {
             .andExpect(jsonPath("$.id").value(userdetail.getId().intValue()))
             .andExpect(jsonPath("$.mobileNo").value(DEFAULT_MOBILE_NO.toString()))
             .andExpect(jsonPath("$.dob").value(DEFAULT_DOB.toString()))
+            .andExpect(jsonPath("$.joiningDate").value(DEFAULT_JOINING_DATE.toString()))
             .andExpect(jsonPath("$.houseNo").value(DEFAULT_HOUSE_NO.toString()))
             .andExpect(jsonPath("$.street").value(DEFAULT_STREET.toString()))
             .andExpect(jsonPath("$.city").value(DEFAULT_CITY.toString()))
@@ -373,6 +381,7 @@ public class UserdetailResourceIT {
         updatedUserdetail
             .mobileNo(UPDATED_MOBILE_NO)
             .dob(UPDATED_DOB)
+            .joiningDate(UPDATED_JOINING_DATE)
             .houseNo(UPDATED_HOUSE_NO)
             .street(UPDATED_STREET)
             .city(UPDATED_CITY)
@@ -392,6 +401,7 @@ public class UserdetailResourceIT {
         Userdetail testUserdetail = userdetailList.get(userdetailList.size() - 1);
         assertThat(testUserdetail.getMobileNo()).isEqualTo(UPDATED_MOBILE_NO);
         assertThat(testUserdetail.getDob()).isEqualTo(UPDATED_DOB);
+        assertThat(testUserdetail.getJoiningDate()).isEqualTo(UPDATED_JOINING_DATE);
         assertThat(testUserdetail.getHouseNo()).isEqualTo(UPDATED_HOUSE_NO);
         assertThat(testUserdetail.getStreet()).isEqualTo(UPDATED_STREET);
         assertThat(testUserdetail.getCity()).isEqualTo(UPDATED_CITY);

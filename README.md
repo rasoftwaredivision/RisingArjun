@@ -61,17 +61,21 @@ now modify entity based on menu provided by jhipster for the entity
 STEP C:
 11.5 Using "git diff" command see the files that shouldn't have been modified. Checkout all such files that shouldn't be modified.
 
-11.6 undo changes done in master.xml file
+11.6 checkout the changes done in master.xml file
 git checkout src/main/resources/config/liquibase/master.xml
 
 STEP D:
 Option 1:
-11.7 mvnw compile liquibase:diff to create changelist created as src/main/resources/config/liquibase/changeelog/xxxx_changelog.xml
+This option of recreating table to be used only when there is not data on table.
+11.7 Delete the old files from changeelog directory and their corresponding entries from master.xml. Drop tables from database manually.
+11.8 Add entries for newly created changelog files in master.xml.
 
+Option 2:
+11.7 mvnw compile liquibase:diff to create changelist created as src/main/resources/config/liquibase/changeelog/xxxx_changelog.xml
 11.8 review changes in changelog.xml and if they are okay then add file entry in src/main/resources/config/liquibase/master.xml. so it is applied the next time you run your application.
 
 Option 2:
-11.7 create an Sql command to manually make changes in DB using SQL command.
+11.7 Create an Sql command to manually make changes in DB using SQL command.
 
 11.9 Remove all fake data from all CVS files inside src/main/resources/config/liquibase/data/
 

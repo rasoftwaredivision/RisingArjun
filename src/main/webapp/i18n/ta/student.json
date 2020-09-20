@@ -21,6 +21,7 @@
       "parentMobNo1": "Parent Mob No 1",
       "parentMobNo2": "Parent Mob No 2",
       "parentEmailId": "Parent Email Id",
+      "school": "School",
       "studentStatus": "Student Status",
       "leavingReason": "Leaving Reason",
       "infoSource": "Info Source",

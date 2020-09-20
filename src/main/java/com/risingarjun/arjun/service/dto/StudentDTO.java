@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 import javax.persistence.Lob;
+import com.risingarjun.arjun.domain.enumeration.School;
 import com.risingarjun.arjun.domain.enumeration.Studentstatus;
 import com.risingarjun.arjun.domain.enumeration.Leavingreason;
 import com.risingarjun.arjun.domain.enumeration.Infosource;
@@ -28,6 +29,8 @@ public class StudentDTO implements Serializable {
     private String parentMobNo2;
 
     private String parentEmailId;
+
+    private School school;
 
     private Studentstatus studentStatus;
 
@@ -96,6 +99,14 @@ public class StudentDTO implements Serializable {
 
     public void setParentEmailId(String parentEmailId) {
         this.parentEmailId = parentEmailId;
+    }
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
     }
 
     public Studentstatus getStudentStatus() {
@@ -176,6 +187,7 @@ public class StudentDTO implements Serializable {
             ", parentMobNo1='" + getParentMobNo1() + "'" +
             ", parentMobNo2='" + getParentMobNo2() + "'" +
             ", parentEmailId='" + getParentEmailId() + "'" +
+            ", school='" + getSchool() + "'" +
             ", studentStatus='" + getStudentStatus() + "'" +
             ", leavingReason='" + getLeavingReason() + "'" +
             ", infoSource='" + getInfoSource() + "'" +

@@ -17,10 +17,8 @@
     <include file="config/liquibase/changelog/20200917055139_added_entity_Jhiauthority.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200917055140_added_entity_Feature.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200917055141_added_entity_Roleaccess.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20200917055142_added_entity_Userdetail.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200917055143_added_entity_Userpreference.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200917055144_added_entity_Course.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20200917055145_added_entity_Student.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200917055146_added_entity_Subject.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200917055147_added_entity_Academicsession.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200917055148_added_entity_Studentsubject.xml" relativeToChangelogFile="false"/>
@@ -41,11 +39,11 @@
     <include file="config/liquibase/changelog/20200917055203_added_entity_Studentscore.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200917055204_added_entity_Enterprise.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200917055205_added_entity_Enterprisesettings.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200920150841_added_entity_Userdetail.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200920150844_added_entity_Student.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20200917055141_added_entity_constraints_Roleaccess.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20200917055142_added_entity_constraints_Userdetail.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200917055143_added_entity_constraints_Userpreference.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20200917055145_added_entity_constraints_Student.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200917055148_added_entity_constraints_Studentsubject.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200917055149_added_entity_constraints_Subjectbasefee.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200917055150_added_entity_constraints_Discount.xml" relativeToChangelogFile="false"/>
@@ -62,5 +60,7 @@
     <include file="config/liquibase/changelog/20200917055202_added_entity_constraints_Question.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200917055203_added_entity_constraints_Studentscore.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200917055205_added_entity_constraints_Enterprisesettings.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200920150841_added_entity_constraints_Userdetail.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200920150844_added_entity_constraints_Student.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

@@ -17,8 +17,10 @@ public class UserdetailDTO implements Serializable {
     @NotNull
     private String mobileNo;
 
-    @NotNull
     private LocalDate dob;
+
+    @NotNull
+    private LocalDate joiningDate;
 
     @NotNull
     private String houseNo;
@@ -67,6 +69,14 @@ public class UserdetailDTO implements Serializable {
 
     public void setDob(LocalDate dob) {
         this.dob = dob;
+    }
+
+    public LocalDate getJoiningDate() {
+        return joiningDate;
+    }
+
+    public void setJoiningDate(LocalDate joiningDate) {
+        this.joiningDate = joiningDate;
     }
 
     public String getHouseNo() {
@@ -176,6 +186,7 @@ public class UserdetailDTO implements Serializable {
             "id=" + getId() +
             ", mobileNo='" + getMobileNo() + "'" +
             ", dob='" + getDob() + "'" +
+            ", joiningDate='" + getJoiningDate() + "'" +
             ", houseNo='" + getHouseNo() + "'" +
             ", street='" + getStreet() + "'" +
             ", city='" + getCity() + "'" +

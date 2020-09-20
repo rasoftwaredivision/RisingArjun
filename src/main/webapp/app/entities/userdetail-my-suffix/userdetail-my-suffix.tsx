@@ -74,6 +74,9 @@ export class UserdetailMySuffix extends React.Component<IUserdetailMySuffixProps
                   <th className="hand" onClick={this.sort('dob')}>
                     <Translate contentKey="risingarjunApp.userdetail.dob">Dob</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
+                  <th className="hand" onClick={this.sort('joiningDate')}>
+                    <Translate contentKey="risingarjunApp.userdetail.joiningDate">Joining Date</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
                   <th className="hand" onClick={this.sort('houseNo')}>
                     <Translate contentKey="risingarjunApp.userdetail.houseNo">House No</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
@@ -112,6 +115,9 @@ export class UserdetailMySuffix extends React.Component<IUserdetailMySuffixProps
                     <td>{userdetail.mobileNo}</td>
                     <td>
                       <TextFormat type="date" value={userdetail.dob} format={APP_LOCAL_DATE_FORMAT} />
+                    </td>
+                    <td>
+                      <TextFormat type="date" value={userdetail.joiningDate} format={APP_LOCAL_DATE_FORMAT} />
                     </td>
                     <td>{userdetail.houseNo}</td>
                     <td>{userdetail.street}</td>

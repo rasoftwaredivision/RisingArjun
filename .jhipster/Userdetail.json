@@ -11,6 +11,10 @@
         },
         {
             "fieldName": "dob",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "joiningDate",
             "fieldType": "LocalDate",
             "fieldValidateRules": [
                 "required"
@@ -73,7 +77,7 @@
             "otherEntityField": "enterprisename"
         }
     ],
-    "changelogDate": "20200917055142",
+    "changelogDate": "20200920150841",
     "entityTableName": "userdetail",
     "dto": "mapstruct",
     "pagination": "pagination",

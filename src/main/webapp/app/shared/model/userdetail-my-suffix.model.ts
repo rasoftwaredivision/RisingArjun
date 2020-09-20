@@ -26,6 +26,7 @@ export interface IUserdetailMySuffix {
   id?: number;
   mobileNo?: string;
   dob?: Moment;
+  joiningDate?: Moment;
   houseNo?: string;
   street?: string;
   city?: City;

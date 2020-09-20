@@ -36,6 +36,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.risingarjun.arjun.domain.enumeration.School;
 import com.risingarjun.arjun.domain.enumeration.Studentstatus;
 import com.risingarjun.arjun.domain.enumeration.Leavingreason;
 import com.risingarjun.arjun.domain.enumeration.Infosource;
@@ -61,6 +62,9 @@ public class StudentResourceIT {
 
     private static final String DEFAULT_PARENT_EMAIL_ID = "AAAAAAAAAA";
     private static final String UPDATED_PARENT_EMAIL_ID = "BBBBBBBBBB";
+
+    private static final School DEFAULT_SCHOOL = School.NONE;
+    private static final School UPDATED_SCHOOL = School.OTHER;
 
     private static final Studentstatus DEFAULT_STUDENT_STATUS = Studentstatus.GRADUATED;
     private static final Studentstatus UPDATED_STUDENT_STATUS = Studentstatus.JOINED;
@@ -131,6 +135,7 @@ public class StudentResourceIT {
             .parentMobNo1(DEFAULT_PARENT_MOB_NO_1)
             .parentMobNo2(DEFAULT_PARENT_MOB_NO_2)
             .parentEmailId(DEFAULT_PARENT_EMAIL_ID)
+            .school(DEFAULT_SCHOOL)
             .studentStatus(DEFAULT_STUDENT_STATUS)
             .leavingReason(DEFAULT_LEAVING_REASON)
             .infoSource(DEFAULT_INFO_SOURCE);
@@ -150,6 +155,7 @@ public class StudentResourceIT {
             .parentMobNo1(UPDATED_PARENT_MOB_NO_1)
             .parentMobNo2(UPDATED_PARENT_MOB_NO_2)
             .parentEmailId(UPDATED_PARENT_EMAIL_ID)
+            .school(UPDATED_SCHOOL)
             .studentStatus(UPDATED_STUDENT_STATUS)
             .leavingReason(UPDATED_LEAVING_REASON)
             .infoSource(UPDATED_INFO_SOURCE);
@@ -183,6 +189,7 @@ public class StudentResourceIT {
         assertThat(testStudent.getParentMobNo1()).isEqualTo(DEFAULT_PARENT_MOB_NO_1);
         assertThat(testStudent.getParentMobNo2()).isEqualTo(DEFAULT_PARENT_MOB_NO_2);
         assertThat(testStudent.getParentEmailId()).isEqualTo(DEFAULT_PARENT_EMAIL_ID);
+        assertThat(testStudent.getSchool()).isEqualTo(DEFAULT_SCHOOL);
         assertThat(testStudent.getStudentStatus()).isEqualTo(DEFAULT_STUDENT_STATUS);
         assertThat(testStudent.getLeavingReason()).isEqualTo(DEFAULT_LEAVING_REASON);
         assertThat(testStudent.getInfoSource()).isEqualTo(DEFAULT_INFO_SOURCE);
@@ -245,6 +252,7 @@ public class StudentResourceIT {
             .andExpect(jsonPath("$.[*].parentMobNo1").value(hasItem(DEFAULT_PARENT_MOB_NO_1.toString())))
             .andExpect(jsonPath("$.[*].parentMobNo2").value(hasItem(DEFAULT_PARENT_MOB_NO_2.toString())))
             .andExpect(jsonPath("$.[*].parentEmailId").value(hasItem(DEFAULT_PARENT_EMAIL_ID.toString())))
+            .andExpect(jsonPath("$.[*].school").value(hasItem(DEFAULT_SCHOOL.toString())))
             .andExpect(jsonPath("$.[*].studentStatus").value(hasItem(DEFAULT_STUDENT_STATUS.toString())))
             .andExpect(jsonPath("$.[*].leavingReason").value(hasItem(DEFAULT_LEAVING_REASON.toString())))
             .andExpect(jsonPath("$.[*].infoSource").value(hasItem(DEFAULT_INFO_SOURCE.toString())));
@@ -300,6 +308,7 @@ public class StudentResourceIT {
             .andExpect(jsonPath("$.parentMobNo1").value(DEFAULT_PARENT_MOB_NO_1.toString()))
             .andExpect(jsonPath("$.parentMobNo2").value(DEFAULT_PARENT_MOB_NO_2.toString()))
             .andExpect(jsonPath("$.parentEmailId").value(DEFAULT_PARENT_EMAIL_ID.toString()))
+            .andExpect(jsonPath("$.school").value(DEFAULT_SCHOOL.toString()))
             .andExpect(jsonPath("$.studentStatus").value(DEFAULT_STUDENT_STATUS.toString()))
             .andExpect(jsonPath("$.leavingReason").value(DEFAULT_LEAVING_REASON.toString()))
             .andExpect(jsonPath("$.infoSource").value(DEFAULT_INFO_SOURCE.toString()));
@@ -332,6 +341,7 @@ public class StudentResourceIT {
             .parentMobNo1(UPDATED_PARENT_MOB_NO_1)
             .parentMobNo2(UPDATED_PARENT_MOB_NO_2)
             .parentEmailId(UPDATED_PARENT_EMAIL_ID)
+            .school(UPDATED_SCHOOL)
             .studentStatus(UPDATED_STUDENT_STATUS)
             .leavingReason(UPDATED_LEAVING_REASON)
             .infoSource(UPDATED_INFO_SOURCE);
@@ -352,6 +362,7 @@ public class StudentResourceIT {
         assertThat(testStudent.getParentMobNo1()).isEqualTo(UPDATED_PARENT_MOB_NO_1);
         assertThat(testStudent.getParentMobNo2()).isEqualTo(UPDATED_PARENT_MOB_NO_2);
         assertThat(testStudent.getParentEmailId()).isEqualTo(UPDATED_PARENT_EMAIL_ID);
+        assertThat(testStudent.getSchool()).isEqualTo(UPDATED_SCHOOL);
         assertThat(testStudent.getStudentStatus()).isEqualTo(UPDATED_STUDENT_STATUS);
         assertThat(testStudent.getLeavingReason()).isEqualTo(UPDATED_LEAVING_REASON);
         assertThat(testStudent.getInfoSource()).isEqualTo(UPDATED_INFO_SOURCE);

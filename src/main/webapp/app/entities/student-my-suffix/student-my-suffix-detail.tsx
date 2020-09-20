@@ -73,6 +73,12 @@ export class StudentMySuffixDetail extends React.Component<IStudentMySuffixDetai
             </dt>
             <dd>{studentEntity.parentEmailId}</dd>
             <dt>
+              <span id="school">
+                <Translate contentKey="risingarjunApp.student.school">School</Translate>
+              </span>
+            </dt>
+            <dd>{studentEntity.school}</dd>
+            <dt>
               <span id="studentStatus">
                 <Translate contentKey="risingarjunApp.student.studentStatus">Student Status</Translate>
               </span>

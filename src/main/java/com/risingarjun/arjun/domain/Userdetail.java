@@ -34,9 +34,12 @@ public class Userdetail implements Serializable {
     @Column(name = "mobile_no", nullable = false, unique = true)
     private String mobileNo;
 
-    @NotNull
-    @Column(name = "dob", nullable = false)
+    @Column(name = "dob")
     private LocalDate dob;
+
+    @NotNull
+    @Column(name = "joining_date", nullable = false)
+    private LocalDate joiningDate;
 
     @NotNull
     @Column(name = "house_no", nullable = false)
@@ -104,6 +107,19 @@ public class Userdetail implements Serializable {
 
     public void setDob(LocalDate dob) {
         this.dob = dob;
+    }
+
+    public LocalDate getJoiningDate() {
+        return joiningDate;
+    }
+
+    public Userdetail joiningDate(LocalDate joiningDate) {
+        this.joiningDate = joiningDate;
+        return this;
+    }
+
+    public void setJoiningDate(LocalDate joiningDate) {
+        this.joiningDate = joiningDate;
     }
 
     public String getHouseNo() {
@@ -233,6 +249,7 @@ public class Userdetail implements Serializable {
             "id=" + getId() +
             ", mobileNo='" + getMobileNo() + "'" +
             ", dob='" + getDob() + "'" +
+            ", joiningDate='" + getJoiningDate() + "'" +
             ", houseNo='" + getHouseNo() + "'" +
             ", street='" + getStreet() + "'" +
             ", city='" + getCity() + "'" +

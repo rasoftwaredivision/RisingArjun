@@ -1,19 +1,20 @@
-/*jhi_authority:
+/*
+1. jhi_authority:
 name
 ROLE_SUPERADMIN
 ROLE_ADMIN
 ROLE_CENTERHEAD		
+ROLE_MANAGER
 ROLE_ACCOUNTANT
 ROLE_TEACHER
 ROLE_STUDENT
-ROLE_MANAGER
-*/
-entity Jhiauthority{
+ROLE_PARENT
+
+entity jhi_authority{
 	name String required
 }
 
-/* 
-jhi_persistent_audit_event:
+2. jhi_persistent_audit_event:
 event_id , principal , event_date , event_type 
 1, 	admin,	2020:08:12 12:45:03, AUTHENICATION_SECCESS
 
@@ -24,7 +25,7 @@ entity jhi_persistent_audit_event{
 	event_type String
 }
 
-jhi_persistent_audit_evt_data:
+3. jhi_persistent_audit_evt_data:
 event_id, name, value
 
 3. features:
@@ -32,20 +33,20 @@ id,	featureId,	featureDetail
 1,	STUREG,		student registration
 2,	ASNCRE,		assignment creation
 3,	SALARY,		salary generation
-*/
+
 
 entity Feature{
 	featureId String unique required 
 	featureDetail String unique required
 }
 
-/*
+
 3. roleAcess:
 roleId,		featureId,	create, read, update, delete
 ADMIN,		STUREG,		true,	true,	true,	false
 ACCOUNTANT,	SALARY,		true,	true,	true,	false
 ADMIN,		SALARY,		true,	true,	true,	false
-*/
+
 entity Roleaccess{
 	create Boolean
 	read Boolean
@@ -53,12 +54,10 @@ entity Roleaccess{
 	del Boolean
 }
 
-/*
 4. jhi_user:
 id, login, password_hash, first_name, last_name, email, image_url,activated,lang_key,activation_key,reset_key,created_by,created_date,reset_date,last_modified_by,last_modified_date
 1. kunchitGoyal, hsadksa,	Kunchit, Goel, 	abc@gmail.com, URL1,0, 		EN,	NULL,	NULL,	     ShivRaturi,2020:08:12 12:45:03,NULL,ShivRaturi,2020:08:12 12:45:03
 12, AniketKhanchi,fdsfrew, 	Aniket, Khanchi,abce@gmail.com, URL2,1, 	EN,	NULL,	NULL,	     ShivRaturi,2020:08:12 12:45:03,NULL,ShivRaturi,2020:08:12 12:45:03
-
 
 entity jhi_user{
 	login  String required
@@ -99,7 +98,8 @@ id, userId, enterprise, mobileNo,	DOB, 		houseNo, street,	city, 	state, Country,
 
 entity Userdetail{
 	mobileNo String unique required
-	dob LocalDate required
+	dob LocalDate
+	joiningDate LocalDate required
 	houseNo String required
 	street String
 	city City required
@@ -117,7 +117,7 @@ entity Userpreference{
 	theme String
 }
 
-/*4. studentsStatus:
+/*4. studentStatus:
 id, StatusCode, Status
 1, LF, Left
 */
@@ -135,7 +135,7 @@ enum Leavingreason{
 	NA, DISTANCEFACTOR, UNHAPPYPHYSICS, UNHAPPYMATHS, UNHAPPYBIO, UNHAPPYCHEMISTRY, UNHAPPYMANAGEMENT, HIGHFEES, CLASSESOVERLAP, COURSECOMPLETED, BREAKEXAM, BREAKHOLIDAY, PERSONALREASON
 }
 /*
-6. courses:
+6. course:
 id, courseId, 	course
 1,   X, 	Intermediate
 2,  CLAT, 	CLAT Entrance
@@ -146,7 +146,7 @@ entity Course{
 }
 
 /*
-7.infoSources:
+7.infoSource:
 id, sourceCode, source
 1, PM,	Pamphlets
 2, BN,	Banners
@@ -156,8 +156,117 @@ enum Infosource{
 	LOCATIONDIRECTLY, FRIENDS, BANNER, INTERNET, PAMPHLET, NEWSPAPER
 }
 
+enum School{
+	NONE,
+OTHER,
+PRIVATE,
+OPEN_SCHOOL,
+ADITYA_ARMY_PUBLIC_SCHOOL,
+AJANTA_PUBLIC_SCHOOL,
+ALPINE_CONVENT_SCHOOL_GURGAON,
+AMBIENCE_PUBLIC_SCHOOLS,
+AMERICAN_MONTESSORI_PUBLIC_SCHOOL,
+AMITY_INTERNATIONAL_SCHOOL,
+ARAVALI_PUBLIC_SCHOOL,
+ASCENT_PUBLIC_SCHOOL,
+ASIAN_PUBLIC_SCHOOL,
+BASANT_VALLEY_PUBLIC_SCHOOL,
+BHARTI_INTERNATIONAL_CONVENT_SCHOOL,
+BLUE_BELLS_PUBLIC_SCHOOL,
+CHIRANJIV_BHARTI_SCHOOL,
+COLONELS_CENTRAL_ACADEMY,
+COLONELS_PUBLIC_SCHOOL,
+DAV_PUBLIC_SCHOOL,
+DELHI_PUBLIC_SCHOOL_MARUTI_KUNJ,
+DELHI_PUBLIC_SCHOOL_SECTOR_45,
+DELHI_PUBLIC_SCHOOL_SUSHANT_LOK,
+DEV_SAMAJ_VIDYA_NIKETAN,
+DPS_MEWAT_MODEL_SCHOOL,
+DRONA_PUBLIC_SCHOOL,
+GD_GOENKA_WORLD_SCHOOL,
+GEMS_INTERNATIONAL_SCHOOL,
+GREEN_DALE_PUBLIC_SCHOOL,
+GREENWOOD_PUBLIC_SCHOOL,
+GURGAON_VALLEY_SCHOOL,
+GURUGRAM_PUBLIC_SCHOOL,
+GYAN_DEEP_SENIOR_SECONDARY_SCHOOL,
+GYAN_DEVI_PUBLIC_SCHOOL,
+HERITAGE_XPERIENTIAL_LEARNING_SCHOOL,
+INDUS_WORLD_SCHOOL,
+J_J_SCHOOL_OF_EDUCATION,
+JHANKAR_HIGH_SCHOOL,
+KINDER_VALLEY_INTERNATIONAL_SCHOOL,
+KULDEEP_SINGH_MEMORIAL_PUBLIC_SCHOOL,
+LADY_FLORENCE_PUBLIC_SCHOOL,
+LAXMI_INTERNATIONAL_SCHOOL,
+LIONS_PUBLIC_SCHOOL,
+LORD_JESUS_PUBLIC_SCHOOL,
+LORD_KRISHNA_INTERNATIONAL_SCHOOL,
+MADE_EASY_SCHOOL,
+MAHARISHI_VIDYA_MANDIR_PUBLIC_SCHOOL,
+MANAV_RACHNA_INTERNATIONAL_SCHOOL,
+MARU_MAL_BOYS_SENIOR_SECONDARY_SCHOOL,
+MEENAKSHI_PUBLIC_SCHOOL,
+MEWAT_MODEL_SCHOOL,
+MEWAT_MODEL_SCHOOL_NAGINA,
+OUR_LADY_OF_FATIMA_CONVENT_SECONDARY_SCHOOL,
+PATHWAYS_WORLD_SCHOOL,
+POLE_STAR_PUBLIC_SCHOOL,
+PRESIDIUM_SENIOR_SECONDARY_SCHOOL,
+RABINDRANATH_WORLD_SCHOOL,
+RAJENDRA_PUBLIC_SCHOOL,
+RAJMALA_SENIOR_SECONDARY_SCHOOL,
+RAO_LAL_SINGH_PUBLIC_SCHOOL,
+RED_ROSES_PUBLIC_SCHOOL,
+RIDGE_VALLEY_SCHOOL,
+RISHI_PUBLIC_SCHOOL,
+ROCKFORD_CONVENT_HIGH_SCHOOL,
+ROTARY_PUBLIC_SCHOOL,
+ROYAL_PUBLIC_SENIOR_SECONDARY_SCHOOL,
+RYAN_INTERNATIONAL_SCHOOL,
+S_D_ADARSH_VIDYALAYA,
+SALWAN_MONTESSORI_SCHOOL,
+SALWAN_PUBLIC_SCHOOL,
+SAVITRI_DEVI_VIDYA_NIKETAN,
+SCOTTISH_HIGH_INTERNATIONAL_SCHOOL,
+SCR_GLOBAL_SCHOOL,
+SCR_MODEL_SCHOOL,
+SCR_PUBLIC_SCHOOL,
+SD_MEMORIAL_HIGH_SCHOOL,
+SHALOM_HILLS_INTERNATIONAL_SCHOOL,
+SHANTI_NIKETAN_PUBLIC_SCHOOL,
+SHARDA_INTERNATIONAL_SCHOOL,
+SHEMFORD_FUTURISTIC_ACADEMY_GURUGRAM,
+SHERWOOD_CONVENT_SCHOOL,
+SHIKSHA_BHARTI_PUBLIC_SCHOOL,
+SHIKSHANTAR,
+SHIV_NADAR_SCHOOL,
+SHIV_PUBLIC_SENIOR_SECONDARY_SCHOOL,
+SHRI_SN_SIDHESHWAR_SR_SEC_PUBLIC_SCHOOL,
+SRI_SHIV_CHAITANYA_ACADEMY_SCHOOL,
+ST_ANGELS_SCHOOL,
+ST_CRISPINS_SENIOR_SECONDARY_SCHOOL,
+ST_MICHAELS_SENIOR_SECONDARY_SCHOOL,
+ST_PBN_PUBLIC_SCHOOL,
+ST_SOLDIER_PUBLIC_SCHOOL,
+STAREX_INTERNATIONAL_SCHOOL,
+SUMMER_FIELDS_SCHOOL,
+SUNCITY_WORLD_SCHOOL,
+TAGORE_INTERNATIONAL_SCHOOL,
+THE_ARDEE_SCHOOL,
+THE_PINE_CREST_SCHOOL,
+THE_SHRI_RAM_SCHOOL_ARAVALI,
+THE_SYLVAN_TRAILS_SCHOOL,
+UNIVERSIOL_PUBLIC_SCHOOL,
+US_SCHOOL,
+VEGA_SCHOOLS,
+VIBGYOR_GROUP_OF_SCHOOLS,
+VIDYA_BHAWAN_PUBLIC_SENIOR_SECONDARY_SCHOOL,
+VIVEKANAND_ACADEMY,
+WEST_ACADEMY
+}
 /*
-8. students:
+8. student:
 id, userId, studentRegId, registrationForm, course, parentMobNo1, parentMobNo2, parentEmailId, studentStatus,leavingReason, infoSource
 100, 10, RA_GGN_2019-20-001,  ImageBlob,     X, 	9999,    8888, 		abc2@gmail.com, LF,	 	DF,		FR
 */
@@ -167,13 +276,14 @@ entity Student{
 	parentMobNo1 String 
 	parentMobNo2 String
 	parentEmailId String
+	school 		  School
     studentStatus Studentstatus
     leavingReason Leavingreason 
     infoSource Infosource
 }
 
 /*
-9. subjects:
+9. subject:
 id, subjectCode, subjectTitle
 1,  PH,		Physics
 2,  CH,		Chemistry
@@ -200,7 +310,7 @@ enum Month{
 }
 
 /*
-11. studentsSubjects:
+11. studentSubject:
 id, studentRegId, subjectCode1, subjectCode2,subjectCode3,subjectCode4,subjectCode5,subjectCode6,subjectCode7,subjectCode8,courseId, month, AcadSessionId
 1,  RA_GGN_2019-20-001,PH,		CH,	MA,	     IIT-Math,     null,	null,		null,	null,	    XI,      JAN, 2020-21
 */
@@ -220,7 +330,7 @@ entity Subjectbasefee{
 }
 
 /*
-13. discounts:
+13. discount:
 id, enterprise, subject2,subject3,subject4,subject5,subject6,subject7,subject8, quarterly, halfYearly, annually, sibling, referral,AcadSessionId
 1,	20, 200,	  300,	   600,	   700,	    800,   1000,    1100,    4%,	7%,		9%,	10%,	200,	2020-21
 */
@@ -240,7 +350,7 @@ entity Discount{
 }
 
 /*
-14. scholarsips:
+14. scholarsip:
 id, enterprise, minMarks, percent, AcadSessionId
 1,   30, 85%,	2%,		2020-21
 2,   20, 90%,	3%,		2020-21
@@ -253,7 +363,7 @@ entity Scholarship{
 
 
 /*
-15. studentsFee:
+15. studentFee:
 id, studentRegId,      subjectCode, fee, feeCorrection, month, AcadSessionId, teacherId, feeStatus
 1,  RA_GGN_2019-20-001,   MA,   2200,      null, 	 JAN,    2020-21,   GGN002,  NotPaid
 2,  RA_GGN_2019-20-001,   PH,   2300,      -300, 	 JAN,    2020-21,   GGN003,  Paid
@@ -271,7 +381,7 @@ enum Jobnature{
 	PARTTIME, FULLTIME
 }
 /*
-16. employees:
+16. employee:
 id, userId, empolyeeId, jobNature,	BGC,		resume,			PAN,		accountNo,	bank,	ifsc
 1,   12,    GGN002,	PARTTIME,	CLEAR,		resumeAttached,		AHNPR08087,	121323,		SBI,	SBI83023
 */
@@ -286,7 +396,7 @@ entity Employee{
 	ifsc String
 }
 /*
-17. centers:
+17. center:
 id, enterprise, centerCode, centerTitle,	street,					city,	state,	country, pincode
 1,  20, GGN_SEC3, 	Gurgaon Sec3, 	Shop No 13, Sector 3 		Gurgaon,Haryana, INDIA, 122001
 2,  30, GGN_SEC4, 	Gurgaon Sec4, 	Shop No 13-14, Sector 4, 	Gurgaon,Haryana, INDIA, 122001
@@ -302,7 +412,7 @@ entity Center{
 	pincode Integer
 }
 /*
-18. centerHeads:
+18. centerHead:
 id, empolyeeId, centerCode
 1, GGN003,	GGN_SEC4
 2, GGN004,	DDN_SUM
@@ -313,7 +423,7 @@ entity Centerhead{
 
 
 /*
-19. teachers:
+19. teacher:
 id, empolyeeId, subjectCode1, subjectCode2, subjectCode3,courseId
 1, GGN002,	PH,		MA,		CH	
 */
@@ -321,7 +431,7 @@ entity Teacher{
 	
 }
 /*
-20. teachersShare:
+20. teacherShare:
 id, teacherId, share%, plannedClasses, actualClasses, shareCorrection, subjectId, month,  AcadSessionId
 1,   GGN002,	  80%,		17,    	15,   		null,		MA,	       JAN,    2020-21
 */
@@ -356,7 +466,7 @@ entity Salarypayment{
 	remarks String
 }
 /*
-22. expensesTypes:
+22. expenseTypes:
 id, expenceTypeId, Detail
 1. OPERATING, Operating expenses
 2. MARKETING, Marketing expenses
@@ -368,7 +478,7 @@ enum Expensetype{
 }
 
 /*
-23. expenses:
+23. expense:
 id, enterprise, item, quantity,    rate, 	laborCost,  otherExpense, total, date, transactionId, mode, 	  type, 	   bill, 	   remarks
 1, 20,	 Chairs,   10,        400,       200,		1000,	   5200  07-07-20, IMPS68676, Debit Card, FIXASSET,  billAttachment, purchased from Sadar bazar
 2, 30,	Signboard, 5,       10000,      3000,	2000,	  65000  10-07-20, IMPS67676, Debit Card, MARKETING, billAttachment, purchased from xyz shop
@@ -388,7 +498,7 @@ entity Expense{
 	remarks String
 }
 /*
-24. chapters:
+24. chapter:
 id,	courseId,	subject,	chapterId,	chapterTitle
 1, 	XII,		MA,		DE,		differential equations
 2, 	3,		MA,		ADD,		simple addition
@@ -427,10 +537,7 @@ entity Fundamentaldetail{
 }
 
 /*
-26. questions:
-
-    Question{} to Employee,
-    Question{approver} to Employee,
+26. question:
 id, enterprisename, courseId,subjectId,chapterId, question,diagram,	option1,option2,option3,option4, multiChoice,answer, fundamentals, maxMarks,negativeMarks, durationMins, level
 1, 	30,			3,			MA,		ADD,		29+39,	qdiagram,	48,		58,		68,			78,		0,		68,		SAS, 			4,		1,			5,	BEGINNERS
 2, 	20,			3,			MA,		ADD,		19+39,	somediagram,48,		58,		68,			78,		1,	58,		MPT, 			4,		1,			4,	MODERATE
@@ -456,7 +563,7 @@ entity Question{
 	status Questionstatus required
 }
 /*
-27. studentsScore:
+27. studentScore:
 id, studentRegId,      	questionId, answer,	score,	date
 1,  RA_GGN_2019-20-001,	1,	     68,	4,	07-09-2020
 2,  RA_GGN_2019-20-001	2,	     78,	-1,	07-09-2020
@@ -539,8 +646,8 @@ relationship ManyToMany{
 }
 
 relationship ManyToOne{
-	Roleaccess{role(name)} to Jhiauthority,
-	Roleaccess{feature(featureDetail)} to Feature,
+	/*Roleaccess{role(name)} to Jhiauthority,
+	Roleaccess{feature(featureDetail)} to Feature,*/
 	Userdetail{enterprise(enterprisename)} to Enterprise,
 	Studentsubject{registrationno(studentRegId)} to Student,	
 	Studentsubject{session(acadSession)} to Academicsession,		

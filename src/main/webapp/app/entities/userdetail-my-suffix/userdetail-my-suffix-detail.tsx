@@ -43,6 +43,14 @@ export class UserdetailMySuffixDetail extends React.Component<IUserdetailMySuffi
               <TextFormat value={userdetailEntity.dob} type="date" format={APP_LOCAL_DATE_FORMAT} />
             </dd>
             <dt>
+              <span id="joiningDate">
+                <Translate contentKey="risingarjunApp.userdetail.joiningDate">Joining Date</Translate>
+              </span>
+            </dt>
+            <dd>
+              <TextFormat value={userdetailEntity.joiningDate} type="date" format={APP_LOCAL_DATE_FORMAT} />
+            </dd>
+            <dt>
               <span id="houseNo">
                 <Translate contentKey="risingarjunApp.userdetail.houseNo">House No</Translate>
               </span>
