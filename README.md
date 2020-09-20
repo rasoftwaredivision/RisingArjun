@@ -37,6 +37,49 @@ Add the `help` flag on any command to see how you can use it. For example, `npm 
 
 The `npm run` command will list all of the scripts available to run for this project.
 
+11. To update one or more entities use below steps
+    STEP A:
+    Refrences: https://www.jhipster.tech/development/ Database updates
+
+11.1. Manually remove the import occurances for the entities to be updated from src/main/webapp/app/shared/reducers/index.ts. Don't remove any other line even if it's commented. eg /_ jhipster-needle-add-reducer-import - JHipster will add reducer here _/
+
+11.2 Manually remove the MenuItem occurances for the entities to be updated from
+src/main/webapp/app/shared/layout/menus/entities.tsx. Don't remove any other line even if it's commented. eg {/_ jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here _/}
+STEP B:
+Option1:
+11.3 jhipster import-jdl jdl\risingarjun.jdl --json-only
+This will import json of all entities inside .jhipster/
+Now checkout all json files .jhipster/ that you don't want to modify.Keep only modified jsons of entities of interest.
+11.4 Now regenerate all entities of interest one by one
+jhipster entity Userdetail --regenerate -skip-db-changelog
+jhipster entity Student --regenerate -skip-db-changelog
+Option2:
+11.3 jhipster entity Userdetail
+now modify entity based on menu provided by jhipster for the entity
+//https://www.jhipster.tech/creating-an-entity/ Updating an existing entity
+
+STEP C:
+11.5 Using "git diff" command see the files that shouldn't have been modified. Checkout all such files that shouldn't be modified.
+
+11.6 undo changes done in master.xml file
+git checkout src/main/resources/config/liquibase/master.xml
+
+STEP D:
+Option 1:
+11.7 mvnw compile liquibase:diff to create changelist created as src/main/resources/config/liquibase/changeelog/xxxx_changelog.xml
+
+11.8 review changes in changelog.xml and if they are okay then add file entry in src/main/resources/config/liquibase/master.xml. so it is applied the next time you run your application.
+
+Option 2:
+11.7 create an Sql command to manually make changes in DB using SQL command.
+
+11.9 Remove all fake data from all CVS files inside src/main/resources/config/liquibase/data/
+
+11.10 run mvnw to lunch application. This will made desired changes in DB
+
+12. Application opens on 8080 port.
+    Application is not able to fetch data is DB connection is already established by some other process.
+
 B)Additional Steps
 Refer below sites for creating dev environment
 
@@ -191,8 +234,7 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 ## Deployment in Heroku
 
 1. Install Heroku client from https://devcenter.heroku.com/articles/heroku-cli#download-and-install
-2. Refer https://dashboard.heroku.com/apps/therisingarjun/deploy/heroku-git for using Heroku CLI
-   After installation run below commands to deploy app
+2. Refer https://dashboard.heroku.com/apps/therisingarjun/deploy/heroku-git for using Heroku CLI. After installation run below commands to deploy app
    $ heroku login
 $ jhipster heroku
    \$ heroku open
@@ -200,9 +242,9 @@ $ jhipster heroku
 3. Redeploy app
    $ heroku login
 $ git add .
-   $ git commit -am "App Update"
+   $ git commit -am "Release 0.002 Update"
+ set git remote heroku to https://git.heroku.com/risingarjun.git
 $heroku git:remote -a risingarjun
-   set git remote heroku to https://git.heroku.com/risingarjun.git
    $git remote -v
 heroku  https://git.heroku.com/risingarjun.git (fetch)
 heroku  https://git.heroku.com/risingarjun.git (push)
