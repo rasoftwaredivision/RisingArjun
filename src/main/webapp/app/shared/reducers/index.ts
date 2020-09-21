@@ -13,18 +13,6 @@ import password, { PasswordState } from 'app/modules/account/password/password.r
 import settings, { SettingsState } from 'app/modules/account/settings/settings.reducer';
 import passwordReset, { PasswordResetState } from 'app/modules/account/password-reset/password-reset.reducer';
 // prettier-ignore
-import jhiauthority, {
-  JhiauthorityMySuffixState
-} from 'app/entities/jhiauthority-my-suffix/jhiauthority-my-suffix.reducer';
-// prettier-ignore
-import feature, {
-  FeatureMySuffixState
-} from 'app/entities/feature-my-suffix/feature-my-suffix.reducer';
-// prettier-ignore
-import roleaccess, {
-  RoleaccessMySuffixState
-} from 'app/entities/roleaccess-my-suffix/roleaccess-my-suffix.reducer';
-// prettier-ignore
 import userdetail, {
   UserdetailMySuffixState
 } from 'app/entities/userdetail-my-suffix/userdetail-my-suffix.reducer';
@@ -120,6 +108,7 @@ import enterprise, {
 import enterprisesettings, {
   EnterprisesettingsMySuffixState
 } from 'app/entities/enterprisesettings-my-suffix/enterprisesettings-my-suffix.reducer';
+// prettier-ignore
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {
@@ -133,9 +122,6 @@ export interface IRootState {
   readonly passwordReset: PasswordResetState;
   readonly password: PasswordState;
   readonly settings: SettingsState;
-  readonly jhiauthority: JhiauthorityMySuffixState;
-  readonly feature: FeatureMySuffixState;
-  readonly roleaccess: RoleaccessMySuffixState;
   readonly userdetail: UserdetailMySuffixState;
   readonly userpreference: UserpreferenceMySuffixState;
   readonly course: CourseMySuffixState;
@@ -175,9 +161,6 @@ const rootReducer = combineReducers<IRootState>({
   passwordReset,
   password,
   settings,
-  jhiauthority,
-  feature,
-  roleaccess,
   userdetail,
   userpreference,
   course,

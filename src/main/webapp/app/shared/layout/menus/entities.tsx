@@ -9,15 +9,6 @@ import { NavDropdown } from './menu-components';
 export const EntitiesMenu = props => (
   // tslint:disable-next-line:jsx-self-close
   <NavDropdown icon="th-list" name={translate('global.menu.entities.main')} id="entity-menu">
-    <MenuItem icon="asterisk" to="/entity/jhiauthority-my-suffix">
-      <Translate contentKey="global.menu.entities.jhiauthorityMySuffix" />
-    </MenuItem>
-    <MenuItem icon="asterisk" to="/entity/feature-my-suffix">
-      <Translate contentKey="global.menu.entities.featureMySuffix" />
-    </MenuItem>
-    <MenuItem icon="asterisk" to="/entity/roleaccess-my-suffix">
-      <Translate contentKey="global.menu.entities.roleaccessMySuffix" />
-    </MenuItem>
     <MenuItem icon="asterisk" to="/entity/userdetail-my-suffix">
       <Translate contentKey="global.menu.entities.userdetailMySuffix" />
     </MenuItem>

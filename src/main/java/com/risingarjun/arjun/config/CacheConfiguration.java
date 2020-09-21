@@ -43,9 +43,6 @@ public class CacheConfiguration {
             createCache(cm, com.risingarjun.arjun.domain.User.class.getName());
             createCache(cm, com.risingarjun.arjun.domain.Authority.class.getName());
             createCache(cm, com.risingarjun.arjun.domain.User.class.getName() + ".authorities");
-            createCache(cm, com.risingarjun.arjun.domain.Jhiauthority.class.getName());
-            createCache(cm, com.risingarjun.arjun.domain.Feature.class.getName());
-            createCache(cm, com.risingarjun.arjun.domain.Roleaccess.class.getName());
             createCache(cm, com.risingarjun.arjun.domain.Userdetail.class.getName());
             createCache(cm, com.risingarjun.arjun.domain.Userpreference.class.getName());
             createCache(cm, com.risingarjun.arjun.domain.Course.class.getName());

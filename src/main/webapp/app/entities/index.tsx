@@ -4,9 +4,6 @@ import { Switch } from 'react-router-dom';
 // tslint:disable-next-line:no-unused-variable
 import ErrorBoundaryRoute from 'app/shared/error/error-boundary-route';
 
-import JhiauthorityMySuffix from './jhiauthority-my-suffix';
-import FeatureMySuffix from './feature-my-suffix';
-import RoleaccessMySuffix from './roleaccess-my-suffix';
 import UserdetailMySuffix from './userdetail-my-suffix';
 import UserpreferenceMySuffix from './userpreference-my-suffix';
 import CourseMySuffix from './course-my-suffix';
@@ -37,9 +34,6 @@ const Routes = ({ match }) => (
   <div>
     <Switch>
       {/* prettier-ignore */}
-      <ErrorBoundaryRoute path={`${match.url}/jhiauthority-my-suffix`} component={JhiauthorityMySuffix} />
-      <ErrorBoundaryRoute path={`${match.url}/feature-my-suffix`} component={FeatureMySuffix} />
-      <ErrorBoundaryRoute path={`${match.url}/roleaccess-my-suffix`} component={RoleaccessMySuffix} />
       <ErrorBoundaryRoute path={`${match.url}/userdetail-my-suffix`} component={UserdetailMySuffix} />
       <ErrorBoundaryRoute path={`${match.url}/userpreference-my-suffix`} component={UserpreferenceMySuffix} />
       <ErrorBoundaryRoute path={`${match.url}/course-my-suffix`} component={CourseMySuffix} />

@@ -14,9 +14,6 @@
     <property name="uuidType" value="uuid" dbms="h2, postgresql"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20200917055139_added_entity_Jhiauthority.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20200917055140_added_entity_Feature.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20200917055141_added_entity_Roleaccess.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200917055143_added_entity_Userpreference.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200917055144_added_entity_Course.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200917055146_added_entity_Subject.xml" relativeToChangelogFile="false"/>
@@ -42,7 +39,6 @@
     <include file="config/liquibase/changelog/20200920150841_added_entity_Userdetail.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200920150844_added_entity_Student.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
-    <include file="config/liquibase/changelog/20200917055141_added_entity_constraints_Roleaccess.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200917055143_added_entity_constraints_Userpreference.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200917055148_added_entity_constraints_Studentsubject.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200917055149_added_entity_constraints_Subjectbasefee.xml" relativeToChangelogFile="false"/>
