@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import DevTools from './config/devtools';
 import initStore from './config/store';
 import { registerLocale } from './config/translation';
