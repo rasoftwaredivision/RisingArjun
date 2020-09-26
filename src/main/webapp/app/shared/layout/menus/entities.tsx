@@ -9,13 +9,13 @@ import { NavDropdown } from './menu-components';
 export const EntitiesMenu = props => (
   // tslint:disable-next-line:jsx-self-close
   <NavDropdown icon="th-list" name={translate('global.menu.entities.main')} id="entity-menu">
-    {(props.student || props.teacher || props.centerhead || props.enterpriseadmin || props.admin) && (
+    {(props.teacher || props.centerhead || props.enterpriseadmin || props.admin) && (
       <MenuItem icon="asterisk" to="/entity/userdetail-my-suffix">
         <Translate contentKey="global.menu.entities.userdetailMySuffix" />
       </MenuItem>
     )}
 
-    {(props.student || props.teacher || props.centerhead || props.enterpriseadmin || props.admin) && (
+    {(props.teacher || props.centerhead || props.enterpriseadmin || props.admin) && (
       <MenuItem icon="asterisk" to="/entity/userpreference-my-suffix">
         <Translate contentKey="global.menu.entities.userpreferenceMySuffix" />
       </MenuItem>
