@@ -8,7 +8,7 @@ const Footer = props => (
   <div className="footer">
     <div className="container">
       <div className="row justify-content-center">
-        <div className="col-4 offset-1 col-sm-2">
+        <div className="col-4 offset-1 col-sm-2 text-white">
           <h5>Links</h5>
           <ul className="list-unstyled">
             <li>
@@ -18,7 +18,7 @@ const Footer = props => (
             </li>
           </ul>
         </div>
-        <div className="col-7 col-sm-5">
+        <div className="col-7 col-sm-5 text-white">
           <h5>Our Address</h5>
           <address>
             Address placeholder
@@ -54,7 +54,7 @@ const Footer = props => (
         </div>
       </div>
       <div className="row justify-content-center">
-        <div className="col-auto">
+        <div className="col-auto text-white">
           <p>Copyright: RASOFTWAREDIVISON</p>
         </div>
       </div>

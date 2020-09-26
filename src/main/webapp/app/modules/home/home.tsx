@@ -38,7 +38,7 @@ export class Home extends React.Component<IHomeProp> {
             <img src="content/images/headerlogo.png" alt="Logo" height="200px" width="300px" class="img-circle" />
           </Col>
           <Col>
-            <h1 class="text-center">Welcome to Rising Arjun</h1>
+            <div class="display-1 font-weight-light">Welcome to Rising Arjun</div>
             {account && account.login ? (
               <div>
                 <Alert color="success">
