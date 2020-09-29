@@ -28,24 +28,27 @@ export const EntitiesMenu = props => (
 
     {/* student, studentsubject,studentfee, studentscore  can be viewed by all except user */}
     {!props.user && (
-        <MenuItem icon="asterisk" to="/entity/student-my-suffix">
-          <Translate contentKey="global.menu.entities.studentMySuffix" />
-        </MenuItem>
-      ) && (
-        <MenuItem icon="asterisk" to="/entity/studentsubject-my-suffix">
-          <Translate contentKey="global.menu.entities.studentsubjectMySuffix" />
-        </MenuItem>
-      ) && (
-        <MenuItem icon="asterisk" to="/entity/studentfee-my-suffix">
-          <Translate contentKey="global.menu.entities.studentfeeMySuffix" />
-        </MenuItem>
-      ) && (
-        <MenuItem icon="asterisk" to="/entity/studentscore-my-suffix">
-          <Translate contentKey="global.menu.entities.studentscoreMySuffix" />
-        </MenuItem>
-      )}
+      <MenuItem icon="asterisk" to="/entity/student-my-suffix">
+        <Translate contentKey="global.menu.entities.studentMySuffix" />
+      </MenuItem>
+    )}
+    {!props.user && (
+      <MenuItem icon="asterisk" to="/entity/studentsubject-my-suffix">
+        <Translate contentKey="global.menu.entities.studentsubjectMySuffix" />
+      </MenuItem>
+    )}
+    {!props.user && (
+      <MenuItem icon="asterisk" to="/entity/studentfee-my-suffix">
+        <Translate contentKey="global.menu.entities.studentfeeMySuffix" />
+      </MenuItem>
+    )}
+    {!props.user && (
+      <MenuItem icon="asterisk" to="/entity/studentscore-my-suffix">
+        <Translate contentKey="global.menu.entities.studentscoreMySuffix" />
+      </MenuItem>
+    )}
 
-    {/* employee, teacher,teachershare, salarypayment can be viewed by all except user & student */}
+    {/* employee, salarypayment, teacher, teachershare  can be viewed by all except user & student */}
     {(props.admin ||
       props.enterpriseadmin ||
       props.centerhead ||
@@ -53,22 +56,43 @@ export const EntitiesMenu = props => (
       props.manager ||
       props.teacher ||
       props.counsellor) && (
-        <MenuItem icon="asterisk" to="/entity/employee-my-suffix">
-          <Translate contentKey="global.menu.entities.employeeMySuffix" />
-        </MenuItem>
-      ) && (
-        <MenuItem icon="asterisk" to="/entity/salarypayment-my-suffix">
-          <Translate contentKey="global.menu.entities.salarypaymentMySuffix" />
-        </MenuItem>
-      ) && (
-        <MenuItem icon="asterisk" to="/entity/teacher-my-suffix">
-          <Translate contentKey="global.menu.entities.teacherMySuffix" />
-        </MenuItem>
-      ) && (
-        <MenuItem icon="asterisk" to="/entity/teachershare-my-suffix">
-          <Translate contentKey="global.menu.entities.teachershareMySuffix" />
-        </MenuItem>
-      )}
+      <MenuItem icon="asterisk" to="/entity/employee-my-suffix">
+        <Translate contentKey="global.menu.entities.employeeMySuffix" />
+      </MenuItem>
+    )}
+    {(props.admin ||
+      props.enterpriseadmin ||
+      props.centerhead ||
+      props.accountant ||
+      props.manager ||
+      props.teacher ||
+      props.counsellor) && (
+      <MenuItem icon="asterisk" to="/entity/salarypayment-my-suffix">
+        <Translate contentKey="global.menu.entities.salarypaymentMySuffix" />
+      </MenuItem>
+    )}
+    {(props.admin ||
+      props.enterpriseadmin ||
+      props.centerhead ||
+      props.accountant ||
+      props.manager ||
+      props.teacher ||
+      props.counsellor) && (
+      <MenuItem icon="asterisk" to="/entity/teacher-my-suffix">
+        <Translate contentKey="global.menu.entities.teacherMySuffix" />
+      </MenuItem>
+    )}
+    {(props.admin ||
+      props.enterpriseadmin ||
+      props.centerhead ||
+      props.accountant ||
+      props.manager ||
+      props.teacher ||
+      props.counsellor) && (
+      <MenuItem icon="asterisk" to="/entity/teachershare-my-suffix">
+        <Translate contentKey="global.menu.entities.teachershareMySuffix" />
+      </MenuItem>
+    )}
 
     {/* expense, can be viewed by admin, enterpriseadmin, centerhead, accountant & manager */}
     {(props.admin || props.enterpriseadmin || props.centerhead || props.accountant || props.manager) && (
@@ -79,52 +103,59 @@ export const EntitiesMenu = props => (
 
     {/* chapter, fundamentaldetail,question can be viewed by admin, enterpriseadmin,  centerhead, manager, teacher & counsellor */}
     {(props.admin || props.enterpriseadmin || props.centerhead || props.manager || props.teacher || props.counsellor) && (
-        <MenuItem icon="asterisk" to="/entity/chapter-my-suffix">
-          <Translate contentKey="global.menu.entities.chapterMySuffix" />
-        </MenuItem>
-      ) && (
-        <MenuItem icon="asterisk" to="/entity/fundamentaldetail-my-suffix">
-          <Translate contentKey="global.menu.entities.fundamentaldetailMySuffix" />
-        </MenuItem>
-      ) && (
-        <MenuItem icon="asterisk" to="/entity/question-my-suffix">
-          <Translate contentKey="global.menu.entities.questionMySuffix" />
-        </MenuItem>
-      )}
+      <MenuItem icon="asterisk" to="/entity/chapter-my-suffix">
+        <Translate contentKey="global.menu.entities.chapterMySuffix" />
+      </MenuItem>
+    )}
+    {(props.admin || props.enterpriseadmin || props.centerhead || props.manager || props.teacher || props.counsellor) && (
+      <MenuItem icon="asterisk" to="/entity/fundamentaldetail-my-suffix">
+        <Translate contentKey="global.menu.entities.fundamentaldetailMySuffix" />
+      </MenuItem>
+    )}
+    {(props.admin || props.enterpriseadmin || props.centerhead || props.manager || props.teacher || props.counsellor) && (
+      <MenuItem icon="asterisk" to="/entity/question-my-suffix">
+        <Translate contentKey="global.menu.entities.questionMySuffix" />
+      </MenuItem>
+    )}
 
     {/* center, centerhead, course, subject accessible to admin, enterpriseadmin,  centerhead, manager & counsellor */}
     {(props.admin || props.enterpriseadmin || props.centerhead || props.manager || props.counsellor) && (
-        <MenuItem icon="asterisk" to="/entity/center-my-suffix">
-          <Translate contentKey="global.menu.entities.centerMySuffix" />
-        </MenuItem>
-      ) && (
-        <MenuItem icon="asterisk" to="/entity/centerhead-my-suffix">
-          <Translate contentKey="global.menu.entities.centerheadMySuffix" />
-        </MenuItem>
-      ) && (
-        <MenuItem icon="asterisk" to="/entity/course-my-suffix">
-          <Translate contentKey="global.menu.entities.courseMySuffix" />
-        </MenuItem>
-      ) && (
-        <MenuItem icon="asterisk" to="/entity/subject-my-suffix">
-          <Translate contentKey="global.menu.entities.subjectMySuffix" />
-        </MenuItem>
-      )}
+      <MenuItem icon="asterisk" to="/entity/center-my-suffix">
+        <Translate contentKey="global.menu.entities.centerMySuffix" />
+      </MenuItem>
+    )}
+    {(props.admin || props.enterpriseadmin || props.centerhead || props.manager || props.counsellor) && (
+      <MenuItem icon="asterisk" to="/entity/centerhead-my-suffix">
+        <Translate contentKey="global.menu.entities.centerheadMySuffix" />
+      </MenuItem>
+    )}
+    {(props.admin || props.enterpriseadmin || props.centerhead || props.manager || props.counsellor) && (
+      <MenuItem icon="asterisk" to="/entity/course-my-suffix">
+        <Translate contentKey="global.menu.entities.courseMySuffix" />
+      </MenuItem>
+    )}
+    {(props.admin || props.enterpriseadmin || props.centerhead || props.manager || props.counsellor) && (
+      <MenuItem icon="asterisk" to="/entity/subject-my-suffix">
+        <Translate contentKey="global.menu.entities.subjectMySuffix" />
+      </MenuItem>
+    )}
 
     {/* enterprise, enterprisesettings, academicsession accessible to  admin & enterpriseadmin */}
     {(props.admin || props.enterpriseadmin) && (
-        <MenuItem icon="asterisk" to="/entity/enterprise-my-suffix">
-          <Translate contentKey="global.menu.entities.enterpriseMySuffix" />
-        </MenuItem>
-      ) && (
-        <MenuItem icon="asterisk" to="/entity/enterprisesettings-my-suffix">
-          <Translate contentKey="global.menu.entities.enterprisesettingsMySuffix" />
-        </MenuItem>
-      ) && (
-        <MenuItem icon="asterisk" to="/entity/academicsession-my-suffix">
-          <Translate contentKey="global.menu.entities.academicsessionMySuffix" />
-        </MenuItem>
-      )}
+      <MenuItem icon="asterisk" to="/entity/enterprise-my-suffix">
+        <Translate contentKey="global.menu.entities.enterpriseMySuffix" />
+      </MenuItem>
+    )}
+    {(props.admin || props.enterpriseadmin) && (
+      <MenuItem icon="asterisk" to="/entity/enterprisesettings-my-suffix">
+        <Translate contentKey="global.menu.entities.enterprisesettingsMySuffix" />
+      </MenuItem>
+    )}
+    {(props.admin || props.enterpriseadmin) && (
+      <MenuItem icon="asterisk" to="/entity/academicsession-my-suffix">
+        <Translate contentKey="global.menu.entities.academicsessionMySuffix" />
+      </MenuItem>
+    )}
 
     {/* jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here */}
   </NavDropdown>
