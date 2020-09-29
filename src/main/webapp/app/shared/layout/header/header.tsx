@@ -14,6 +14,14 @@ import { AdminMenu, EntitiesMenu, AccountMenu, LocaleMenu } from '../menus';
 export interface IHeaderProps {
   isAuthenticated: boolean;
   isAdmin: boolean;
+  isEnterpriseadmin: boolean;
+  isCenterhead: boolean;
+  isAccountant: boolean;
+  isManager: boolean;
+  isTeacher: boolean;
+  isCounsellor: boolean;
+  isStudent: boolean;
+  isUser: boolean;
   ribbonEnv: string;
   isInProduction: boolean;
   isSwaggerEnabled: boolean;
@@ -50,7 +58,18 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
   };
 
   render() {
-    const { currentLocale, isAuthenticated, isAdmin, isSwaggerEnabled, isInProduction } = this.props;
+    const {
+      currentLocale,
+      isAuthenticated,
+      isAdmin,
+      isEnterpriseadmin,
+      isCenterhead,
+      isAccountant,
+      isManager,
+      isCounsellor,
+      isSwaggerEnabled,
+      isInProduction
+    } = this.props;
 
     /* jhipster-needle-add-element-to-menu - JHipster will add new menu items here */
 
@@ -67,13 +86,19 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
               {isAuthenticated && (
                 <EntitiesMenu
                   admin={this.props.isAdmin}
-                  teacher={this.props.isTeacher}
-                  centerhead={this.props.isCenterhead}
-                  student={this.props.isStudent}
                   enterpriseadmin={this.props.isEnterpriseadmin}
+                  centerhead={this.props.isCenterhead}
+                  accountant={this.props.isAccountant}
+                  manager={this.props.isManager}
+                  teacher={this.props.isTeacher}
+                  counsellor={this.props.isCounsellor}
+                  student={this.props.isStudent}
+                  user={this.props.isUser}
                 />
               )}
-              {isAuthenticated && isAdmin && <AdminMenu showSwagger={isSwaggerEnabled} />}
+              {isAuthenticated && (isAdmin || isEnterpriseadmin || isCenterhead || isAccountant || isManager || isCounsellor) && (
+                <AdminMenu showSwagger={isSwaggerEnabled} />
+              )}
               <LocaleMenu currentLocale={currentLocale} onClick={this.handleLocaleChange} />
               <AccountMenu isAuthenticated={isAuthenticated} />
             </Nav>

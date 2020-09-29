@@ -4,7 +4,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Translate } from 'react-jhipster';
 import { connect } from 'react-redux';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   Card,
   CardImg,
@@ -35,7 +34,7 @@ export class Home extends React.Component<IHomeProp> {
       <Container>
         <Row className="align-items-center">
           <Col>
-            <img src="content/images/headerlogo.png" alt="Logo" height="200px" width="300px" class="img-circle" />
+            <img src="content/images/risingarjunmeaning.png" alt="Logo" height="200px" width="300px" class="img-circle" />
           </Col>
           <Col>
             <div class="display-1 font-weight-light">Welcome to Rising Arjun</div>

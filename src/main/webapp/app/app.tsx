@@ -1,4 +1,6 @@
 import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './app.scss';
 
 import React from 'react';
@@ -42,10 +44,14 @@ export class App extends React.Component<IAppProps> {
             <Header
               isAuthenticated={this.props.isAuthenticated}
               isAdmin={this.props.isAdmin}
-              isStudent={this.props.isStudent}
-              isTeacher={this.props.isTeacher}
-              isCenterhead={this.props.isCenterhead}
               isEnterpriseadmin={this.props.isEnterpriseadmin}
+              isCenterhead={this.props.isCenterhead}
+              isAccountant={this.props.isAccountant}
+              isManager={this.props.isManager}
+              isTeacher={this.props.isTeacher}
+              isCounsellor={this.props.isCounsellor}
+              isStudent={this.props.isStudent}
+              isUser={this.props.isUser}
               currentLocale={this.props.currentLocale}
               onLocaleChange={this.props.setLocale}
               ribbonEnv={this.props.ribbonEnv}
@@ -71,10 +77,14 @@ const mapStateToProps = ({ authentication, applicationProfile, locale }: IRootSt
   currentLocale: locale.currentLocale,
   isAuthenticated: authentication.isAuthenticated,
   isAdmin: hasAnyAuthority(authentication.account.authorities, [AUTHORITIES.ADMIN]),
-  isStudent: hasAnyAuthority(authentication.account.authorities, [AUTHORITIES.USER]),
-  isTeacher: hasAnyAuthority(authentication.account.authorities, [AUTHORITIES.TEACHER]),
-  isCenterhead: hasAnyAuthority(authentication.account.authorities, [AUTHORITIES.CENTERHEAD]),
   isEnterpriseadmin: hasAnyAuthority(authentication.account.authorities, [AUTHORITIES.ENTERPRISEADMIN]),
+  isCenterhead: hasAnyAuthority(authentication.account.authorities, [AUTHORITIES.CENTERHEAD]),
+  isAccountant: hasAnyAuthority(authentication.account.authorities, [AUTHORITIES.ACCOUNTANT]),
+  isManager: hasAnyAuthority(authentication.account.authorities, [AUTHORITIES.MANAGER]),
+  isTeacher: hasAnyAuthority(authentication.account.authorities, [AUTHORITIES.TEACHER]),
+  isCounsellor: hasAnyAuthority(authentication.account.authorities, [AUTHORITIES.COUNSELLOR]),
+  isStudent: hasAnyAuthority(authentication.account.authorities, [AUTHORITIES.STUDENT]),
+  isUser: hasAnyAuthority(authentication.account.authorities, [AUTHORITIES.USER]),
   ribbonEnv: applicationProfile.ribbonEnv,
   isInProduction: applicationProfile.inProduction,
   isSwaggerEnabled: applicationProfile.isSwaggerEnabled

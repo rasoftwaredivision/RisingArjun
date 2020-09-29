@@ -26,6 +26,7 @@ A) Preconditions (Software to be installed):
     You will only need to run this command when dependencies change in [package.json](package.json).
     npm install
     We use npm scripts and [Webpack][] as our build system.
+    eg npm run cleanup && npm run webpack:build:main
     Run the following commands in two separate terminals to create a blissful development experience where your browser
     auto-refreshes when files change on your hard drive.
     ./mvnw
@@ -79,7 +80,7 @@ Option 2:
 
 11.9 Remove all fake data from all CVS files inside src/main/resources/config/liquibase/data/
 
-11.10 run mvnw to lunch application. This will made desired changes in DB
+11.10 run mvnw to lunch application. This will made desired changes in DB. The applicaton can also be run from IDE by right clicking on RisingarjunApp and then Runs As "Java Application".
 
 12. Application opens on 8080 port.
     Application is not able to fetch data is DB connection is already established by some other process.
