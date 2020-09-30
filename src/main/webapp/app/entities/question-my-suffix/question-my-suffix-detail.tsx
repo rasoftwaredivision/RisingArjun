@@ -35,18 +35,21 @@ export class QuestionMySuffixDetail extends React.Component<IQuestionMySuffixDet
             </dt>
             <dd>{questionEntity.question}</dd>
             <dt>
-              <span id="diagram">
-                <Translate contentKey="risingarjunApp.question.diagram">Diagram</Translate>
+              <span id="questionDiagram">
+                <Translate contentKey="risingarjunApp.question.questionDiagram">Question Diagram</Translate>
               </span>
             </dt>
             <dd>
-              {questionEntity.diagram ? (
+              {questionEntity.questionDiagram ? (
                 <div>
-                  <a onClick={openFile(questionEntity.diagramContentType, questionEntity.diagram)}>
-                    <img src={`data:${questionEntity.diagramContentType};base64,${questionEntity.diagram}`} style={{ maxHeight: '30px' }} />
+                  <a onClick={openFile(questionEntity.questionDiagramContentType, questionEntity.questionDiagram)}>
+                    <img
+                      src={`data:${questionEntity.questionDiagramContentType};base64,${questionEntity.questionDiagram}`}
+                      style={{ maxHeight: '30px' }}
+                    />
                   </a>
                   <span>
-                    {questionEntity.diagramContentType}, {byteSize(questionEntity.diagram)}
+                    {questionEntity.questionDiagramContentType}, {byteSize(questionEntity.questionDiagram)}
                   </span>
                 </div>
               ) : null}
@@ -118,6 +121,26 @@ export class QuestionMySuffixDetail extends React.Component<IQuestionMySuffixDet
             </dt>
             <dd>{questionEntity.solution}</dd>
             <dt>
+              <span id="ansDiagram">
+                <Translate contentKey="risingarjunApp.question.ansDiagram">Ans Diagram</Translate>
+              </span>
+            </dt>
+            <dd>
+              {questionEntity.ansDiagram ? (
+                <div>
+                  <a onClick={openFile(questionEntity.ansDiagramContentType, questionEntity.ansDiagram)}>
+                    <img
+                      src={`data:${questionEntity.ansDiagramContentType};base64,${questionEntity.ansDiagram}`}
+                      style={{ maxHeight: '30px' }}
+                    />
+                  </a>
+                  <span>
+                    {questionEntity.ansDiagramContentType}, {byteSize(questionEntity.ansDiagram)}
+                  </span>
+                </div>
+              ) : null}
+            </dd>
+            <dt>
               <span id="video">
                 <Translate contentKey="risingarjunApp.question.video">Video</Translate>
               </span>
@@ -142,9 +165,9 @@ export class QuestionMySuffixDetail extends React.Component<IQuestionMySuffixDet
             </dt>
             <dd>{questionEntity.subjectSubjectTitle ? questionEntity.subjectSubjectTitle : ''}</dd>
             <dt>
-              <Translate contentKey="risingarjunApp.question.chapter">Chapter</Translate>
+              <Translate contentKey="risingarjunApp.question.topic">Topic</Translate>
             </dt>
-            <dd>{questionEntity.chapterChapterTitle ? questionEntity.chapterChapterTitle : ''}</dd>
+            <dd>{questionEntity.topicTopicTitle ? questionEntity.topicTopicTitle : ''}</dd>
             <dt>
               <Translate contentKey="risingarjunApp.question.writer">Writer</Translate>
             </dt>
@@ -154,7 +177,7 @@ export class QuestionMySuffixDetail extends React.Component<IQuestionMySuffixDet
             </dt>
             <dd>{questionEntity.approverEmployeeId ? questionEntity.approverEmployeeId : ''}</dd>
             <dt>
-              <Translate contentKey="risingarjunApp.question.fundamentals">Fundamentals</Translate>
+              <Translate contentKey="risingarjunApp.question.fundamental">Fundamental</Translate>
             </dt>
             <dd>
               {questionEntity.fundamentals

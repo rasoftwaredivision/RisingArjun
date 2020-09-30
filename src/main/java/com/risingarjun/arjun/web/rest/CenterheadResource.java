@@ -81,11 +81,10 @@ public class CenterheadResource {
     /**
      * {@code GET  /centerheads} : get all the centerheads.
      *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of centerheads in body.
      */
     @GetMapping("/centerheads")
-    public List<CenterheadDTO> getAllCenterheads(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+    public List<CenterheadDTO> getAllCenterheads() {
         log.debug("REST request to get all Centerheads");
         return centerheadService.findAll();
     }

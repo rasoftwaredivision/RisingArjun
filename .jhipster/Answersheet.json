@@ -1,0 +1,47 @@
+{
+    "name": "Answersheet",
+    "fields": [
+        {
+            "fieldName": "answer",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "marks",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "testresult",
+            "otherEntityRelationshipName": "answersheet",
+            "relationshipName": "testResultId",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "question",
+            "otherEntityRelationshipName": "answersheet",
+            "relationshipName": "question",
+            "otherEntityField": "question",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20200930095453",
+    "entityTableName": "answersheet",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "mySuffix"
+}

@@ -26,7 +26,7 @@ export interface IStudentsubjectMySuffixUpdateProps extends StateProps, Dispatch
 
 export interface IStudentsubjectMySuffixUpdateState {
   isNew: boolean;
-  idssubjects: any[];
+  idssubject: any[];
   idscourse: any[];
   registrationnoId: string;
   sessionId: string;
@@ -36,7 +36,7 @@ export class StudentsubjectMySuffixUpdate extends React.Component<IStudentsubjec
   constructor(props) {
     super(props);
     this.state = {
-      idssubjects: [],
+      idssubject: [],
       idscourse: [],
       registrationnoId: '0',
       sessionId: '0',
@@ -168,11 +168,11 @@ export class StudentsubjectMySuffixUpdate extends React.Component<IStudentsubjec
                   </AvInput>
                 </AvGroup>
                 <AvGroup>
-                  <Label for="studentsubject-my-suffix-subjects">
-                    <Translate contentKey="risingarjunApp.studentsubject.subjects">Subjects</Translate>
+                  <Label for="studentsubject-my-suffix-subject">
+                    <Translate contentKey="risingarjunApp.studentsubject.subject">Subject</Translate>
                   </Label>
                   <AvInput
-                    id="studentsubject-my-suffix-subjects"
+                    id="studentsubject-my-suffix-subject"
                     type="select"
                     multiple
                     className="form-control"

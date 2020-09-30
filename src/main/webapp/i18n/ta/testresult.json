@@ -1,0 +1,28 @@
+{
+  "risingarjunApp": {
+    "testresult": {
+      "home": {
+        "title": "Testresults",
+        "createLabel": "Testresult-ஐ உருவாக்கு",
+        "createOrEditLabel": "Testresult -ஐ மாற்று (அ) உருவாக்கு",
+        "notFound": "No Testresult found"
+      },
+      "created": "Testresult புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+      "updated": "Testresult மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+      "deleted": "A Testresult நீக்கப்பட்டது, அடையாளம {{ param }}",
+      "delete": {
+        "question": "நீக்குவதற்கு உறுதி செய் Testresult {{ id }}?"
+      },
+      "detail": {
+        "title": "Testresult"
+      },
+      "positiveMarks": "Positive Marks",
+      "negativeMarks": "Negative Marks",
+      "score": "Score",
+      "timeTaken": "Time Taken",
+      "date": "Date",
+      "student": "Student",
+      "testPaperId": "Test Paper Id"
+    }
+  }
+}

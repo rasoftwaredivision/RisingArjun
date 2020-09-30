@@ -29,16 +29,16 @@ public class Teacher implements Serializable {
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "teacher_subjects",
+    @JoinTable(name = "teacher_subject",
                joinColumns = @JoinColumn(name = "teacher_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "subjects_id", referencedColumnName = "id"))
+               inverseJoinColumns = @JoinColumn(name = "subject_id", referencedColumnName = "id"))
     private Set<Subject> subjects = new HashSet<>();
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "teacher_courses",
+    @JoinTable(name = "teacher_course",
                joinColumns = @JoinColumn(name = "teacher_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "courses_id", referencedColumnName = "id"))
+               inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "id"))
     private Set<Course> courses = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -72,13 +72,13 @@ public class Teacher implements Serializable {
         return this;
     }
 
-    public Teacher addSubjects(Subject subject) {
+    public Teacher addSubject(Subject subject) {
         this.subjects.add(subject);
         subject.getTeachers().add(this);
         return this;
     }
 
-    public Teacher removeSubjects(Subject subject) {
+    public Teacher removeSubject(Subject subject) {
         this.subjects.remove(subject);
         subject.getTeachers().remove(this);
         return this;
@@ -97,13 +97,13 @@ public class Teacher implements Serializable {
         return this;
     }
 
-    public Teacher addCourses(Course course) {
+    public Teacher addCourse(Course course) {
         this.courses.add(course);
         course.getTeachers().add(this);
         return this;
     }
 
-    public Teacher removeCourses(Course course) {
+    public Teacher removeCourse(Course course) {
         this.courses.remove(course);
         course.getTeachers().remove(this);
         return this;

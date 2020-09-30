@@ -17,7 +17,7 @@
         "title": "Question"
       },
       "question": "Question",
-      "diagram": "Diagram",
+      "questionDiagram": "Question Diagram",
       "option1": "Option 1",
       "option2": "Option 2",
       "option3": "Option 3",
@@ -29,15 +29,17 @@
       "durationMins": "Duration Mins",
       "level": "Level",
       "solution": "Solution",
+      "ansDiagram": "Ans Diagram",
       "video": "Video",
       "status": "Status",
       "enterprise": "Enterprise",
       "course": "Course",
       "subject": "Subject",
-      "chapter": "Chapter",
+      "topic": "Topic",
       "writer": "Writer",
       "approver": "Approver",
-      "fundamentals": "Fundamentals"
+      "fundamental": "Fundamental",
+      "answersheet": "Answersheet"
     }
   }
 }

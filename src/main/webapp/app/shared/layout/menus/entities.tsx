@@ -9,7 +9,7 @@ import { NavDropdown } from './menu-components';
 export const EntitiesMenu = props => (
   // tslint:disable-next-line:jsx-self-close
   <NavDropdown icon="th-list" name={translate('global.menu.entities.main')} id="entity-menu">
-    {/* userdetail, userpreference,subjectbasefee, discount & scholarship be visible to all users */}
+    {/* userdetail, userpreference,subjectbasefee, discount, scholarship, testpaper, answersheet & testresult be visible to all users */}
     <MenuItem icon="asterisk" to="/entity/userdetail-my-suffix">
       <Translate contentKey="global.menu.entities.userdetailMySuffix" />
     </MenuItem>
@@ -25,26 +25,30 @@ export const EntitiesMenu = props => (
     <MenuItem icon="asterisk" to="/entity/scholarship-my-suffix">
       <Translate contentKey="global.menu.entities.scholarshipMySuffix" />
     </MenuItem>
+    <MenuItem icon="asterisk" to="/entity/testpaper-my-suffix">
+      <Translate contentKey="global.menu.entities.testpaperMySuffix" />
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/entity/answersheet-my-suffix">
+      <Translate contentKey="global.menu.entities.answersheetMySuffix" />
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/entity/testresult-my-suffix">
+      <Translate contentKey="global.menu.entities.testresultMySuffix" />
+    </MenuItem>
 
-    {/* student, studentsubject,studentfee, studentscore  can be viewed by all except user */}
-    {!props.user && (
+    {/* student, studentsubject,studentfee  can be viewed by all except user */}
+    {(props.admin || props.enterpriseadmin || props.centerhead || props.accountant || props.student) && (
       <MenuItem icon="asterisk" to="/entity/student-my-suffix">
         <Translate contentKey="global.menu.entities.studentMySuffix" />
       </MenuItem>
     )}
-    {!props.user && (
+    {(props.admin || props.enterpriseadmin || props.centerhead || props.accountant || props.student) && (
       <MenuItem icon="asterisk" to="/entity/studentsubject-my-suffix">
         <Translate contentKey="global.menu.entities.studentsubjectMySuffix" />
       </MenuItem>
     )}
-    {!props.user && (
+    {(props.admin || props.enterpriseadmin || props.centerhead || props.accountant || props.student) && (
       <MenuItem icon="asterisk" to="/entity/studentfee-my-suffix">
         <Translate contentKey="global.menu.entities.studentfeeMySuffix" />
-      </MenuItem>
-    )}
-    {!props.user && (
-      <MenuItem icon="asterisk" to="/entity/studentscore-my-suffix">
-        <Translate contentKey="global.menu.entities.studentscoreMySuffix" />
       </MenuItem>
     )}
 
@@ -101,10 +105,10 @@ export const EntitiesMenu = props => (
       </MenuItem>
     )}
 
-    {/* chapter, fundamentaldetail,question can be viewed by admin, enterpriseadmin,  centerhead, manager, teacher & counsellor */}
+    {/* topic, fundamentaldetail,question can be viewed by admin, enterpriseadmin,  centerhead, manager, teacher & counsellor */}
     {(props.admin || props.enterpriseadmin || props.centerhead || props.manager || props.teacher || props.counsellor) && (
-      <MenuItem icon="asterisk" to="/entity/chapter-my-suffix">
-        <Translate contentKey="global.menu.entities.chapterMySuffix" />
+      <MenuItem icon="asterisk" to="/entity/topic-my-suffix">
+        <Translate contentKey="global.menu.entities.topicMySuffix" />
       </MenuItem>
     )}
     {(props.admin || props.enterpriseadmin || props.centerhead || props.manager || props.teacher || props.counsellor) && (
@@ -156,7 +160,6 @@ export const EntitiesMenu = props => (
         <Translate contentKey="global.menu.entities.academicsessionMySuffix" />
       </MenuItem>
     )}
-
     {/* jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here */}
   </NavDropdown>
 );

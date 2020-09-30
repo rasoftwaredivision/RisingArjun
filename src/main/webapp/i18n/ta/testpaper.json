@@ -1,0 +1,28 @@
+{
+  "risingarjunApp": {
+    "testpaper": {
+      "home": {
+        "title": "Testpapers",
+        "createLabel": "Testpaper-ஐ உருவாக்கு",
+        "createOrEditLabel": "Testpaper -ஐ மாற்று (அ) உருவாக்கு",
+        "notFound": "No Testpaper found"
+      },
+      "created": "Testpaper புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+      "updated": "Testpaper மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+      "deleted": "A Testpaper நீக்கப்பட்டது, அடையாளம {{ param }}",
+      "delete": {
+        "question": "நீக்குவதற்கு உறுதி செய் Testpaper {{ id }}?"
+      },
+      "detail": {
+        "title": "Testpaper"
+      },
+      "maxMarks": "Max Marks",
+      "durationMins": "Duration Mins",
+      "level": "Level",
+      "enterprise": "Enterprise",
+      "course": "Course",
+      "subject": "Subject",
+      "topic": "Topic"
+    }
+  }
+}

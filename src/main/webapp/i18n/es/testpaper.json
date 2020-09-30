@@ -1,0 +1,28 @@
+{
+  "risingarjunApp": {
+    "testpaper": {
+      "home": {
+        "title": "Testpapers",
+        "createLabel": "Crear nuevo Testpaper",
+        "createOrEditLabel": "Crear o editar Testpaper",
+        "notFound": "No Testpaper found"
+      },
+      "created": "Un nuevo Testpaper ha sido creado con el identificador {{ param }}",
+      "updated": "Un Testpaper ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Testpaper ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Testpaper {{ id }}?"
+      },
+      "detail": {
+        "title": "Testpaper"
+      },
+      "maxMarks": "Max Marks",
+      "durationMins": "Duration Mins",
+      "level": "Level",
+      "enterprise": "Enterprise",
+      "course": "Course",
+      "subject": "Subject",
+      "topic": "Topic"
+    }
+  }
+}

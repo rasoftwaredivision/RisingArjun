@@ -15,7 +15,7 @@ public interface SubjectMapper extends EntityMapper<SubjectDTO, Subject> {
     @Mapping(target = "studentsubjects", ignore = true)
     @Mapping(target = "removeStudentsubject", ignore = true)
     @Mapping(target = "teachers", ignore = true)
-    @Mapping(target = "removeTeachers", ignore = true)
+    @Mapping(target = "removeTeacher", ignore = true)
     Subject toEntity(SubjectDTO subjectDTO);
 
     default Subject fromId(Long id) {

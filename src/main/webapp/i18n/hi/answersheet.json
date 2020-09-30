@@ -1,0 +1,25 @@
+{
+  "risingarjunApp": {
+    "answersheet": {
+      "home": {
+        "title": "Answersheets",
+        "createLabel": "नया Answersheet बनाएँ",
+        "createOrEditLabel": "Answersheet बनाएँ या संपादित करें",
+        "notFound": "No Answersheet found"
+      },
+      "created": "एक नया Answersheet [identifier: {{ param }}] तैयार है",
+      "updated": "एक Answersheet [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Answersheet [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Answersheet [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Answersheet"
+      },
+      "answer": "Answer",
+      "marks": "Marks",
+      "testResultId": "Test Result Id",
+      "question": "Question"
+    }
+  }
+}

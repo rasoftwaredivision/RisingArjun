@@ -117,13 +117,13 @@ public class Course implements Serializable {
         return this;
     }
 
-    public Course addStudentsubjects(Studentsubject studentsubject) {
+    public Course addStudentsubject(Studentsubject studentsubject) {
         this.studentsubjects.add(studentsubject);
         studentsubject.getCourses().add(this);
         return this;
     }
 
-    public Course removeStudentsubjects(Studentsubject studentsubject) {
+    public Course removeStudentsubject(Studentsubject studentsubject) {
         this.studentsubjects.remove(studentsubject);
         studentsubject.getCourses().remove(this);
         return this;
@@ -142,13 +142,13 @@ public class Course implements Serializable {
         return this;
     }
 
-    public Course addTeachers(Teacher teacher) {
+    public Course addTeacher(Teacher teacher) {
         this.teachers.add(teacher);
         teacher.getCourses().add(this);
         return this;
     }
 
-    public Course removeTeachers(Teacher teacher) {
+    public Course removeTeacher(Teacher teacher) {
         this.teachers.remove(teacher);
         teacher.getCourses().remove(this);
         return this;

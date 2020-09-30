@@ -73,14 +73,20 @@ public class CacheConfiguration {
             createCache(cm, com.risingarjun.arjun.domain.Teachershare.class.getName());
             createCache(cm, com.risingarjun.arjun.domain.Salarypayment.class.getName());
             createCache(cm, com.risingarjun.arjun.domain.Expense.class.getName());
-            createCache(cm, com.risingarjun.arjun.domain.Chapter.class.getName());
             createCache(cm, com.risingarjun.arjun.domain.Fundamentaldetail.class.getName());
             createCache(cm, com.risingarjun.arjun.domain.Fundamentaldetail.class.getName() + ".questions");
             createCache(cm, com.risingarjun.arjun.domain.Question.class.getName());
             createCache(cm, com.risingarjun.arjun.domain.Question.class.getName() + ".fundamentals");
-            createCache(cm, com.risingarjun.arjun.domain.Studentscore.class.getName());
             createCache(cm, com.risingarjun.arjun.domain.Enterprise.class.getName());
             createCache(cm, com.risingarjun.arjun.domain.Enterprisesettings.class.getName());
+            createCache(cm, com.risingarjun.arjun.domain.Topic.class.getName());
+            createCache(cm, com.risingarjun.arjun.domain.Topic.class.getName() + ".testpapers");
+            createCache(cm, com.risingarjun.arjun.domain.Question.class.getName() + ".answersheets");
+            createCache(cm, com.risingarjun.arjun.domain.Testpaper.class.getName());
+            createCache(cm, com.risingarjun.arjun.domain.Testpaper.class.getName() + ".topics");
+            createCache(cm, com.risingarjun.arjun.domain.Answersheet.class.getName());
+            createCache(cm, com.risingarjun.arjun.domain.Answersheet.class.getName() + ".questions");
+            createCache(cm, com.risingarjun.arjun.domain.Testresult.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

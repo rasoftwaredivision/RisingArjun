@@ -43,7 +43,7 @@ export class StudentsubjectMySuffixDetail extends React.Component<IStudentsubjec
             </dt>
             <dd>{studentsubjectEntity.sessionAcadSession ? studentsubjectEntity.sessionAcadSession : ''}</dd>
             <dt>
-              <Translate contentKey="risingarjunApp.studentsubject.subjects">Subjects</Translate>
+              <Translate contentKey="risingarjunApp.studentsubject.subject">Subject</Translate>
             </dt>
             <dd>
               {studentsubjectEntity.subjects

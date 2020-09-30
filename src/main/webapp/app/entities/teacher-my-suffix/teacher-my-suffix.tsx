@@ -43,10 +43,10 @@ export class TeacherMySuffix extends React.Component<ITeacherMySuffixProps> {
                     <Translate contentKey="risingarjunApp.teacher.teacherId">Teacher Id</Translate>
                   </th>
                   <th>
-                    <Translate contentKey="risingarjunApp.teacher.subjects">Subjects</Translate>
+                    <Translate contentKey="risingarjunApp.teacher.subject">Subject</Translate>
                   </th>
                   <th>
-                    <Translate contentKey="risingarjunApp.teacher.courses">Courses</Translate>
+                    <Translate contentKey="risingarjunApp.teacher.course">Course</Translate>
                   </th>
                   <th />
                 </tr>

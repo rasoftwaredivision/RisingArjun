@@ -22,12 +22,14 @@ import TeacherMySuffix from './teacher-my-suffix';
 import TeachershareMySuffix from './teachershare-my-suffix';
 import SalarypaymentMySuffix from './salarypayment-my-suffix';
 import ExpenseMySuffix from './expense-my-suffix';
-import ChapterMySuffix from './chapter-my-suffix';
 import FundamentaldetailMySuffix from './fundamentaldetail-my-suffix';
 import QuestionMySuffix from './question-my-suffix';
-import StudentscoreMySuffix from './studentscore-my-suffix';
 import EnterpriseMySuffix from './enterprise-my-suffix';
 import EnterprisesettingsMySuffix from './enterprisesettings-my-suffix';
+import TopicMySuffix from './topic-my-suffix';
+import TestpaperMySuffix from './testpaper-my-suffix';
+import AnswersheetMySuffix from './answersheet-my-suffix';
+import TestresultMySuffix from './testresult-my-suffix';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 const Routes = ({ match }) => (
@@ -52,12 +54,14 @@ const Routes = ({ match }) => (
       <ErrorBoundaryRoute path={`${match.url}/teachershare-my-suffix`} component={TeachershareMySuffix} />
       <ErrorBoundaryRoute path={`${match.url}/salarypayment-my-suffix`} component={SalarypaymentMySuffix} />
       <ErrorBoundaryRoute path={`${match.url}/expense-my-suffix`} component={ExpenseMySuffix} />
-      <ErrorBoundaryRoute path={`${match.url}/chapter-my-suffix`} component={ChapterMySuffix} />
       <ErrorBoundaryRoute path={`${match.url}/fundamentaldetail-my-suffix`} component={FundamentaldetailMySuffix} />
       <ErrorBoundaryRoute path={`${match.url}/question-my-suffix`} component={QuestionMySuffix} />
-      <ErrorBoundaryRoute path={`${match.url}/studentscore-my-suffix`} component={StudentscoreMySuffix} />
       <ErrorBoundaryRoute path={`${match.url}/enterprise-my-suffix`} component={EnterpriseMySuffix} />
       <ErrorBoundaryRoute path={`${match.url}/enterprisesettings-my-suffix`} component={EnterprisesettingsMySuffix} />
+      <ErrorBoundaryRoute path={`${match.url}/topic-my-suffix`} component={TopicMySuffix} />
+      <ErrorBoundaryRoute path={`${match.url}/testpaper-my-suffix`} component={TestpaperMySuffix} />
+      <ErrorBoundaryRoute path={`${match.url}/answersheet-my-suffix`} component={AnswersheetMySuffix} />
+      <ErrorBoundaryRoute path={`${match.url}/testresult-my-suffix`} component={TestresultMySuffix} />
       {/* jhipster-needle-add-route-path - JHipster will add routes here */}
     </Switch>
   </div>

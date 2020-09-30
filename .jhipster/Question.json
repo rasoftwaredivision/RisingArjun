@@ -10,7 +10,7 @@
             ]
         },
         {
-            "fieldName": "diagram",
+            "fieldName": "questionDiagram",
             "fieldType": "byte[]",
             "fieldTypeBlobContent": "image"
         },
@@ -75,6 +75,11 @@
             "fieldType": "String"
         },
         {
+            "fieldName": "ansDiagram",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
             "fieldName": "video",
             "fieldType": "String"
         },
@@ -111,10 +116,10 @@
         },
         {
             "relationshipType": "many-to-one",
-            "otherEntityName": "chapter",
+            "otherEntityName": "topic",
             "otherEntityRelationshipName": "question",
-            "relationshipName": "chapter",
-            "otherEntityField": "chapterTitle"
+            "relationshipName": "topic",
+            "otherEntityField": "topicTitle"
         },
         {
             "relationshipType": "many-to-one",
@@ -134,12 +139,20 @@
             "relationshipType": "many-to-many",
             "otherEntityName": "fundamentaldetail",
             "otherEntityRelationshipName": "question",
-            "relationshipName": "fundamentals",
+            "relationshipName": "fundamental",
             "otherEntityField": "details",
             "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "answersheet",
+            "otherEntityRelationshipName": "question",
+            "relationshipName": "answersheet",
+            "otherEntityField": "id",
+            "ownerSide": false
         }
     ],
-    "changelogDate": "20200917055202",
+    "changelogDate": "20200930095451",
     "entityTableName": "question",
     "dto": "mapstruct",
     "pagination": "pagination",

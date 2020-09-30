@@ -19,7 +19,7 @@
       "month": "Month",
       "registrationno": "Registrationno",
       "session": "Session",
-      "subjects": "Subjects",
+      "subject": "Subject",
       "course": "Course"
     }
   }

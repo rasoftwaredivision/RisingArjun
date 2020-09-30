@@ -11,15 +11,13 @@
             "ownerSide": true
         },
         {
-            "relationshipType": "many-to-many",
+            "relationshipType": "one-to-many",
             "otherEntityName": "center",
             "otherEntityRelationshipName": "centerhead",
-            "relationshipName": "center",
-            "otherEntityField": "centerTitle",
-            "ownerSide": true
+            "relationshipName": "center"
         }
     ],
-    "changelogDate": "20200917055155",
+    "changelogDate": "20200930095444",
     "entityTableName": "centerhead",
     "dto": "mapstruct",
     "pagination": "no",

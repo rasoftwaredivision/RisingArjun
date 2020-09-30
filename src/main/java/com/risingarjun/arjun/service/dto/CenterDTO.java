@@ -37,6 +37,8 @@ public class CenterDTO implements Serializable {
 
     private String enterpriseEnterprisename;
 
+    private Long centerheadId;
+
     public Long getId() {
         return id;
     }
@@ -117,6 +119,14 @@ public class CenterDTO implements Serializable {
         this.enterpriseEnterprisename = enterpriseEnterprisename;
     }
 
+    public Long getCenterheadId() {
+        return centerheadId;
+    }
+
+    public void setCenterheadId(Long centerheadId) {
+        this.centerheadId = centerheadId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -151,6 +161,7 @@ public class CenterDTO implements Serializable {
             ", pincode=" + getPincode() +
             ", enterprise=" + getEnterpriseId() +
             ", enterprise='" + getEnterpriseEnterprisename() + "'" +
+            ", centerhead=" + getCenterheadId() +
             "}";
     }
 }

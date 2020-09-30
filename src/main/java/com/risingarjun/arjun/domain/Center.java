@@ -1,5 +1,4 @@
 package com.risingarjun.arjun.domain;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -8,8 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import com.risingarjun.arjun.domain.enumeration.City;
 
@@ -65,10 +62,9 @@ public class Center implements Serializable {
     @JsonIgnoreProperties("centers")
     private Enterprise enterprise;
 
-    @ManyToMany(mappedBy = "centers")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JsonIgnore
-    private Set<Centerhead> centerheads = new HashSet<>();
+    @ManyToOne
+    @JsonIgnoreProperties("centers")
+    private Centerhead centerhead;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -183,29 +179,17 @@ public class Center implements Serializable {
         this.enterprise = enterprise;
     }
 
-    public Set<Centerhead> getCenterheads() {
-        return centerheads;
+    public Centerhead getCenterhead() {
+        return centerhead;
     }
 
-    public Center centerheads(Set<Centerhead> centerheads) {
-        this.centerheads = centerheads;
+    public Center centerhead(Centerhead centerhead) {
+        this.centerhead = centerhead;
         return this;
     }
 
-    public Center addCenterhead(Centerhead centerhead) {
-        this.centerheads.add(centerhead);
-        centerhead.getCenters().add(this);
-        return this;
-    }
-
-    public Center removeCenterhead(Centerhead centerhead) {
-        this.centerheads.remove(centerhead);
-        centerhead.getCenters().remove(this);
-        return this;
-    }
-
-    public void setCenterheads(Set<Centerhead> centerheads) {
-        this.centerheads = centerheads;
+    public void setCenterhead(Centerhead centerhead) {
+        this.centerhead = centerhead;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

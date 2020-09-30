@@ -1,1 +1,1 @@
-id;question;diagram;diagram_content_type;option_1;option_2;option_3;option_4;multi_choice;answer;max_marks;negative_marks;duration_mins;level;solution;video;status
+id;question;question_diagram;question_diagram_content_type;option_1;option_2;option_3;option_4;multi_choice;answer;max_marks;negative_marks;duration_mins;level;solution;ans_diagram;ans_diagram_content_type;video;status

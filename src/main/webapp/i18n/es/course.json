@@ -19,8 +19,8 @@
       "courseId": "Course Id",
       "course": "Course",
       "student": "Student",
-      "studentsubjects": "Studentsubjects",
-      "teachers": "Teachers"
+      "studentsubject": "Studentsubject",
+      "teacher": "Teacher"
     }
   }
 }

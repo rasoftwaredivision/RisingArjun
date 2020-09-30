@@ -59,15 +59,14 @@
             "otherEntityField": "enterprisename"
         },
         {
-            "relationshipType": "many-to-many",
+            "relationshipType": "many-to-one",
             "otherEntityName": "centerhead",
             "otherEntityRelationshipName": "center",
             "relationshipName": "centerhead",
-            "otherEntityField": "id",
-            "ownerSide": false
+            "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20200917055154",
+    "changelogDate": "20200930095443",
     "entityTableName": "center",
     "dto": "mapstruct",
     "pagination": "no",

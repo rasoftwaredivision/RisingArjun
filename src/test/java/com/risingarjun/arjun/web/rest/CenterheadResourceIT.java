@@ -10,12 +10,9 @@ import com.risingarjun.arjun.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -25,13 +22,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.risingarjun.arjun.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -44,14 +39,8 @@ public class CenterheadResourceIT {
     @Autowired
     private CenterheadRepository centerheadRepository;
 
-    @Mock
-    private CenterheadRepository centerheadRepositoryMock;
-
     @Autowired
     private CenterheadMapper centerheadMapper;
-
-    @Mock
-    private CenterheadService centerheadServiceMock;
 
     @Autowired
     private CenterheadService centerheadService;
@@ -165,39 +154,6 @@ public class CenterheadResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(centerhead.getId().intValue())));
     }
     
-    @SuppressWarnings({"unchecked"})
-    public void getAllCenterheadsWithEagerRelationshipsIsEnabled() throws Exception {
-        CenterheadResource centerheadResource = new CenterheadResource(centerheadServiceMock);
-        when(centerheadServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        MockMvc restCenterheadMockMvc = MockMvcBuilders.standaloneSetup(centerheadResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
-
-        restCenterheadMockMvc.perform(get("/api/centerheads?eagerload=true"))
-        .andExpect(status().isOk());
-
-        verify(centerheadServiceMock, times(1)).findAllWithEagerRelationships(any());
-    }
-
-    @SuppressWarnings({"unchecked"})
-    public void getAllCenterheadsWithEagerRelationshipsIsNotEnabled() throws Exception {
-        CenterheadResource centerheadResource = new CenterheadResource(centerheadServiceMock);
-            when(centerheadServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-            MockMvc restCenterheadMockMvc = MockMvcBuilders.standaloneSetup(centerheadResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
-
-        restCenterheadMockMvc.perform(get("/api/centerheads?eagerload=true"))
-        .andExpect(status().isOk());
-
-            verify(centerheadServiceMock, times(1)).findAllWithEagerRelationships(any());
-    }
-
     @Test
     @Transactional
     public void getCenterhead() throws Exception {

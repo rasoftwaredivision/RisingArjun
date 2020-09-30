@@ -15,13 +15,13 @@
         {
             "relationshipType": "many-to-many",
             "otherEntityName": "question",
-            "otherEntityRelationshipName": "fundamentals",
+            "otherEntityRelationshipName": "fundamental",
             "relationshipName": "question",
             "otherEntityField": "id",
             "ownerSide": false
         }
     ],
-    "changelogDate": "20200917055201",
+    "changelogDate": "20200930095450",
     "entityTableName": "fundamentaldetail",
     "dto": "mapstruct",
     "pagination": "no",

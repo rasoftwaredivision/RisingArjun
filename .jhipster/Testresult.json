@@ -1,0 +1,66 @@
+{
+    "name": "Testresult",
+    "fields": [
+        {
+            "fieldName": "positiveMarks",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "negativeMarks",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "score",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "timeTaken",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "student",
+            "otherEntityRelationshipName": "testresult",
+            "relationshipName": "student",
+            "otherEntityField": "studentRegId"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "testpaper",
+            "otherEntityRelationshipName": "testresult",
+            "relationshipName": "testPaperId",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200930095454",
+    "entityTableName": "testresult",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "mySuffix"
+}

@@ -40,14 +40,15 @@
             "ownerSide": true
         },
         {
-            "relationshipType": "many-to-one",
+            "relationshipType": "one-to-one",
             "otherEntityName": "enterprise",
             "otherEntityRelationshipName": "enterprisesettings",
             "relationshipName": "enterprise",
-            "otherEntityField": "enterprisename"
+            "otherEntityField": "enterprisename",
+            "ownerSide": true
         }
     ],
-    "changelogDate": "20200917055205",
+    "changelogDate": "20200930095456",
     "entityTableName": "enterprisesettings",
     "dto": "mapstruct",
     "pagination": "no",

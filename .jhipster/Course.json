@@ -31,20 +31,20 @@
             "relationshipType": "many-to-many",
             "otherEntityName": "studentsubject",
             "otherEntityRelationshipName": "course",
-            "relationshipName": "studentsubjects",
+            "relationshipName": "studentsubject",
             "otherEntityField": "id",
             "ownerSide": false
         },
         {
             "relationshipType": "many-to-many",
             "otherEntityName": "teacher",
-            "otherEntityRelationshipName": "courses",
-            "relationshipName": "teachers",
+            "otherEntityRelationshipName": "course",
+            "relationshipName": "teacher",
             "otherEntityField": "id",
             "ownerSide": false
         }
     ],
-    "changelogDate": "20200917055144",
+    "changelogDate": "20200930095433",
     "entityTableName": "course",
     "dto": "mapstruct",
     "pagination": "no",

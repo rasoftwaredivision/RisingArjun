@@ -19,7 +19,7 @@ public interface StudentsubjectMapper extends EntityMapper<StudentsubjectDTO, St
 
     @Mapping(source = "registrationnoId", target = "registrationno")
     @Mapping(source = "sessionId", target = "session")
-    @Mapping(target = "removeSubjects", ignore = true)
+    @Mapping(target = "removeSubject", ignore = true)
     @Mapping(target = "removeCourse", ignore = true)
     Studentsubject toEntity(StudentsubjectDTO studentsubjectDTO);
 

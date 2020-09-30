@@ -1,0 +1,28 @@
+{
+  "risingarjunApp": {
+    "testresult": {
+      "home": {
+        "title": "Testresults",
+        "createLabel": "नया Testresult बनाएँ",
+        "createOrEditLabel": "Testresult बनाएँ या संपादित करें",
+        "notFound": "No Testresult found"
+      },
+      "created": "एक नया Testresult [identifier: {{ param }}] तैयार है",
+      "updated": "एक Testresult [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Testresult [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Testresult [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Testresult"
+      },
+      "positiveMarks": "Positive Marks",
+      "negativeMarks": "Negative Marks",
+      "score": "Score",
+      "timeTaken": "Time Taken",
+      "date": "Date",
+      "student": "Student",
+      "testPaperId": "Test Paper Id"
+    }
+  }
+}

@@ -80,8 +80,9 @@ export class QuestionMySuffix extends React.Component<IQuestionMySuffixProps, IQ
                   <th className="hand" onClick={this.sort('question')}>
                     <Translate contentKey="risingarjunApp.question.question">Question</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
-                  <th className="hand" onClick={this.sort('diagram')}>
-                    <Translate contentKey="risingarjunApp.question.diagram">Diagram</Translate> <FontAwesomeIcon icon="sort" />
+                  <th className="hand" onClick={this.sort('questionDiagram')}>
+                    <Translate contentKey="risingarjunApp.question.questionDiagram">Question Diagram</Translate>{' '}
+                    <FontAwesomeIcon icon="sort" />
                   </th>
                   <th className="hand" onClick={this.sort('option1')}>
                     <Translate contentKey="risingarjunApp.question.option1">Option 1</Translate> <FontAwesomeIcon icon="sort" />
@@ -116,6 +117,9 @@ export class QuestionMySuffix extends React.Component<IQuestionMySuffixProps, IQ
                   <th className="hand" onClick={this.sort('solution')}>
                     <Translate contentKey="risingarjunApp.question.solution">Solution</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
+                  <th className="hand" onClick={this.sort('ansDiagram')}>
+                    <Translate contentKey="risingarjunApp.question.ansDiagram">Ans Diagram</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
                   <th className="hand" onClick={this.sort('video')}>
                     <Translate contentKey="risingarjunApp.question.video">Video</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
@@ -132,7 +136,7 @@ export class QuestionMySuffix extends React.Component<IQuestionMySuffixProps, IQ
                     <Translate contentKey="risingarjunApp.question.subject">Subject</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th>
-                    <Translate contentKey="risingarjunApp.question.chapter">Chapter</Translate> <FontAwesomeIcon icon="sort" />
+                    <Translate contentKey="risingarjunApp.question.topic">Topic</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th>
                     <Translate contentKey="risingarjunApp.question.writer">Writer</Translate> <FontAwesomeIcon icon="sort" />
@@ -153,14 +157,17 @@ export class QuestionMySuffix extends React.Component<IQuestionMySuffixProps, IQ
                     </td>
                     <td>{question.question}</td>
                     <td>
-                      {question.diagram ? (
+                      {question.questionDiagram ? (
                         <div>
-                          <a onClick={openFile(question.diagramContentType, question.diagram)}>
-                            <img src={`data:${question.diagramContentType};base64,${question.diagram}`} style={{ maxHeight: '30px' }} />
+                          <a onClick={openFile(question.questionDiagramContentType, question.questionDiagram)}>
+                            <img
+                              src={`data:${question.questionDiagramContentType};base64,${question.questionDiagram}`}
+                              style={{ maxHeight: '30px' }}
+                            />
                             &nbsp;
                           </a>
                           <span>
-                            {question.diagramContentType}, {byteSize(question.diagram)}
+                            {question.questionDiagramContentType}, {byteSize(question.questionDiagram)}
                           </span>
                         </div>
                       ) : null}
@@ -178,6 +185,22 @@ export class QuestionMySuffix extends React.Component<IQuestionMySuffixProps, IQ
                       <Translate contentKey={`risingarjunApp.Questionlevel.${question.level}`} />
                     </td>
                     <td>{question.solution}</td>
+                    <td>
+                      {question.ansDiagram ? (
+                        <div>
+                          <a onClick={openFile(question.ansDiagramContentType, question.ansDiagram)}>
+                            <img
+                              src={`data:${question.ansDiagramContentType};base64,${question.ansDiagram}`}
+                              style={{ maxHeight: '30px' }}
+                            />
+                            &nbsp;
+                          </a>
+                          <span>
+                            {question.ansDiagramContentType}, {byteSize(question.ansDiagram)}
+                          </span>
+                        </div>
+                      ) : null}
+                    </td>
                     <td>{question.video}</td>
                     <td>
                       <Translate contentKey={`risingarjunApp.Questionstatus.${question.status}`} />
@@ -200,11 +223,7 @@ export class QuestionMySuffix extends React.Component<IQuestionMySuffixProps, IQ
                       )}
                     </td>
                     <td>
-                      {question.chapterChapterTitle ? (
-                        <Link to={`chapter-my-suffix/${question.chapterId}`}>{question.chapterChapterTitle}</Link>
-                      ) : (
-                        ''
-                      )}
+                      {question.topicTopicTitle ? <Link to={`topic-my-suffix/${question.topicId}`}>{question.topicTopicTitle}</Link> : ''}
                     </td>
                     <td>
                       {question.writerEmployeeId ? (

@@ -13,21 +13,21 @@
         {
             "relationshipType": "many-to-many",
             "otherEntityName": "subject",
-            "otherEntityRelationshipName": "teachers",
-            "relationshipName": "subjects",
+            "otherEntityRelationshipName": "teacher",
+            "relationshipName": "subject",
             "otherEntityField": "subjectTitle",
             "ownerSide": true
         },
         {
             "relationshipType": "many-to-many",
             "otherEntityName": "course",
-            "otherEntityRelationshipName": "teachers",
-            "relationshipName": "courses",
+            "otherEntityRelationshipName": "teacher",
+            "relationshipName": "course",
             "otherEntityField": "course",
             "ownerSide": true
         }
     ],
-    "changelogDate": "20200917055156",
+    "changelogDate": "20200930095445",
     "entityTableName": "teacher",
     "dto": "mapstruct",
     "pagination": "no",

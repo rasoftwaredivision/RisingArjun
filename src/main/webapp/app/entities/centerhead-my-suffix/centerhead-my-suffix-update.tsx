@@ -10,8 +10,6 @@ import { IRootState } from 'app/shared/reducers';
 
 import { IEmployeeMySuffix } from 'app/shared/model/employee-my-suffix.model';
 import { getEntities as getEmployees } from 'app/entities/employee-my-suffix/employee-my-suffix.reducer';
-import { ICenterMySuffix } from 'app/shared/model/center-my-suffix.model';
-import { getEntities as getCenters } from 'app/entities/center-my-suffix/center-my-suffix.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './centerhead-my-suffix.reducer';
 import { ICenterheadMySuffix } from 'app/shared/model/centerhead-my-suffix.model';
 // tslint:disable-next-line:no-unused-variable
@@ -22,7 +20,6 @@ export interface ICenterheadMySuffixUpdateProps extends StateProps, DispatchProp
 
 export interface ICenterheadMySuffixUpdateState {
   isNew: boolean;
-  idscenter: any[];
   centerheadId: string;
 }
 
@@ -30,7 +27,6 @@ export class CenterheadMySuffixUpdate extends React.Component<ICenterheadMySuffi
   constructor(props) {
     super(props);
     this.state = {
-      idscenter: [],
       centerheadId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
@@ -50,7 +46,6 @@ export class CenterheadMySuffixUpdate extends React.Component<ICenterheadMySuffi
     }
 
     this.props.getEmployees();
-    this.props.getCenters();
   }
 
   saveEntity = (event, errors, values) => {
@@ -58,8 +53,7 @@ export class CenterheadMySuffixUpdate extends React.Component<ICenterheadMySuffi
       const { centerheadEntity } = this.props;
       const entity = {
         ...centerheadEntity,
-        ...values,
-        centers: mapIdList(values.centers)
+        ...values
       };
 
       if (this.state.isNew) {
@@ -75,7 +69,7 @@ export class CenterheadMySuffixUpdate extends React.Component<ICenterheadMySuffi
   };
 
   render() {
-    const { centerheadEntity, employees, centers, loading, updating } = this.props;
+    const { centerheadEntity, employees, loading, updating } = this.props;
     const { isNew } = this.state;
 
     return (
@@ -116,28 +110,6 @@ export class CenterheadMySuffixUpdate extends React.Component<ICenterheadMySuffi
                       : null}
                   </AvInput>
                 </AvGroup>
-                <AvGroup>
-                  <Label for="centerhead-my-suffix-center">
-                    <Translate contentKey="risingarjunApp.centerhead.center">Center</Translate>
-                  </Label>
-                  <AvInput
-                    id="centerhead-my-suffix-center"
-                    type="select"
-                    multiple
-                    className="form-control"
-                    name="centers"
-                    value={centerheadEntity.centers && centerheadEntity.centers.map(e => e.id)}
-                  >
-                    <option value="" key="0" />
-                    {centers
-                      ? centers.map(otherEntity => (
-                          <option value={otherEntity.id} key={otherEntity.id}>
-                            {otherEntity.centerTitle}
-                          </option>
-                        ))
-                      : null}
-                  </AvInput>
-                </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/centerhead-my-suffix" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />
                   &nbsp;
@@ -162,7 +134,6 @@ export class CenterheadMySuffixUpdate extends React.Component<ICenterheadMySuffi
 
 const mapStateToProps = (storeState: IRootState) => ({
   employees: storeState.employee.entities,
-  centers: storeState.center.entities,
   centerheadEntity: storeState.centerhead.entity,
   loading: storeState.centerhead.loading,
   updating: storeState.centerhead.updating,
@@ -171,7 +142,6 @@ const mapStateToProps = (storeState: IRootState) => ({
 
 const mapDispatchToProps = {
   getEmployees,
-  getCenters,
   getEntity,
   updateEntity,
   createEntity,

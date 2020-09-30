@@ -20,9 +20,9 @@ public class QuestionDTO implements Serializable {
     private String question;
 
     @Lob
-    private byte[] diagram;
+    private byte[] questionDiagram;
 
-    private String diagramContentType;
+    private String questionDiagramContentType;
     private String option1;
 
     private String option2;
@@ -50,6 +50,10 @@ public class QuestionDTO implements Serializable {
 
     private String solution;
 
+    @Lob
+    private byte[] ansDiagram;
+
+    private String ansDiagramContentType;
     private String video;
 
     @NotNull
@@ -68,9 +72,9 @@ public class QuestionDTO implements Serializable {
 
     private String subjectSubjectTitle;
 
-    private Long chapterId;
+    private Long topicId;
 
-    private String chapterChapterTitle;
+    private String topicTopicTitle;
 
     private Long writerId;
 
@@ -98,20 +102,20 @@ public class QuestionDTO implements Serializable {
         this.question = question;
     }
 
-    public byte[] getDiagram() {
-        return diagram;
+    public byte[] getQuestionDiagram() {
+        return questionDiagram;
     }
 
-    public void setDiagram(byte[] diagram) {
-        this.diagram = diagram;
+    public void setQuestionDiagram(byte[] questionDiagram) {
+        this.questionDiagram = questionDiagram;
     }
 
-    public String getDiagramContentType() {
-        return diagramContentType;
+    public String getQuestionDiagramContentType() {
+        return questionDiagramContentType;
     }
 
-    public void setDiagramContentType(String diagramContentType) {
-        this.diagramContentType = diagramContentType;
+    public void setQuestionDiagramContentType(String questionDiagramContentType) {
+        this.questionDiagramContentType = questionDiagramContentType;
     }
 
     public String getOption1() {
@@ -202,6 +206,22 @@ public class QuestionDTO implements Serializable {
         this.solution = solution;
     }
 
+    public byte[] getAnsDiagram() {
+        return ansDiagram;
+    }
+
+    public void setAnsDiagram(byte[] ansDiagram) {
+        this.ansDiagram = ansDiagram;
+    }
+
+    public String getAnsDiagramContentType() {
+        return ansDiagramContentType;
+    }
+
+    public void setAnsDiagramContentType(String ansDiagramContentType) {
+        this.ansDiagramContentType = ansDiagramContentType;
+    }
+
     public String getVideo() {
         return video;
     }
@@ -266,20 +286,20 @@ public class QuestionDTO implements Serializable {
         this.subjectSubjectTitle = subjectSubjectTitle;
     }
 
-    public Long getChapterId() {
-        return chapterId;
+    public Long getTopicId() {
+        return topicId;
     }
 
-    public void setChapterId(Long chapterId) {
-        this.chapterId = chapterId;
+    public void setTopicId(Long topicId) {
+        this.topicId = topicId;
     }
 
-    public String getChapterChapterTitle() {
-        return chapterChapterTitle;
+    public String getTopicTopicTitle() {
+        return topicTopicTitle;
     }
 
-    public void setChapterChapterTitle(String chapterChapterTitle) {
-        this.chapterChapterTitle = chapterChapterTitle;
+    public void setTopicTopicTitle(String topicTopicTitle) {
+        this.topicTopicTitle = topicTopicTitle;
     }
 
     public Long getWriterId() {
@@ -348,7 +368,7 @@ public class QuestionDTO implements Serializable {
         return "QuestionDTO{" +
             "id=" + getId() +
             ", question='" + getQuestion() + "'" +
-            ", diagram='" + getDiagram() + "'" +
+            ", questionDiagram='" + getQuestionDiagram() + "'" +
             ", option1='" + getOption1() + "'" +
             ", option2='" + getOption2() + "'" +
             ", option3='" + getOption3() + "'" +
@@ -360,6 +380,7 @@ public class QuestionDTO implements Serializable {
             ", durationMins=" + getDurationMins() +
             ", level='" + getLevel() + "'" +
             ", solution='" + getSolution() + "'" +
+            ", ansDiagram='" + getAnsDiagram() + "'" +
             ", video='" + getVideo() + "'" +
             ", status='" + getStatus() + "'" +
             ", enterprise=" + getEnterpriseId() +
@@ -368,8 +389,8 @@ public class QuestionDTO implements Serializable {
             ", course='" + getCourseCourse() + "'" +
             ", subject=" + getSubjectId() +
             ", subject='" + getSubjectSubjectTitle() + "'" +
-            ", chapter=" + getChapterId() +
-            ", chapter='" + getChapterChapterTitle() + "'" +
+            ", topic=" + getTopicId() +
+            ", topic='" + getTopicTopicTitle() + "'" +
             ", writer=" + getWriterId() +
             ", writer='" + getWriterEmployeeId() + "'" +
             ", approver=" + getApproverId() +

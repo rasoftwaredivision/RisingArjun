@@ -7,9 +7,6 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entidades",
-        "jhiauthorityMySuffix": "Jhiauthority",
-        "featureMySuffix": "Feature",
-        "roleaccessMySuffix": "Roleaccess",
         "userdetailMySuffix": "Userdetail",
         "userpreferenceMySuffix": "Userpreference",
         "courseMySuffix": "Course",
@@ -28,12 +25,14 @@
         "teachershareMySuffix": "Teachershare",
         "salarypaymentMySuffix": "Salarypayment",
         "expenseMySuffix": "Expense",
-        "chapterMySuffix": "Chapter",
         "fundamentaldetailMySuffix": "Fundamentaldetail",
         "questionMySuffix": "Question",
-        "studentscoreMySuffix": "Studentscore",
         "enterpriseMySuffix": "Enterprise",
         "enterprisesettingsMySuffix": "Enterprisesettings",
+        "topicMySuffix": "Topic",
+        "testpaperMySuffix": "Testpaper",
+        "answersheetMySuffix": "Answersheet",
+        "testresultMySuffix": "Testresult",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

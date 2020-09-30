@@ -1,5 +1,4 @@
 package com.risingarjun.arjun.domain;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -47,8 +46,8 @@ public class Enterprisesettings implements Serializable {
     @JoinColumn(unique = true)
     private User admin;
 
-    @ManyToOne
-    @JsonIgnoreProperties("enterprisesettings")
+    @OneToOne
+    @JoinColumn(unique = true)
     private Enterprise enterprise;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

@@ -17,8 +17,8 @@
         "title": "Teacher"
       },
       "teacherId": "Teacher Id",
-      "subjects": "Subjects",
-      "courses": "Courses"
+      "subject": "Subject",
+      "course": "Course"
     }
   }
 }

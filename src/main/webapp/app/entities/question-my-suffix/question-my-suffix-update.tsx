@@ -14,12 +14,14 @@ import { ICourseMySuffix } from 'app/shared/model/course-my-suffix.model';
 import { getEntities as getCourses } from 'app/entities/course-my-suffix/course-my-suffix.reducer';
 import { ISubjectMySuffix } from 'app/shared/model/subject-my-suffix.model';
 import { getEntities as getSubjects } from 'app/entities/subject-my-suffix/subject-my-suffix.reducer';
-import { IChapterMySuffix } from 'app/shared/model/chapter-my-suffix.model';
-import { getEntities as getChapters } from 'app/entities/chapter-my-suffix/chapter-my-suffix.reducer';
+import { ITopicMySuffix } from 'app/shared/model/topic-my-suffix.model';
+import { getEntities as getTopics } from 'app/entities/topic-my-suffix/topic-my-suffix.reducer';
 import { IEmployeeMySuffix } from 'app/shared/model/employee-my-suffix.model';
 import { getEntities as getEmployees } from 'app/entities/employee-my-suffix/employee-my-suffix.reducer';
 import { IFundamentaldetailMySuffix } from 'app/shared/model/fundamentaldetail-my-suffix.model';
 import { getEntities as getFundamentaldetails } from 'app/entities/fundamentaldetail-my-suffix/fundamentaldetail-my-suffix.reducer';
+import { IAnswersheetMySuffix } from 'app/shared/model/answersheet-my-suffix.model';
+import { getEntities as getAnswersheets } from 'app/entities/answersheet-my-suffix/answersheet-my-suffix.reducer';
 import { getEntity, updateEntity, createEntity, setBlob, reset } from './question-my-suffix.reducer';
 import { IQuestionMySuffix } from 'app/shared/model/question-my-suffix.model';
 // tslint:disable-next-line:no-unused-variable
@@ -30,26 +32,28 @@ export interface IQuestionMySuffixUpdateProps extends StateProps, DispatchProps,
 
 export interface IQuestionMySuffixUpdateState {
   isNew: boolean;
-  idsfundamentals: any[];
+  idsfundamental: any[];
   enterpriseId: string;
   courseId: string;
   subjectId: string;
-  chapterId: string;
+  topicId: string;
   writerId: string;
   approverId: string;
+  answersheetId: string;
 }
 
 export class QuestionMySuffixUpdate extends React.Component<IQuestionMySuffixUpdateProps, IQuestionMySuffixUpdateState> {
   constructor(props) {
     super(props);
     this.state = {
-      idsfundamentals: [],
+      idsfundamental: [],
       enterpriseId: '0',
       courseId: '0',
       subjectId: '0',
-      chapterId: '0',
+      topicId: '0',
       writerId: '0',
       approverId: '0',
+      answersheetId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
   }
@@ -70,9 +74,10 @@ export class QuestionMySuffixUpdate extends React.Component<IQuestionMySuffixUpd
     this.props.getEnterprises();
     this.props.getCourses();
     this.props.getSubjects();
-    this.props.getChapters();
+    this.props.getTopics();
     this.props.getEmployees();
     this.props.getFundamentaldetails();
+    this.props.getAnswersheets();
   }
 
   onBlobChange = (isAnImage, name) => event => {
@@ -105,10 +110,21 @@ export class QuestionMySuffixUpdate extends React.Component<IQuestionMySuffixUpd
   };
 
   render() {
-    const { questionEntity, enterprises, courses, subjects, chapters, employees, fundamentaldetails, loading, updating } = this.props;
+    const {
+      questionEntity,
+      enterprises,
+      courses,
+      subjects,
+      topics,
+      employees,
+      fundamentaldetails,
+      answersheets,
+      loading,
+      updating
+    } = this.props;
     const { isNew } = this.state;
 
-    const { question, diagram, diagramContentType } = questionEntity;
+    const { question, questionDiagram, questionDiagramContentType, ansDiagram, ansDiagramContentType } = questionEntity;
 
     return (
       <div>
@@ -148,32 +164,32 @@ export class QuestionMySuffixUpdate extends React.Component<IQuestionMySuffixUpd
                 </AvGroup>
                 <AvGroup>
                   <AvGroup>
-                    <Label id="diagramLabel" for="diagram">
-                      <Translate contentKey="risingarjunApp.question.diagram">Diagram</Translate>
+                    <Label id="questionDiagramLabel" for="questionDiagram">
+                      <Translate contentKey="risingarjunApp.question.questionDiagram">Question Diagram</Translate>
                     </Label>
                     <br />
-                    {diagram ? (
+                    {questionDiagram ? (
                       <div>
-                        <a onClick={openFile(diagramContentType, diagram)}>
-                          <img src={`data:${diagramContentType};base64,${diagram}`} style={{ maxHeight: '100px' }} />
+                        <a onClick={openFile(questionDiagramContentType, questionDiagram)}>
+                          <img src={`data:${questionDiagramContentType};base64,${questionDiagram}`} style={{ maxHeight: '100px' }} />
                         </a>
                         <br />
                         <Row>
                           <Col md="11">
                             <span>
-                              {diagramContentType}, {byteSize(diagram)}
+                              {questionDiagramContentType}, {byteSize(questionDiagram)}
                             </span>
                           </Col>
                           <Col md="1">
-                            <Button color="danger" onClick={this.clearBlob('diagram')}>
+                            <Button color="danger" onClick={this.clearBlob('questionDiagram')}>
                               <FontAwesomeIcon icon="times-circle" />
                             </Button>
                           </Col>
                         </Row>
                       </div>
                     ) : null}
-                    <input id="file_diagram" type="file" onChange={this.onBlobChange(true, 'diagram')} accept="image/*" />
-                    <AvInput type="hidden" name="diagram" value={diagram} />
+                    <input id="file_questionDiagram" type="file" onChange={this.onBlobChange(true, 'questionDiagram')} accept="image/*" />
+                    <AvInput type="hidden" name="questionDiagram" value={questionDiagram} />
                   </AvGroup>
                 </AvGroup>
                 <AvGroup>
@@ -278,6 +294,36 @@ export class QuestionMySuffixUpdate extends React.Component<IQuestionMySuffixUpd
                   <AvField id="question-my-suffix-solution" type="text" name="solution" />
                 </AvGroup>
                 <AvGroup>
+                  <AvGroup>
+                    <Label id="ansDiagramLabel" for="ansDiagram">
+                      <Translate contentKey="risingarjunApp.question.ansDiagram">Ans Diagram</Translate>
+                    </Label>
+                    <br />
+                    {ansDiagram ? (
+                      <div>
+                        <a onClick={openFile(ansDiagramContentType, ansDiagram)}>
+                          <img src={`data:${ansDiagramContentType};base64,${ansDiagram}`} style={{ maxHeight: '100px' }} />
+                        </a>
+                        <br />
+                        <Row>
+                          <Col md="11">
+                            <span>
+                              {ansDiagramContentType}, {byteSize(ansDiagram)}
+                            </span>
+                          </Col>
+                          <Col md="1">
+                            <Button color="danger" onClick={this.clearBlob('ansDiagram')}>
+                              <FontAwesomeIcon icon="times-circle" />
+                            </Button>
+                          </Col>
+                        </Row>
+                      </div>
+                    ) : null}
+                    <input id="file_ansDiagram" type="file" onChange={this.onBlobChange(true, 'ansDiagram')} accept="image/*" />
+                    <AvInput type="hidden" name="ansDiagram" value={ansDiagram} />
+                  </AvGroup>
+                </AvGroup>
+                <AvGroup>
                   <Label id="videoLabel" for="question-my-suffix-video">
                     <Translate contentKey="risingarjunApp.question.video">Video</Translate>
                   </Label>
@@ -345,15 +391,15 @@ export class QuestionMySuffixUpdate extends React.Component<IQuestionMySuffixUpd
                   </AvInput>
                 </AvGroup>
                 <AvGroup>
-                  <Label for="question-my-suffix-chapter">
-                    <Translate contentKey="risingarjunApp.question.chapter">Chapter</Translate>
+                  <Label for="question-my-suffix-topic">
+                    <Translate contentKey="risingarjunApp.question.topic">Topic</Translate>
                   </Label>
-                  <AvInput id="question-my-suffix-chapter" type="select" className="form-control" name="chapterId">
+                  <AvInput id="question-my-suffix-topic" type="select" className="form-control" name="topicId">
                     <option value="" key="0" />
-                    {chapters
-                      ? chapters.map(otherEntity => (
+                    {topics
+                      ? topics.map(otherEntity => (
                           <option value={otherEntity.id} key={otherEntity.id}>
-                            {otherEntity.chapterTitle}
+                            {otherEntity.topicTitle}
                           </option>
                         ))
                       : null}
@@ -390,11 +436,11 @@ export class QuestionMySuffixUpdate extends React.Component<IQuestionMySuffixUpd
                   </AvInput>
                 </AvGroup>
                 <AvGroup>
-                  <Label for="question-my-suffix-fundamentals">
-                    <Translate contentKey="risingarjunApp.question.fundamentals">Fundamentals</Translate>
+                  <Label for="question-my-suffix-fundamental">
+                    <Translate contentKey="risingarjunApp.question.fundamental">Fundamental</Translate>
                   </Label>
                   <AvInput
-                    id="question-my-suffix-fundamentals"
+                    id="question-my-suffix-fundamental"
                     type="select"
                     multiple
                     className="form-control"
@@ -437,9 +483,10 @@ const mapStateToProps = (storeState: IRootState) => ({
   enterprises: storeState.enterprise.entities,
   courses: storeState.course.entities,
   subjects: storeState.subject.entities,
-  chapters: storeState.chapter.entities,
+  topics: storeState.topic.entities,
   employees: storeState.employee.entities,
   fundamentaldetails: storeState.fundamentaldetail.entities,
+  answersheets: storeState.answersheet.entities,
   questionEntity: storeState.question.entity,
   loading: storeState.question.loading,
   updating: storeState.question.updating,
@@ -450,9 +497,10 @@ const mapDispatchToProps = {
   getEnterprises,
   getCourses,
   getSubjects,
-  getChapters,
+  getTopics,
   getEmployees,
   getFundamentaldetails,
+  getAnswersheets,
   getEntity,
   updateEntity,
   setBlob,

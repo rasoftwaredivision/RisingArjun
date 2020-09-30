@@ -85,9 +85,9 @@ import expense, {
   ExpenseMySuffixState
 } from 'app/entities/expense-my-suffix/expense-my-suffix.reducer';
 // prettier-ignore
-import chapter, {
-  ChapterMySuffixState
-} from 'app/entities/chapter-my-suffix/chapter-my-suffix.reducer';
+import topic, {
+  TopicMySuffixState
+} from 'app/entities/topic-my-suffix/topic-my-suffix.reducer';
 // prettier-ignore
 import fundamentaldetail, {
   FundamentaldetailMySuffixState
@@ -97,9 +97,17 @@ import question, {
   QuestionMySuffixState
 } from 'app/entities/question-my-suffix/question-my-suffix.reducer';
 // prettier-ignore
-import studentscore, {
-  StudentscoreMySuffixState
-} from 'app/entities/studentscore-my-suffix/studentscore-my-suffix.reducer';
+import testpaper, {
+  TestpaperMySuffixState
+} from 'app/entities/testpaper-my-suffix/testpaper-my-suffix.reducer';
+// prettier-ignore
+import answersheet, {
+  AnswersheetMySuffixState
+} from 'app/entities/answersheet-my-suffix/answersheet-my-suffix.reducer';
+// prettier-ignore
+import testresult, {
+  TestresultMySuffixState
+} from 'app/entities/testresult-my-suffix/testresult-my-suffix.reducer';
 // prettier-ignore
 import enterprise, {
   EnterpriseMySuffixState
@@ -108,7 +116,6 @@ import enterprise, {
 import enterprisesettings, {
   EnterprisesettingsMySuffixState
 } from 'app/entities/enterprisesettings-my-suffix/enterprisesettings-my-suffix.reducer';
-// prettier-ignore
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {
@@ -140,12 +147,14 @@ export interface IRootState {
   readonly teachershare: TeachershareMySuffixState;
   readonly salarypayment: SalarypaymentMySuffixState;
   readonly expense: ExpenseMySuffixState;
-  readonly chapter: ChapterMySuffixState;
   readonly fundamentaldetail: FundamentaldetailMySuffixState;
   readonly question: QuestionMySuffixState;
-  readonly studentscore: StudentscoreMySuffixState;
   readonly enterprise: EnterpriseMySuffixState;
   readonly enterprisesettings: EnterprisesettingsMySuffixState;
+  readonly topic: TopicMySuffixState;
+  readonly testpaper: TestpaperMySuffixState;
+  readonly answersheet: AnswersheetMySuffixState;
+  readonly testresult: TestresultMySuffixState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -179,12 +188,14 @@ const rootReducer = combineReducers<IRootState>({
   teachershare,
   salarypayment,
   expense,
-  chapter,
   fundamentaldetail,
   question,
-  studentscore,
   enterprise,
   enterprisesettings,
+  topic,
+  testpaper,
+  answersheet,
+  testresult,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar
 });

@@ -15,9 +15,9 @@ public interface CourseMapper extends EntityMapper<CourseDTO, Course> {
     @Mapping(target = "students", ignore = true)
     @Mapping(target = "removeStudent", ignore = true)
     @Mapping(target = "studentsubjects", ignore = true)
-    @Mapping(target = "removeStudentsubjects", ignore = true)
+    @Mapping(target = "removeStudentsubject", ignore = true)
     @Mapping(target = "teachers", ignore = true)
-    @Mapping(target = "removeTeachers", ignore = true)
+    @Mapping(target = "removeTeacher", ignore = true)
     Course toEntity(CourseDTO courseDTO);
 
     default Course fromId(Long id) {

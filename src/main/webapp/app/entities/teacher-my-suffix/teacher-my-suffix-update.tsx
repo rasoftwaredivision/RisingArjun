@@ -24,8 +24,8 @@ export interface ITeacherMySuffixUpdateProps extends StateProps, DispatchProps, 
 
 export interface ITeacherMySuffixUpdateState {
   isNew: boolean;
-  idssubjects: any[];
-  idscourses: any[];
+  idssubject: any[];
+  idscourse: any[];
   teacherIdId: string;
 }
 
@@ -33,8 +33,8 @@ export class TeacherMySuffixUpdate extends React.Component<ITeacherMySuffixUpdat
   constructor(props) {
     super(props);
     this.state = {
-      idssubjects: [],
-      idscourses: [],
+      idssubject: [],
+      idscourse: [],
       teacherIdId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
@@ -123,11 +123,11 @@ export class TeacherMySuffixUpdate extends React.Component<ITeacherMySuffixUpdat
                   </AvInput>
                 </AvGroup>
                 <AvGroup>
-                  <Label for="teacher-my-suffix-subjects">
-                    <Translate contentKey="risingarjunApp.teacher.subjects">Subjects</Translate>
+                  <Label for="teacher-my-suffix-subject">
+                    <Translate contentKey="risingarjunApp.teacher.subject">Subject</Translate>
                   </Label>
                   <AvInput
-                    id="teacher-my-suffix-subjects"
+                    id="teacher-my-suffix-subject"
                     type="select"
                     multiple
                     className="form-control"
@@ -145,11 +145,11 @@ export class TeacherMySuffixUpdate extends React.Component<ITeacherMySuffixUpdat
                   </AvInput>
                 </AvGroup>
                 <AvGroup>
-                  <Label for="teacher-my-suffix-courses">
-                    <Translate contentKey="risingarjunApp.teacher.courses">Courses</Translate>
+                  <Label for="teacher-my-suffix-course">
+                    <Translate contentKey="risingarjunApp.teacher.course">Course</Translate>
                   </Label>
                   <AvInput
-                    id="teacher-my-suffix-courses"
+                    id="teacher-my-suffix-course"
                     type="select"
                     multiple
                     className="form-control"

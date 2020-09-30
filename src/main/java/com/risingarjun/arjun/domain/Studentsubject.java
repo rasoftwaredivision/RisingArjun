@@ -42,9 +42,9 @@ public class Studentsubject implements Serializable {
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "studentsubject_subjects",
+    @JoinTable(name = "studentsubject_subject",
                joinColumns = @JoinColumn(name = "studentsubject_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "subjects_id", referencedColumnName = "id"))
+               inverseJoinColumns = @JoinColumn(name = "subject_id", referencedColumnName = "id"))
     private Set<Subject> subjects = new HashSet<>();
 
     @ManyToMany
@@ -111,13 +111,13 @@ public class Studentsubject implements Serializable {
         return this;
     }
 
-    public Studentsubject addSubjects(Subject subject) {
+    public Studentsubject addSubject(Subject subject) {
         this.subjects.add(subject);
         subject.getStudentsubjects().add(this);
         return this;
     }
 
-    public Studentsubject removeSubjects(Subject subject) {
+    public Studentsubject removeSubject(Subject subject) {
         this.subjects.remove(subject);
         subject.getStudentsubjects().remove(this);
         return this;

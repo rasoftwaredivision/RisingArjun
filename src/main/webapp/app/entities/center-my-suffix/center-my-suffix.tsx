@@ -63,6 +63,9 @@ export class CenterMySuffix extends React.Component<ICenterMySuffixProps> {
                   <th>
                     <Translate contentKey="risingarjunApp.center.enterprise">Enterprise</Translate>
                   </th>
+                  <th>
+                    <Translate contentKey="risingarjunApp.center.centerhead">Centerhead</Translate>
+                  </th>
                   <th />
                 </tr>
               </thead>
@@ -93,6 +96,9 @@ export class CenterMySuffix extends React.Component<ICenterMySuffixProps> {
                       ) : (
                         ''
                       )}
+                    </td>
+                    <td>
+                      {center.centerheadId ? <Link to={`centerhead-my-suffix/${center.centerheadId}`}>{center.centerheadId}</Link> : ''}
                     </td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">

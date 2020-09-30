@@ -23,7 +23,7 @@ export interface ISubjectMySuffixUpdateProps extends StateProps, DispatchProps, 
 export interface ISubjectMySuffixUpdateState {
   isNew: boolean;
   studentsubjectId: string;
-  teachersId: string;
+  teacherId: string;
 }
 
 export class SubjectMySuffixUpdate extends React.Component<ISubjectMySuffixUpdateProps, ISubjectMySuffixUpdateState> {
@@ -31,7 +31,7 @@ export class SubjectMySuffixUpdate extends React.Component<ISubjectMySuffixUpdat
     super(props);
     this.state = {
       studentsubjectId: '0',
-      teachersId: '0',
+      teacherId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
   }

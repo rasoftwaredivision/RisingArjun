@@ -19,7 +19,7 @@
       "subjectCode": "Subject Code",
       "subjectTitle": "Subject Title",
       "studentsubject": "Studentsubject",
-      "teachers": "Teachers"
+      "teacher": "Teacher"
     }
   }
 }

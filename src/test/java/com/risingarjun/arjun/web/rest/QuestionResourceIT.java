@@ -47,10 +47,10 @@ public class QuestionResourceIT {
     private static final String DEFAULT_QUESTION = "AAAAAAAAAA";
     private static final String UPDATED_QUESTION = "BBBBBBBBBB";
 
-    private static final byte[] DEFAULT_DIAGRAM = TestUtil.createByteArray(1, "0");
-    private static final byte[] UPDATED_DIAGRAM = TestUtil.createByteArray(1, "1");
-    private static final String DEFAULT_DIAGRAM_CONTENT_TYPE = "image/jpg";
-    private static final String UPDATED_DIAGRAM_CONTENT_TYPE = "image/png";
+    private static final byte[] DEFAULT_QUESTION_DIAGRAM = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_QUESTION_DIAGRAM = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_QUESTION_DIAGRAM_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_QUESTION_DIAGRAM_CONTENT_TYPE = "image/png";
 
     private static final String DEFAULT_OPTION_1 = "AAAAAAAAAA";
     private static final String UPDATED_OPTION_1 = "BBBBBBBBBB";
@@ -84,6 +84,11 @@ public class QuestionResourceIT {
 
     private static final String DEFAULT_SOLUTION = "AAAAAAAAAA";
     private static final String UPDATED_SOLUTION = "BBBBBBBBBB";
+
+    private static final byte[] DEFAULT_ANS_DIAGRAM = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_ANS_DIAGRAM = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_ANS_DIAGRAM_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_ANS_DIAGRAM_CONTENT_TYPE = "image/png";
 
     private static final String DEFAULT_VIDEO = "AAAAAAAAAA";
     private static final String UPDATED_VIDEO = "BBBBBBBBBB";
@@ -146,8 +151,8 @@ public class QuestionResourceIT {
     public static Question createEntity(EntityManager em) {
         Question question = new Question()
             .question(DEFAULT_QUESTION)
-            .diagram(DEFAULT_DIAGRAM)
-            .diagramContentType(DEFAULT_DIAGRAM_CONTENT_TYPE)
+            .questionDiagram(DEFAULT_QUESTION_DIAGRAM)
+            .questionDiagramContentType(DEFAULT_QUESTION_DIAGRAM_CONTENT_TYPE)
             .option1(DEFAULT_OPTION_1)
             .option2(DEFAULT_OPTION_2)
             .option3(DEFAULT_OPTION_3)
@@ -159,6 +164,8 @@ public class QuestionResourceIT {
             .durationMins(DEFAULT_DURATION_MINS)
             .level(DEFAULT_LEVEL)
             .solution(DEFAULT_SOLUTION)
+            .ansDiagram(DEFAULT_ANS_DIAGRAM)
+            .ansDiagramContentType(DEFAULT_ANS_DIAGRAM_CONTENT_TYPE)
             .video(DEFAULT_VIDEO)
             .status(DEFAULT_STATUS);
         return question;
@@ -172,8 +179,8 @@ public class QuestionResourceIT {
     public static Question createUpdatedEntity(EntityManager em) {
         Question question = new Question()
             .question(UPDATED_QUESTION)
-            .diagram(UPDATED_DIAGRAM)
-            .diagramContentType(UPDATED_DIAGRAM_CONTENT_TYPE)
+            .questionDiagram(UPDATED_QUESTION_DIAGRAM)
+            .questionDiagramContentType(UPDATED_QUESTION_DIAGRAM_CONTENT_TYPE)
             .option1(UPDATED_OPTION_1)
             .option2(UPDATED_OPTION_2)
             .option3(UPDATED_OPTION_3)
@@ -185,6 +192,8 @@ public class QuestionResourceIT {
             .durationMins(UPDATED_DURATION_MINS)
             .level(UPDATED_LEVEL)
             .solution(UPDATED_SOLUTION)
+            .ansDiagram(UPDATED_ANS_DIAGRAM)
+            .ansDiagramContentType(UPDATED_ANS_DIAGRAM_CONTENT_TYPE)
             .video(UPDATED_VIDEO)
             .status(UPDATED_STATUS);
         return question;
@@ -212,8 +221,8 @@ public class QuestionResourceIT {
         assertThat(questionList).hasSize(databaseSizeBeforeCreate + 1);
         Question testQuestion = questionList.get(questionList.size() - 1);
         assertThat(testQuestion.getQuestion()).isEqualTo(DEFAULT_QUESTION);
-        assertThat(testQuestion.getDiagram()).isEqualTo(DEFAULT_DIAGRAM);
-        assertThat(testQuestion.getDiagramContentType()).isEqualTo(DEFAULT_DIAGRAM_CONTENT_TYPE);
+        assertThat(testQuestion.getQuestionDiagram()).isEqualTo(DEFAULT_QUESTION_DIAGRAM);
+        assertThat(testQuestion.getQuestionDiagramContentType()).isEqualTo(DEFAULT_QUESTION_DIAGRAM_CONTENT_TYPE);
         assertThat(testQuestion.getOption1()).isEqualTo(DEFAULT_OPTION_1);
         assertThat(testQuestion.getOption2()).isEqualTo(DEFAULT_OPTION_2);
         assertThat(testQuestion.getOption3()).isEqualTo(DEFAULT_OPTION_3);
@@ -225,6 +234,8 @@ public class QuestionResourceIT {
         assertThat(testQuestion.getDurationMins()).isEqualTo(DEFAULT_DURATION_MINS);
         assertThat(testQuestion.getLevel()).isEqualTo(DEFAULT_LEVEL);
         assertThat(testQuestion.getSolution()).isEqualTo(DEFAULT_SOLUTION);
+        assertThat(testQuestion.getAnsDiagram()).isEqualTo(DEFAULT_ANS_DIAGRAM);
+        assertThat(testQuestion.getAnsDiagramContentType()).isEqualTo(DEFAULT_ANS_DIAGRAM_CONTENT_TYPE);
         assertThat(testQuestion.getVideo()).isEqualTo(DEFAULT_VIDEO);
         assertThat(testQuestion.getStatus()).isEqualTo(DEFAULT_STATUS);
     }
@@ -376,8 +387,8 @@ public class QuestionResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(question.getId().intValue())))
             .andExpect(jsonPath("$.[*].question").value(hasItem(DEFAULT_QUESTION.toString())))
-            .andExpect(jsonPath("$.[*].diagramContentType").value(hasItem(DEFAULT_DIAGRAM_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].diagram").value(hasItem(Base64Utils.encodeToString(DEFAULT_DIAGRAM))))
+            .andExpect(jsonPath("$.[*].questionDiagramContentType").value(hasItem(DEFAULT_QUESTION_DIAGRAM_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].questionDiagram").value(hasItem(Base64Utils.encodeToString(DEFAULT_QUESTION_DIAGRAM))))
             .andExpect(jsonPath("$.[*].option1").value(hasItem(DEFAULT_OPTION_1.toString())))
             .andExpect(jsonPath("$.[*].option2").value(hasItem(DEFAULT_OPTION_2.toString())))
             .andExpect(jsonPath("$.[*].option3").value(hasItem(DEFAULT_OPTION_3.toString())))
@@ -389,6 +400,8 @@ public class QuestionResourceIT {
             .andExpect(jsonPath("$.[*].durationMins").value(hasItem(DEFAULT_DURATION_MINS)))
             .andExpect(jsonPath("$.[*].level").value(hasItem(DEFAULT_LEVEL.toString())))
             .andExpect(jsonPath("$.[*].solution").value(hasItem(DEFAULT_SOLUTION.toString())))
+            .andExpect(jsonPath("$.[*].ansDiagramContentType").value(hasItem(DEFAULT_ANS_DIAGRAM_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].ansDiagram").value(hasItem(Base64Utils.encodeToString(DEFAULT_ANS_DIAGRAM))))
             .andExpect(jsonPath("$.[*].video").value(hasItem(DEFAULT_VIDEO.toString())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
     }
@@ -438,8 +451,8 @@ public class QuestionResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(question.getId().intValue()))
             .andExpect(jsonPath("$.question").value(DEFAULT_QUESTION.toString()))
-            .andExpect(jsonPath("$.diagramContentType").value(DEFAULT_DIAGRAM_CONTENT_TYPE))
-            .andExpect(jsonPath("$.diagram").value(Base64Utils.encodeToString(DEFAULT_DIAGRAM)))
+            .andExpect(jsonPath("$.questionDiagramContentType").value(DEFAULT_QUESTION_DIAGRAM_CONTENT_TYPE))
+            .andExpect(jsonPath("$.questionDiagram").value(Base64Utils.encodeToString(DEFAULT_QUESTION_DIAGRAM)))
             .andExpect(jsonPath("$.option1").value(DEFAULT_OPTION_1.toString()))
             .andExpect(jsonPath("$.option2").value(DEFAULT_OPTION_2.toString()))
             .andExpect(jsonPath("$.option3").value(DEFAULT_OPTION_3.toString()))
@@ -451,6 +464,8 @@ public class QuestionResourceIT {
             .andExpect(jsonPath("$.durationMins").value(DEFAULT_DURATION_MINS))
             .andExpect(jsonPath("$.level").value(DEFAULT_LEVEL.toString()))
             .andExpect(jsonPath("$.solution").value(DEFAULT_SOLUTION.toString()))
+            .andExpect(jsonPath("$.ansDiagramContentType").value(DEFAULT_ANS_DIAGRAM_CONTENT_TYPE))
+            .andExpect(jsonPath("$.ansDiagram").value(Base64Utils.encodeToString(DEFAULT_ANS_DIAGRAM)))
             .andExpect(jsonPath("$.video").value(DEFAULT_VIDEO.toString()))
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
     }
@@ -477,8 +492,8 @@ public class QuestionResourceIT {
         em.detach(updatedQuestion);
         updatedQuestion
             .question(UPDATED_QUESTION)
-            .diagram(UPDATED_DIAGRAM)
-            .diagramContentType(UPDATED_DIAGRAM_CONTENT_TYPE)
+            .questionDiagram(UPDATED_QUESTION_DIAGRAM)
+            .questionDiagramContentType(UPDATED_QUESTION_DIAGRAM_CONTENT_TYPE)
             .option1(UPDATED_OPTION_1)
             .option2(UPDATED_OPTION_2)
             .option3(UPDATED_OPTION_3)
@@ -490,6 +505,8 @@ public class QuestionResourceIT {
             .durationMins(UPDATED_DURATION_MINS)
             .level(UPDATED_LEVEL)
             .solution(UPDATED_SOLUTION)
+            .ansDiagram(UPDATED_ANS_DIAGRAM)
+            .ansDiagramContentType(UPDATED_ANS_DIAGRAM_CONTENT_TYPE)
             .video(UPDATED_VIDEO)
             .status(UPDATED_STATUS);
         QuestionDTO questionDTO = questionMapper.toDto(updatedQuestion);
@@ -504,8 +521,8 @@ public class QuestionResourceIT {
         assertThat(questionList).hasSize(databaseSizeBeforeUpdate);
         Question testQuestion = questionList.get(questionList.size() - 1);
         assertThat(testQuestion.getQuestion()).isEqualTo(UPDATED_QUESTION);
-        assertThat(testQuestion.getDiagram()).isEqualTo(UPDATED_DIAGRAM);
-        assertThat(testQuestion.getDiagramContentType()).isEqualTo(UPDATED_DIAGRAM_CONTENT_TYPE);
+        assertThat(testQuestion.getQuestionDiagram()).isEqualTo(UPDATED_QUESTION_DIAGRAM);
+        assertThat(testQuestion.getQuestionDiagramContentType()).isEqualTo(UPDATED_QUESTION_DIAGRAM_CONTENT_TYPE);
         assertThat(testQuestion.getOption1()).isEqualTo(UPDATED_OPTION_1);
         assertThat(testQuestion.getOption2()).isEqualTo(UPDATED_OPTION_2);
         assertThat(testQuestion.getOption3()).isEqualTo(UPDATED_OPTION_3);
@@ -517,6 +534,8 @@ public class QuestionResourceIT {
         assertThat(testQuestion.getDurationMins()).isEqualTo(UPDATED_DURATION_MINS);
         assertThat(testQuestion.getLevel()).isEqualTo(UPDATED_LEVEL);
         assertThat(testQuestion.getSolution()).isEqualTo(UPDATED_SOLUTION);
+        assertThat(testQuestion.getAnsDiagram()).isEqualTo(UPDATED_ANS_DIAGRAM);
+        assertThat(testQuestion.getAnsDiagramContentType()).isEqualTo(UPDATED_ANS_DIAGRAM_CONTENT_TYPE);
         assertThat(testQuestion.getVideo()).isEqualTo(UPDATED_VIDEO);
         assertThat(testQuestion.getStatus()).isEqualTo(UPDATED_STATUS);
     }

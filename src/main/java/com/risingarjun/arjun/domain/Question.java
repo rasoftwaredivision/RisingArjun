@@ -1,4 +1,5 @@
 package com.risingarjun.arjun.domain;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -37,11 +38,11 @@ public class Question implements Serializable {
     private String question;
 
     @Lob
-    @Column(name = "diagram")
-    private byte[] diagram;
+    @Column(name = "question_diagram")
+    private byte[] questionDiagram;
 
-    @Column(name = "diagram_content_type")
-    private String diagramContentType;
+    @Column(name = "question_diagram_content_type")
+    private String questionDiagramContentType;
 
     @Column(name = "option_1")
     private String option1;
@@ -82,6 +83,13 @@ public class Question implements Serializable {
     @Column(name = "solution")
     private String solution;
 
+    @Lob
+    @Column(name = "ans_diagram")
+    private byte[] ansDiagram;
+
+    @Column(name = "ans_diagram_content_type")
+    private String ansDiagramContentType;
+
     @Column(name = "video")
     private String video;
 
@@ -104,7 +112,7 @@ public class Question implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("questions")
-    private Chapter chapter;
+    private Topic topic;
 
     @ManyToOne
     @JsonIgnoreProperties("questions")
@@ -116,10 +124,15 @@ public class Question implements Serializable {
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "question_fundamentals",
+    @JoinTable(name = "question_fundamental",
                joinColumns = @JoinColumn(name = "question_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "fundamentals_id", referencedColumnName = "id"))
+               inverseJoinColumns = @JoinColumn(name = "fundamental_id", referencedColumnName = "id"))
     private Set<Fundamentaldetail> fundamentals = new HashSet<>();
+
+    @ManyToMany(mappedBy = "questions")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JsonIgnore
+    private Set<Answersheet> answersheets = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -143,30 +156,30 @@ public class Question implements Serializable {
         this.question = question;
     }
 
-    public byte[] getDiagram() {
-        return diagram;
+    public byte[] getQuestionDiagram() {
+        return questionDiagram;
     }
 
-    public Question diagram(byte[] diagram) {
-        this.diagram = diagram;
+    public Question questionDiagram(byte[] questionDiagram) {
+        this.questionDiagram = questionDiagram;
         return this;
     }
 
-    public void setDiagram(byte[] diagram) {
-        this.diagram = diagram;
+    public void setQuestionDiagram(byte[] questionDiagram) {
+        this.questionDiagram = questionDiagram;
     }
 
-    public String getDiagramContentType() {
-        return diagramContentType;
+    public String getQuestionDiagramContentType() {
+        return questionDiagramContentType;
     }
 
-    public Question diagramContentType(String diagramContentType) {
-        this.diagramContentType = diagramContentType;
+    public Question questionDiagramContentType(String questionDiagramContentType) {
+        this.questionDiagramContentType = questionDiagramContentType;
         return this;
     }
 
-    public void setDiagramContentType(String diagramContentType) {
-        this.diagramContentType = diagramContentType;
+    public void setQuestionDiagramContentType(String questionDiagramContentType) {
+        this.questionDiagramContentType = questionDiagramContentType;
     }
 
     public String getOption1() {
@@ -312,6 +325,32 @@ public class Question implements Serializable {
         this.solution = solution;
     }
 
+    public byte[] getAnsDiagram() {
+        return ansDiagram;
+    }
+
+    public Question ansDiagram(byte[] ansDiagram) {
+        this.ansDiagram = ansDiagram;
+        return this;
+    }
+
+    public void setAnsDiagram(byte[] ansDiagram) {
+        this.ansDiagram = ansDiagram;
+    }
+
+    public String getAnsDiagramContentType() {
+        return ansDiagramContentType;
+    }
+
+    public Question ansDiagramContentType(String ansDiagramContentType) {
+        this.ansDiagramContentType = ansDiagramContentType;
+        return this;
+    }
+
+    public void setAnsDiagramContentType(String ansDiagramContentType) {
+        this.ansDiagramContentType = ansDiagramContentType;
+    }
+
     public String getVideo() {
         return video;
     }
@@ -377,17 +416,17 @@ public class Question implements Serializable {
         this.subject = subject;
     }
 
-    public Chapter getChapter() {
-        return chapter;
+    public Topic getTopic() {
+        return topic;
     }
 
-    public Question chapter(Chapter chapter) {
-        this.chapter = chapter;
+    public Question topic(Topic topic) {
+        this.topic = topic;
         return this;
     }
 
-    public void setChapter(Chapter chapter) {
-        this.chapter = chapter;
+    public void setTopic(Topic topic) {
+        this.topic = topic;
     }
 
     public Employee getWriter() {
@@ -425,13 +464,13 @@ public class Question implements Serializable {
         return this;
     }
 
-    public Question addFundamentals(Fundamentaldetail fundamentaldetail) {
+    public Question addFundamental(Fundamentaldetail fundamentaldetail) {
         this.fundamentals.add(fundamentaldetail);
         fundamentaldetail.getQuestions().add(this);
         return this;
     }
 
-    public Question removeFundamentals(Fundamentaldetail fundamentaldetail) {
+    public Question removeFundamental(Fundamentaldetail fundamentaldetail) {
         this.fundamentals.remove(fundamentaldetail);
         fundamentaldetail.getQuestions().remove(this);
         return this;
@@ -439,6 +478,31 @@ public class Question implements Serializable {
 
     public void setFundamentals(Set<Fundamentaldetail> fundamentaldetails) {
         this.fundamentals = fundamentaldetails;
+    }
+
+    public Set<Answersheet> getAnswersheets() {
+        return answersheets;
+    }
+
+    public Question answersheets(Set<Answersheet> answersheets) {
+        this.answersheets = answersheets;
+        return this;
+    }
+
+    public Question addAnswersheet(Answersheet answersheet) {
+        this.answersheets.add(answersheet);
+        answersheet.getQuestions().add(this);
+        return this;
+    }
+
+    public Question removeAnswersheet(Answersheet answersheet) {
+        this.answersheets.remove(answersheet);
+        answersheet.getQuestions().remove(this);
+        return this;
+    }
+
+    public void setAnswersheets(Set<Answersheet> answersheets) {
+        this.answersheets = answersheets;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -463,8 +527,8 @@ public class Question implements Serializable {
         return "Question{" +
             "id=" + getId() +
             ", question='" + getQuestion() + "'" +
-            ", diagram='" + getDiagram() + "'" +
-            ", diagramContentType='" + getDiagramContentType() + "'" +
+            ", questionDiagram='" + getQuestionDiagram() + "'" +
+            ", questionDiagramContentType='" + getQuestionDiagramContentType() + "'" +
             ", option1='" + getOption1() + "'" +
             ", option2='" + getOption2() + "'" +
             ", option3='" + getOption3() + "'" +
@@ -476,6 +540,8 @@ public class Question implements Serializable {
             ", durationMins=" + getDurationMins() +
             ", level='" + getLevel() + "'" +
             ", solution='" + getSolution() + "'" +
+            ", ansDiagram='" + getAnsDiagram() + "'" +
+            ", ansDiagramContentType='" + getAnsDiagramContentType() + "'" +
             ", video='" + getVideo() + "'" +
             ", status='" + getStatus() + "'" +
             "}";

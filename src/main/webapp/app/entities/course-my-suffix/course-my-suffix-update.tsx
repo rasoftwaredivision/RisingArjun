@@ -25,8 +25,8 @@ export interface ICourseMySuffixUpdateProps extends StateProps, DispatchProps, R
 export interface ICourseMySuffixUpdateState {
   isNew: boolean;
   studentId: string;
-  studentsubjectsId: string;
-  teachersId: string;
+  studentsubjectId: string;
+  teacherId: string;
 }
 
 export class CourseMySuffixUpdate extends React.Component<ICourseMySuffixUpdateProps, ICourseMySuffixUpdateState> {
@@ -34,8 +34,8 @@ export class CourseMySuffixUpdate extends React.Component<ICourseMySuffixUpdateP
     super(props);
     this.state = {
       studentId: '0',
-      studentsubjectsId: '0',
-      teachersId: '0',
+      studentsubjectId: '0',
+      teacherId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
   }

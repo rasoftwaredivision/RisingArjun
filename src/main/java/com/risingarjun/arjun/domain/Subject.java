@@ -112,13 +112,13 @@ public class Subject implements Serializable {
         return this;
     }
 
-    public Subject addTeachers(Teacher teacher) {
+    public Subject addTeacher(Teacher teacher) {
         this.teachers.add(teacher);
         teacher.getSubjects().add(this);
         return this;
     }
 
-    public Subject removeTeachers(Teacher teacher) {
+    public Subject removeTeacher(Teacher teacher) {
         this.teachers.remove(teacher);
         teacher.getSubjects().remove(this);
         return this;

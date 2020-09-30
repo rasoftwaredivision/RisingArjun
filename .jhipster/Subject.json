@@ -22,7 +22,7 @@
         {
             "relationshipType": "many-to-many",
             "otherEntityName": "studentsubject",
-            "otherEntityRelationshipName": "subjects",
+            "otherEntityRelationshipName": "subject",
             "relationshipName": "studentsubject",
             "otherEntityField": "id",
             "ownerSide": false
@@ -30,13 +30,13 @@
         {
             "relationshipType": "many-to-many",
             "otherEntityName": "teacher",
-            "otherEntityRelationshipName": "subjects",
-            "relationshipName": "teachers",
+            "otherEntityRelationshipName": "subject",
+            "relationshipName": "teacher",
             "otherEntityField": "id",
             "ownerSide": false
         }
     ],
-    "changelogDate": "20200917055146",
+    "changelogDate": "20200930095435",
     "entityTableName": "subject",
     "dto": "mapstruct",
     "pagination": "no",

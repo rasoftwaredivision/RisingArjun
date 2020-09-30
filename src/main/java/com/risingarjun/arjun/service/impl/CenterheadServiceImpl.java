@@ -8,8 +8,6 @@ import com.risingarjun.arjun.service.mapper.CenterheadMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -59,20 +57,11 @@ public class CenterheadServiceImpl implements CenterheadService {
     @Transactional(readOnly = true)
     public List<CenterheadDTO> findAll() {
         log.debug("Request to get all Centerheads");
-        return centerheadRepository.findAllWithEagerRelationships().stream()
+        return centerheadRepository.findAll().stream()
             .map(centerheadMapper::toDto)
             .collect(Collectors.toCollection(LinkedList::new));
     }
 
-    /**
-     * Get all the centerheads with eager load of many-to-many relationships.
-     *
-     * @return the list of entities.
-     */
-    public Page<CenterheadDTO> findAllWithEagerRelationships(Pageable pageable) {
-        return centerheadRepository.findAllWithEagerRelationships(pageable).map(centerheadMapper::toDto);
-    }
-    
 
     /**
      * Get one centerhead by id.
@@ -84,7 +73,7 @@ public class CenterheadServiceImpl implements CenterheadService {
     @Transactional(readOnly = true)
     public Optional<CenterheadDTO> findOne(Long id) {
         log.debug("Request to get Centerhead : {}", id);
-        return centerheadRepository.findOneWithEagerRelationships(id)
+        return centerheadRepository.findById(id)
             .map(centerheadMapper::toDto);
     }
 

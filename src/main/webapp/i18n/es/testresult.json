@@ -1,0 +1,28 @@
+{
+  "risingarjunApp": {
+    "testresult": {
+      "home": {
+        "title": "Testresults",
+        "createLabel": "Crear nuevo Testresult",
+        "createOrEditLabel": "Crear o editar Testresult",
+        "notFound": "No Testresult found"
+      },
+      "created": "Un nuevo Testresult ha sido creado con el identificador {{ param }}",
+      "updated": "Un Testresult ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Testresult ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Testresult {{ id }}?"
+      },
+      "detail": {
+        "title": "Testresult"
+      },
+      "positiveMarks": "Positive Marks",
+      "negativeMarks": "Negative Marks",
+      "score": "Score",
+      "timeTaken": "Time Taken",
+      "date": "Date",
+      "student": "Student",
+      "testPaperId": "Test Paper Id"
+    }
+  }
+}

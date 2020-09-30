@@ -16,8 +16,8 @@ public interface TeacherMapper extends EntityMapper<TeacherDTO, Teacher> {
     TeacherDTO toDto(Teacher teacher);
 
     @Mapping(source = "teacherIdId", target = "teacherId")
-    @Mapping(target = "removeSubjects", ignore = true)
-    @Mapping(target = "removeCourses", ignore = true)
+    @Mapping(target = "removeSubject", ignore = true)
+    @Mapping(target = "removeCourse", ignore = true)
     Teacher toEntity(TeacherDTO teacherDTO);
 
     default Teacher fromId(Long id) {

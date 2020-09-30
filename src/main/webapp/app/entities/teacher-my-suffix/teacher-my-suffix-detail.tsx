@@ -33,7 +33,7 @@ export class TeacherMySuffixDetail extends React.Component<ITeacherMySuffixDetai
             </dt>
             <dd>{teacherEntity.teacherIdEmployeeId ? teacherEntity.teacherIdEmployeeId : ''}</dd>
             <dt>
-              <Translate contentKey="risingarjunApp.teacher.subjects">Subjects</Translate>
+              <Translate contentKey="risingarjunApp.teacher.subject">Subject</Translate>
             </dt>
             <dd>
               {teacherEntity.subjects
@@ -46,7 +46,7 @@ export class TeacherMySuffixDetail extends React.Component<ITeacherMySuffixDetai
                 : null}
             </dd>
             <dt>
-              <Translate contentKey="risingarjunApp.teacher.courses">Courses</Translate>
+              <Translate contentKey="risingarjunApp.teacher.course">Course</Translate>
             </dt>
             <dd>
               {teacherEntity.courses

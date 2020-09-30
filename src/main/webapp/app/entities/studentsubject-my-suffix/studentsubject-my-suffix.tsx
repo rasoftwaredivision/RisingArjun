@@ -49,7 +49,7 @@ export class StudentsubjectMySuffix extends React.Component<IStudentsubjectMySuf
                     <Translate contentKey="risingarjunApp.studentsubject.session">Session</Translate>
                   </th>
                   <th>
-                    <Translate contentKey="risingarjunApp.studentsubject.subjects">Subjects</Translate>
+                    <Translate contentKey="risingarjunApp.studentsubject.subject">Subject</Translate>
                   </th>
                   <th>
                     <Translate contentKey="risingarjunApp.studentsubject.course">Course</Translate>

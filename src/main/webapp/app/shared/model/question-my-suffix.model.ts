@@ -1,4 +1,5 @@
 import { IFundamentaldetailMySuffix } from 'app/shared/model/fundamentaldetail-my-suffix.model';
+import { IAnswersheetMySuffix } from 'app/shared/model/answersheet-my-suffix.model';
 
 export const enum Questionlevel {
   BEGINNERS = 'BEGINNERS',
@@ -15,8 +16,8 @@ export const enum Questionstatus {
 export interface IQuestionMySuffix {
   id?: number;
   question?: any;
-  diagramContentType?: string;
-  diagram?: any;
+  questionDiagramContentType?: string;
+  questionDiagram?: any;
   option1?: string;
   option2?: string;
   option3?: string;
@@ -28,6 +29,8 @@ export interface IQuestionMySuffix {
   durationMins?: number;
   level?: Questionlevel;
   solution?: string;
+  ansDiagramContentType?: string;
+  ansDiagram?: any;
   video?: string;
   status?: Questionstatus;
   enterpriseEnterprisename?: string;
@@ -36,13 +39,14 @@ export interface IQuestionMySuffix {
   courseId?: number;
   subjectSubjectTitle?: string;
   subjectId?: number;
-  chapterChapterTitle?: string;
-  chapterId?: number;
+  topicTopicTitle?: string;
+  topicId?: number;
   writerEmployeeId?: string;
   writerId?: number;
   approverEmployeeId?: string;
   approverId?: number;
   fundamentals?: IFundamentaldetailMySuffix[];
+  answersheets?: IAnswersheetMySuffix[];
 }
 
 export const defaultValue: Readonly<IQuestionMySuffix> = {

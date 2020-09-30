@@ -28,32 +28,6 @@ entity jhi_persistent_audit_event{
 3. jhi_persistent_audit_evt_data:
 event_id, name, value
 
-3. features:
-id,	featureId,	featureDetail
-1,	STUREG,		student registration
-2,	ASNCRE,		assignment creation
-3,	SALARY,		salary generation
-
-
-entity Feature{
-	featureId String unique required 
-	featureDetail String unique required
-}
-
-
-3. roleAcess:
-roleId,		featureId,	create, read, update, delete
-ADMIN,		STUREG,		true,	true,	true,	false
-ACCOUNTANT,	SALARY,		true,	true,	true,	false
-ADMIN,		SALARY,		true,	true,	true,	false
-
-entity Roleaccess{
-	create Boolean
-	read Boolean
-	update Boolean
-	del Boolean
-}
-
 4. jhi_user:
 id, login, password_hash, first_name, last_name, email, image_url,activated,lang_key,activation_key,reset_key,created_by,created_date,reset_date,last_modified_by,last_modified_date
 1. kunchitGoyal, hsadksa,	Kunchit, Goel, 	abc@gmail.com, URL1,0, 		EN,	NULL,	NULL,	     ShivRaturi,2020:08:12 12:45:03,NULL,ShivRaturi,2020:08:12 12:45:03
@@ -158,112 +132,112 @@ enum Infosource{
 
 enum School{
 	NONE,
-OTHER,
-PRIVATE,
-OPEN_SCHOOL,
-ADITYA_ARMY_PUBLIC_SCHOOL,
-AJANTA_PUBLIC_SCHOOL,
-ALPINE_CONVENT_SCHOOL_GURGAON,
-AMBIENCE_PUBLIC_SCHOOLS,
-AMERICAN_MONTESSORI_PUBLIC_SCHOOL,
-AMITY_INTERNATIONAL_SCHOOL,
-ARAVALI_PUBLIC_SCHOOL,
-ASCENT_PUBLIC_SCHOOL,
-ASIAN_PUBLIC_SCHOOL,
-BASANT_VALLEY_PUBLIC_SCHOOL,
-BHARTI_INTERNATIONAL_CONVENT_SCHOOL,
-BLUE_BELLS_PUBLIC_SCHOOL,
-CHIRANJIV_BHARTI_SCHOOL,
-COLONELS_CENTRAL_ACADEMY,
-COLONELS_PUBLIC_SCHOOL,
-DAV_PUBLIC_SCHOOL,
-DELHI_PUBLIC_SCHOOL_MARUTI_KUNJ,
-DELHI_PUBLIC_SCHOOL_SECTOR_45,
-DELHI_PUBLIC_SCHOOL_SUSHANT_LOK,
-DEV_SAMAJ_VIDYA_NIKETAN,
-DPS_MEWAT_MODEL_SCHOOL,
-DRONA_PUBLIC_SCHOOL,
-GD_GOENKA_WORLD_SCHOOL,
-GEMS_INTERNATIONAL_SCHOOL,
-GREEN_DALE_PUBLIC_SCHOOL,
-GREENWOOD_PUBLIC_SCHOOL,
-GURGAON_VALLEY_SCHOOL,
-GURUGRAM_PUBLIC_SCHOOL,
-GYAN_DEEP_SENIOR_SECONDARY_SCHOOL,
-GYAN_DEVI_PUBLIC_SCHOOL,
-HERITAGE_XPERIENTIAL_LEARNING_SCHOOL,
-INDUS_WORLD_SCHOOL,
-J_J_SCHOOL_OF_EDUCATION,
-JHANKAR_HIGH_SCHOOL,
-KINDER_VALLEY_INTERNATIONAL_SCHOOL,
-KULDEEP_SINGH_MEMORIAL_PUBLIC_SCHOOL,
-LADY_FLORENCE_PUBLIC_SCHOOL,
-LAXMI_INTERNATIONAL_SCHOOL,
-LIONS_PUBLIC_SCHOOL,
-LORD_JESUS_PUBLIC_SCHOOL,
-LORD_KRISHNA_INTERNATIONAL_SCHOOL,
-MADE_EASY_SCHOOL,
-MAHARISHI_VIDYA_MANDIR_PUBLIC_SCHOOL,
-MANAV_RACHNA_INTERNATIONAL_SCHOOL,
-MARU_MAL_BOYS_SENIOR_SECONDARY_SCHOOL,
-MEENAKSHI_PUBLIC_SCHOOL,
-MEWAT_MODEL_SCHOOL,
-MEWAT_MODEL_SCHOOL_NAGINA,
-OUR_LADY_OF_FATIMA_CONVENT_SECONDARY_SCHOOL,
-PATHWAYS_WORLD_SCHOOL,
-POLE_STAR_PUBLIC_SCHOOL,
-PRESIDIUM_SENIOR_SECONDARY_SCHOOL,
-RABINDRANATH_WORLD_SCHOOL,
-RAJENDRA_PUBLIC_SCHOOL,
-RAJMALA_SENIOR_SECONDARY_SCHOOL,
-RAO_LAL_SINGH_PUBLIC_SCHOOL,
-RED_ROSES_PUBLIC_SCHOOL,
-RIDGE_VALLEY_SCHOOL,
-RISHI_PUBLIC_SCHOOL,
-ROCKFORD_CONVENT_HIGH_SCHOOL,
-ROTARY_PUBLIC_SCHOOL,
-ROYAL_PUBLIC_SENIOR_SECONDARY_SCHOOL,
-RYAN_INTERNATIONAL_SCHOOL,
-S_D_ADARSH_VIDYALAYA,
-SALWAN_MONTESSORI_SCHOOL,
-SALWAN_PUBLIC_SCHOOL,
-SAVITRI_DEVI_VIDYA_NIKETAN,
-SCOTTISH_HIGH_INTERNATIONAL_SCHOOL,
-SCR_GLOBAL_SCHOOL,
-SCR_MODEL_SCHOOL,
-SCR_PUBLIC_SCHOOL,
-SD_MEMORIAL_HIGH_SCHOOL,
-SHALOM_HILLS_INTERNATIONAL_SCHOOL,
-SHANTI_NIKETAN_PUBLIC_SCHOOL,
-SHARDA_INTERNATIONAL_SCHOOL,
-SHEMFORD_FUTURISTIC_ACADEMY_GURUGRAM,
-SHERWOOD_CONVENT_SCHOOL,
-SHIKSHA_BHARTI_PUBLIC_SCHOOL,
-SHIKSHANTAR,
-SHIV_NADAR_SCHOOL,
-SHIV_PUBLIC_SENIOR_SECONDARY_SCHOOL,
-SHRI_SN_SIDHESHWAR_SR_SEC_PUBLIC_SCHOOL,
-SRI_SHIV_CHAITANYA_ACADEMY_SCHOOL,
-ST_ANGELS_SCHOOL,
-ST_CRISPINS_SENIOR_SECONDARY_SCHOOL,
-ST_MICHAELS_SENIOR_SECONDARY_SCHOOL,
-ST_PBN_PUBLIC_SCHOOL,
-ST_SOLDIER_PUBLIC_SCHOOL,
-STAREX_INTERNATIONAL_SCHOOL,
-SUMMER_FIELDS_SCHOOL,
-SUNCITY_WORLD_SCHOOL,
-TAGORE_INTERNATIONAL_SCHOOL,
-THE_ARDEE_SCHOOL,
-THE_PINE_CREST_SCHOOL,
-THE_SHRI_RAM_SCHOOL_ARAVALI,
-THE_SYLVAN_TRAILS_SCHOOL,
-UNIVERSIOL_PUBLIC_SCHOOL,
-US_SCHOOL,
-VEGA_SCHOOLS,
-VIBGYOR_GROUP_OF_SCHOOLS,
-VIDYA_BHAWAN_PUBLIC_SENIOR_SECONDARY_SCHOOL,
-VIVEKANAND_ACADEMY,
-WEST_ACADEMY
+	OTHER,
+	PRIVATE,
+	OPEN_SCHOOL,
+	ADITYA_ARMY_PUBLIC_SCHOOL,
+	AJANTA_PUBLIC_SCHOOL,
+	ALPINE_CONVENT_SCHOOL_GURGAON,
+	AMBIENCE_PUBLIC_SCHOOLS,
+	AMERICAN_MONTESSORI_PUBLIC_SCHOOL,
+	AMITY_INTERNATIONAL_SCHOOL,
+	ARAVALI_PUBLIC_SCHOOL,
+	ASCENT_PUBLIC_SCHOOL,
+	ASIAN_PUBLIC_SCHOOL,
+	BASANT_VALLEY_PUBLIC_SCHOOL,
+	BHARTI_INTERNATIONAL_CONVENT_SCHOOL,
+	BLUE_BELLS_PUBLIC_SCHOOL,
+	CHIRANJIV_BHARTI_SCHOOL,
+	COLONELS_CENTRAL_ACADEMY,
+	COLONELS_PUBLIC_SCHOOL,
+	DAV_PUBLIC_SCHOOL,
+	DELHI_PUBLIC_SCHOOL_MARUTI_KUNJ,
+	DELHI_PUBLIC_SCHOOL_SECTOR_45,
+	DELHI_PUBLIC_SCHOOL_SUSHANT_LOK,
+	DEV_SAMAJ_VIDYA_NIKETAN,
+	DPS_MEWAT_MODEL_SCHOOL,
+	DRONA_PUBLIC_SCHOOL,
+	GD_GOENKA_WORLD_SCHOOL,
+	GEMS_INTERNATIONAL_SCHOOL,
+	GREEN_DALE_PUBLIC_SCHOOL,
+	GREENWOOD_PUBLIC_SCHOOL,
+	GURGAON_VALLEY_SCHOOL,
+	GURUGRAM_PUBLIC_SCHOOL,
+	GYAN_DEEP_SENIOR_SECONDARY_SCHOOL,
+	GYAN_DEVI_PUBLIC_SCHOOL,
+	HERITAGE_XPERIENTIAL_LEARNING_SCHOOL,
+	INDUS_WORLD_SCHOOL,
+	J_J_SCHOOL_OF_EDUCATION,
+	JHANKAR_HIGH_SCHOOL,
+	KINDER_VALLEY_INTERNATIONAL_SCHOOL,
+	KULDEEP_SINGH_MEMORIAL_PUBLIC_SCHOOL,
+	LADY_FLORENCE_PUBLIC_SCHOOL,
+	LAXMI_INTERNATIONAL_SCHOOL,
+	LIONS_PUBLIC_SCHOOL,
+	LORD_JESUS_PUBLIC_SCHOOL,
+	LORD_KRISHNA_INTERNATIONAL_SCHOOL,
+	MADE_EASY_SCHOOL,
+	MAHARISHI_VIDYA_MANDIR_PUBLIC_SCHOOL,
+	MANAV_RACHNA_INTERNATIONAL_SCHOOL,
+	MARU_MAL_BOYS_SENIOR_SECONDARY_SCHOOL,
+	MEENAKSHI_PUBLIC_SCHOOL,
+	MEWAT_MODEL_SCHOOL,
+	MEWAT_MODEL_SCHOOL_NAGINA,
+	OUR_LADY_OF_FATIMA_CONVENT_SECONDARY_SCHOOL,
+	PATHWAYS_WORLD_SCHOOL,
+	POLE_STAR_PUBLIC_SCHOOL,
+	PRESIDIUM_SENIOR_SECONDARY_SCHOOL,
+	RABINDRANATH_WORLD_SCHOOL,
+	RAJENDRA_PUBLIC_SCHOOL,
+	RAJMALA_SENIOR_SECONDARY_SCHOOL,
+	RAO_LAL_SINGH_PUBLIC_SCHOOL,
+	RED_ROSES_PUBLIC_SCHOOL,
+	RIDGE_VALLEY_SCHOOL,
+	RISHI_PUBLIC_SCHOOL,
+	ROCKFORD_CONVENT_HIGH_SCHOOL,
+	ROTARY_PUBLIC_SCHOOL,
+	ROYAL_PUBLIC_SENIOR_SECONDARY_SCHOOL,
+	RYAN_INTERNATIONAL_SCHOOL,
+	S_D_ADARSH_VIDYALAYA,
+	SALWAN_MONTESSORI_SCHOOL,
+	SALWAN_PUBLIC_SCHOOL,
+	SAVITRI_DEVI_VIDYA_NIKETAN,
+	SCOTTISH_HIGH_INTERNATIONAL_SCHOOL,
+	SCR_GLOBAL_SCHOOL,
+	SCR_MODEL_SCHOOL,
+	SCR_PUBLIC_SCHOOL,
+	SD_MEMORIAL_HIGH_SCHOOL,
+	SHALOM_HILLS_INTERNATIONAL_SCHOOL,
+	SHANTI_NIKETAN_PUBLIC_SCHOOL,
+	SHARDA_INTERNATIONAL_SCHOOL,
+	SHEMFORD_FUTURISTIC_ACADEMY_GURUGRAM,
+	SHERWOOD_CONVENT_SCHOOL,
+	SHIKSHA_BHARTI_PUBLIC_SCHOOL,
+	SHIKSHANTAR,
+	SHIV_NADAR_SCHOOL,
+	SHIV_PUBLIC_SENIOR_SECONDARY_SCHOOL,
+	SHRI_SN_SIDHESHWAR_SR_SEC_PUBLIC_SCHOOL,
+	SRI_SHIV_CHAITANYA_ACADEMY_SCHOOL,
+	ST_ANGELS_SCHOOL,
+	ST_CRISPINS_SENIOR_SECONDARY_SCHOOL,
+	ST_MICHAELS_SENIOR_SECONDARY_SCHOOL,
+	ST_PBN_PUBLIC_SCHOOL,
+	ST_SOLDIER_PUBLIC_SCHOOL,
+	STAREX_INTERNATIONAL_SCHOOL,
+	SUMMER_FIELDS_SCHOOL,
+	SUNCITY_WORLD_SCHOOL,
+	TAGORE_INTERNATIONAL_SCHOOL,
+	THE_ARDEE_SCHOOL,
+	THE_PINE_CREST_SCHOOL,
+	THE_SHRI_RAM_SCHOOL_ARAVALI,
+	THE_SYLVAN_TRAILS_SCHOOL,
+	UNIVERSIOL_PUBLIC_SCHOOL,
+	US_SCHOOL,
+	VEGA_SCHOOLS,
+	VIBGYOR_GROUP_OF_SCHOOLS,
+	VIDYA_BHAWAN_PUBLIC_SENIOR_SECONDARY_SCHOOL,
+	VIVEKANAND_ACADEMY,
+	WEST_ACADEMY
 }
 /*
 8. student:
@@ -497,16 +471,18 @@ entity Expense{
 	bill ImageBlob	   
 	remarks String
 }
+
 /*
-24. chapter:
-id,	courseId,	subject,	chapterId,	chapterTitle
+24. Topic:
+id,	courseId,	subject,	topicId,	topicTitle
 1, 	XII,		MA,		DE,		differential equations
-2, 	3,		MA,		ADD,		simple addition
+2, 	3,			MA,		ADD,		simple addition
 */
-entity Chapter{	
-	chapterId String required	
-	chapterTitle String
+entity Topic{	
+	topicId String required	
+	topicTitle String
 }
+
 /*
 25. questionLevel:
 id,	levelId,
@@ -538,16 +514,16 @@ entity Fundamentaldetail{
 
 /*
 26. question:
-id, enterprisename, courseId,subjectId,chapterId, question,diagram,	option1,option2,option3,option4, multiChoice,answer, fundamentals, maxMarks,negativeMarks, durationMins, level
-1, 	30,			3,			MA,		ADD,		29+39,	qdiagram,	48,		58,		68,			78,		0,		68,		SAS, 			4,		1,			5,	BEGINNERS
-2, 	20,			3,			MA,		ADD,		19+39,	somediagram,48,		58,		68,			78,		1,	58,		MPT, 			4,		1,			4,	MODERATE
+id, enterprisename, courseId,subjectId,topicId, question, questionDiagram,	option1,option2,option3,option4, multiChoice,answer, fundamentals, maxMarks,negativeMarks, durationMins, level
+1, 	30,			3,			MA,		ALGEBRA,		29+39,	qdiagram,	48,		58,		68,			78,		0,		68,		SAS, 			4,		1,			5,	BEGINNERS
+2, 	20,			3,			MA,		MATRICS,		19+39,	somediagram,48,		58,		68,			78,		1,	58,		MPT, 			4,		1,			4,	MODERATE
 
-solution, video, 							 writer, approver, status
-xxxx, https://risingarjun.com/resources/xxxx, 12,      13, 		APPROVED 
+solution, ansDiagram,		video, 							 writer, approver, status
+xxxx, ansdiagram,   https://risingarjun.com/resources/xxxx, 12,      13, 		APPROVED 
 */
 entity Question{
 	question TextBlob required
-	diagram	ImageBlob
+	questionDiagram	ImageBlob
 	option1 String 	
 	option2 String	
 	option3 String	
@@ -556,21 +532,48 @@ entity Question{
 	answer String required
 	maxMarks Integer required
 	negativeMarks Integer
-	durationMins Integer required		
+	durationMins Integer required
 	level Questionlevel required
 	solution String
+	ansDiagram	ImageBlob
 	video String
 	status Questionstatus required
 }
+
 /*
-27. studentScore:
-id, studentRegId,      	questionId, answer,	score,	date
-1,  RA_GGN_2019-20-001,	1,	     68,	4,	07-09-2020
-2,  RA_GGN_2019-20-001	2,	     78,	-1,	07-09-2020
+26. Testpaper:
+id, enterprisename, courseId,subjectId, topicId, maxMarks, durationMins, level
+1, 	30,				3,			MA,		ALGEBRA,	50,			120,	BEGINNERS
+2, 	20,				3,			MA,		MATRICS,	50,			120,	EXPERT
 */
-entity Studentscore{
+entity Testpaper{
+	maxMarks Integer required	
+	durationMins Integer required		
+	level Questionlevel required
+}
+
+/*
+27. Answersheet:
+id, testResultId,     questionId, answer,	marks
+1,  11,					1,	     68,	    4
+2,  13,					2,	     78,	   -1
+*/
+entity Answersheet{
 	answer String required
+	marks Integer required
+}
+
+/*
+27. Testresult:
+id, studentRegId,      	testPaperId, positiveMarks, negativeMarks, score,   timeTaken,  date
+1,  RA_GGN_2019-20-001,	30,				45,	     		5,	    	40,		40,			07-07-20
+2,  RA_GGN_2019-20-001	31,				40,	     		10,	   		30,		50,			07-08-20
+*/
+entity Testresult{
+	positiveMarks Integer required
+	negativeMarks Integer required
 	score Integer required
+	timeTaken Integer required
 	date LocalDate required
 }
 
@@ -592,16 +595,16 @@ entity Enterprise{
 	logo			ImageBlob
 	punchline 		String
 	mission 		String
-	vision 		String
-	principles 	String
-	email 		String pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)
-	mobile 		String required
+	vision 			String
+	principles 		String
+	email 			String pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)
+	mobile 			String required
 	landline 		String
 	fax 			String
-	plotNo		String required
-	street		String
+	plotNo			String required
+	street			String
 	city 			City required
-	state 		State required
+	state 			State required
 	country 		Country required
 	pincode 		Integer
 }
@@ -622,64 +625,69 @@ entity Enterprisesettings{
 	termsOfUsage String
 }
 
-//DONE UPTO HERE
-
 relationship OneToOne{
 	Userdetail{user(login)} to User,
 	Userpreference{user(login)} to User,
 	Student{user(login)} to User,
 	Studentfee{registrationno(studentRegId)} to Student,
 	Employee{user(login)} to User,
-   	Centerhead{centerhead(employeeId)} to Employee,
+	Centerhead{centerhead(employeeId)} to Employee,	
    	Teacher{teacherId(employeeId)} to Employee,
-   	Enterprisesettings{admin(login)} to User   	
+   	Enterprisesettings{admin(login)} to User,
+   	Enterprisesettings{enterprise(enterprisename)} to Enterprise,
+    Answersheet{testResultId(id)} to Testresult
+}
+
+relationship OneToMany {
+  	Centerhead{center} to Center{centerhead}
 }
 
 relationship ManyToMany{
-    Student{course(course)} to Course{Student},    
-    Studentsubject{subjects(subjectTitle)} to Subject{studentsubject},
-    Studentsubject{course(course)} to Course{studentsubjects},    
-    Centerhead{center(centerTitle)} to Center{centerhead},    
-    Teacher{subjects(subjectTitle)} to Subject{teachers},    
-    Teacher{courses(course)} to Course{teachers},    
-    Question{fundamentals(details)} to Fundamentaldetail{Question}
+    Student{course(course)} to Course{student},
+    Studentsubject{subject(subjectTitle)} to Subject{studentsubject},
+    Studentsubject{course(course)} to Course{studentsubject},
+    Teacher{subject(subjectTitle)} to Subject{teacher},    
+    Teacher{course(course)} to Course{teacher}, 
+    Question{fundamental(details)} to Fundamentaldetail{question},
+    Testpaper{topic(topicTitle)} to Topic{testpaper},
+    Answersheet{question(question)} to Question{answersheet}
 }
 
 relationship ManyToOne{
-	/*Roleaccess{role(name)} to Jhiauthority,
-	Roleaccess{feature(featureDetail)} to Feature,*/
 	Userdetail{enterprise(enterprisename)} to Enterprise,
 	Studentsubject{registrationno(studentRegId)} to Student,	
-	Studentsubject{session(acadSession)} to Academicsession,		
-	Subjectbasefee{course(course)} to Course,
+	Studentsubject{session(acadSession)} to Academicsession,
+    Subjectbasefee{course(course)} to Course,
 	Subjectbasefee{enterprise(enterprisename)} to Enterprise,
 	Subjectbasefee{session(acadSession)} to Academicsession,	
 	Discount{enterprise(enterprisename)} to Enterprise,
 	Discount{session(acadSession)} to Academicsession,
 	Scholarship{enterprise(enterprisename)} to Enterprise,	
-	Scholarship{session(acadSession)} to Academicsession,	
-    Studentfee{subject(subjectTitle)} to Subject,        
+	Scholarship{session(acadSession)} to Academicsession,		
+	Studentfee{subject(subjectTitle)} to Subject,       
     Studentfee{session(acadSession)} to Academicsession,    
     Studentfee{teacher(employeeId)} to Employee,
-    Center{enterprise(enterprisename)} to Enterprise,    
-    Teachershare{teacherId(employeeId)} to Employee,        
+	Center{enterprise(enterprisename)} to Enterprise,
+	Teachershare{teacherId(employeeId)} to Employee,
     Teachershare{subject(subjectTitle)} to Subject,
     Teachershare{session(acadSessionId)} to Academicsession,    
     Salarypayment{employeeId(employeeId)} to  Employee,    
     Salarypayment{session(acadSessionId)} to Academicsession,    
     Expense{enterprise(enterprisename)} to Enterprise,
-    Expense{incurredBy(employeeId)} to Employee,        
-	Chapter{course(course)} to Course,
-	Chapter{subject(subjectTitle)} to Subject,  	  
+    Expense{incurredBy(employeeId)} to Employee,
+	Topic{course(course)} to Course,
+	Topic{subject(subjectTitle)} to Subject,  	  
     Question{enterprise(enterprisename)} to Enterprise,
-	Question{course(course)} to Course,	
+	Question{course(course)} to Course,
     Question{subject(subjectTitle)} to Subject,   
-    Question{chapter(chapterTitle)} to Chapter,
+    Question{topic(topicTitle)} to Topic,
     Question{writer(employeeId)} to Employee,        
-    Question{approver(employeeId)} to Employee,
-    Studentscore{student(studentRegId)} to Student,	
-    Studentscore{question(question)} to Question,
-    Enterprisesettings{enterprise(enterprisename)} to Enterprise
+    Question{approver(employeeId)} to Employee,	
+	Testpaper{enterprise(enterprisename)} to Enterprise,
+	Testpaper{course(course)} to Course,
+    Testpaper{subject(subjectTitle)} to Subject,
+    Testresult{student(studentRegId)} to Student,
+    Testresult{testPaperId(id)} to Testpaper
 }
 
 // =======
@@ -688,9 +696,9 @@ relationship ManyToOne{
 
 // Set pagination options
 
-//service Userdetail, Student, Studentfee, Teachershare, Salarypayment, Expense, Question, Studentscore with serviceClass
+//service Userdetail, Student, Studentfee, Teachershare, Salarypayment, Expense, Question, Answersheet with serviceClass
 
-paginate Userdetail, Student, Studentfee, Teachershare, Salarypayment, Expense, Question, Studentscore, Enterprise with pagination
+paginate Userdetail, Student, Studentfee, Teachershare, Salarypayment, Expense, Question, Answersheet, Enterprise with pagination
 
 
 dto * with mapstruct
