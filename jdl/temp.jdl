@@ -473,18 +473,6 @@ entity Expense{
 }
 
 /*
-26. Testpaper:
-id, enterprisename, courseId,subjectId, topicId, maxMarks, durationMins, level
-1, 	30,				3,			MA,		ALGEBRA,	50,			120,	BEGINNERS
-2, 	20,				3,			MA,		MATRICS,	50,			120,	EXPERT
-*/
-entity Testpaper{
-	maxMarks Integer required	
-	durationMins Integer required		
-	level Questionlevel required
-}
-
-/*
 24. Topic:
 id,	courseId,	subject,	topicId,	topicTitle
 1, 	XII,		MA,		DE,		differential equations
@@ -494,6 +482,7 @@ entity Topic{
 	topicId String required	
 	topicTitle String
 }
+
 /*
 25. questionLevel:
 id,	levelId,
@@ -525,16 +514,16 @@ entity Fundamentaldetail{
 
 /*
 26. question:
-id, enterprisename, courseId,subjectId,topicId, question,diagram,	option1,option2,option3,option4, multiChoice,answer, fundamentals, maxMarks,negativeMarks, durationMins, level
+id, enterprisename, courseId,subjectId,topicId, question, questionDiagram,	option1,option2,option3,option4, multiChoice,answer, fundamentals, maxMarks,negativeMarks, durationMins, level
 1, 	30,			3,			MA,		ALGEBRA,		29+39,	qdiagram,	48,		58,		68,			78,		0,		68,		SAS, 			4,		1,			5,	BEGINNERS
 2, 	20,			3,			MA,		MATRICS,		19+39,	somediagram,48,		58,		68,			78,		1,	58,		MPT, 			4,		1,			4,	MODERATE
 
-solution, video, 							 writer, approver, status
-xxxx, https://risingarjun.com/resources/xxxx, 12,      13, 		APPROVED 
+solution, ansDiagram,		video, 							 writer, approver, status
+xxxx, ansdiagram,   https://risingarjun.com/resources/xxxx, 12,      13, 		APPROVED 
 */
 entity Question{
 	question TextBlob required
-	diagram	ImageBlob
+	questionDiagram	ImageBlob
 	option1 String 	
 	option2 String	
 	option3 String	
@@ -543,12 +532,26 @@ entity Question{
 	answer String required
 	maxMarks Integer required
 	negativeMarks Integer
-	durationMins Integer required		
+	durationMins Integer required
 	level Questionlevel required
 	solution String
+	ansDiagram	ImageBlob
 	video String
 	status Questionstatus required
 }
+
+/*
+26. Testpaper:
+id, enterprisename, courseId,subjectId, topicId, maxMarks, durationMins, level
+1, 	30,				3,			MA,		ALGEBRA,	50,			120,	BEGINNERS
+2, 	20,				3,			MA,		MATRICS,	50,			120,	EXPERT
+*/
+entity Testpaper{
+	maxMarks Integer required	
+	durationMins Integer required		
+	level Questionlevel required
+}
+
 /*
 27. Answersheet:
 id, testResultId,     questionId, answer,	marks
@@ -570,6 +573,7 @@ entity Testresult{
 	positiveMarks Integer required
 	negativeMarks Integer required
 	score Integer required
+	timeTaken Integer required
 	date LocalDate required
 }
 
@@ -631,7 +635,8 @@ relationship OneToOne{
 	Centerhead{centerhead(employeeId)} to Employee,	
    	Teacher{teacherId(employeeId)} to Employee,
    	Student{user(login)} to User,
-	Studentfee{registrationno(studentRegId)} to Student	
+	Studentfee{registrationno(studentRegId)} to Student,
+    Answersheet{testResultId(id)} to Testresult
 }
 
 relationship ManyToMany{
@@ -642,7 +647,8 @@ relationship ManyToMany{
     Studentsubject{subjects(subjectTitle)} to Subject{studentsubject},
     Studentsubject{course(course)} to Course{studentsubjects},    
     Question{fundamentals(details)} to Fundamentaldetail{Question},
-    Testpaper{topic(topicTitle)} to Topic{Testpaper}
+    Testpaper{topic(topicTitle)} to Topic{Testpaper},
+    Answersheet{question(question)} to Question    
 }
 
 relationship ManyToOne{
@@ -679,8 +685,8 @@ relationship ManyToOne{
 	Testpaper{enterprise(enterprisename)} to Enterprise,
 	Testpaper{course(course)} to Course,
     Testpaper{subject(subjectTitle)} to Subject,
-    Answersheet{student(studentRegId)} to Student,	
-    Answersheet{question(question)} to Question
+    Testresult{student(studentRegId)} to Student,
+    Testresult{testPaperId(id)} to Testpaper
 }
 
 // =======
