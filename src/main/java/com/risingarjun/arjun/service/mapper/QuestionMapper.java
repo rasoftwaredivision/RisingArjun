@@ -4,7 +4,7 @@ import com.risingarjun.arjun.domain.*;
 import com.risingarjun.arjun.service.dto.QuestionDTO;
 
 import org.mapstruct.*;
-
+ 
 /**
  * Mapper for the entity {@link Question} and its DTO {@link QuestionDTO}.
  */

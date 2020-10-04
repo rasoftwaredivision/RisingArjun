@@ -1,11 +1,14 @@
 package com.risingarjun.arjun.service;
 
 import com.risingarjun.arjun.service.dto.QuestionDTO;
-
+import com.risingarjun.arjun.service.dto.TestpaperDTO;
+import com.risingarjun.arjun.domain.Question;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * Service Interface for managing {@link com.risingarjun.arjun.domain.Question}.
@@ -49,4 +52,6 @@ public interface QuestionService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    List<QuestionDTO> findAllForTestPaper(TestpaperDTO testpaperdto);
 }
