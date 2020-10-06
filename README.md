@@ -23,8 +23,11 @@ Also update PATH variable to point to Graphviz bin folder eg C:\Program Files (x
 
 7. install postgresql-12.4-1-windows-x64 with superuser (postgres, root) & listening port 5432
 
-8. Install dbvis_windows-x64_11_0_5_jre
-9. Crate DB & DB user
+8. Install dbvis_windows-x64_11_0_5_jre (Optional. You can use PSQL command line utility as well).
+
+
+9. Open PSQL command line. Press enter till it asks for password and enter root as password. 
+   Create DB & DB user
    CREATE DATABASE risingarjun;
    CREATE USER risingarjun WITH PASSWORD 'risingarjun';
    GRANT ALL ON DATABASE risingarjun TO risingarjun;
