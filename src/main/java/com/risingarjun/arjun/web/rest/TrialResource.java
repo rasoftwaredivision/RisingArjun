@@ -21,9 +21,9 @@ public class TrialResource {
 
 	@Autowired
 	public TestpaperService testpaperService;
-
-	@PostMapping("questionsfortestpaper")
-	public List<QuestionDTO> getQuestionsForTestpaper(@RequestBody TestpaperDTO testpaperDTO) {
+	
+	@PostMapping("/questionsfortestpaper")
+	public  List<QuestionDTO> getQuestionsForTestpaper(@RequestBody TestpaperDTO testpaperDTO) {
 		log.debug("REST request to get gettest : {}", testpaperDTO);
 		return testpaperService.findAllForTestPaper(testpaperDTO);
 	}
