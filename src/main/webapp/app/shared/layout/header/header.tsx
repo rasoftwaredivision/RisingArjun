@@ -1,6 +1,7 @@
 import './header.scss';
 
 import React from 'react';
+import QuizNav from 'app/quiz/navbar.item';
 import { Translate, Storage } from 'react-jhipster';
 import { Navbar, Nav, NavbarToggler, NavbarBrand, Collapse } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -83,6 +84,7 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
           <Collapse isOpen={this.state.menuOpen} navbar>
             <Nav id="header-tabs" className="ml-auto" navbar>
               <Home />
+              <QuizNav />
               {isAuthenticated && (
                 <EntitiesMenu
                   admin={this.props.isAdmin}
