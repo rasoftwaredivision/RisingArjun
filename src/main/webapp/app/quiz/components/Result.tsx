@@ -4,10 +4,9 @@ import { CSSTransitionGroup } from 'react-transition-group';
 
 function Result(props) {
   return (
-
-      <div>
-        You got <strong>{props.quizResult}</strong> correct!
-      </div>
+    <div>
+      You got <strong>{props.quizResult}</strong> correct!
+    </div>
   );
 }
 
