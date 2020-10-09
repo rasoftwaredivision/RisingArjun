@@ -20,7 +20,7 @@ class QuizApp extends Component {
       question: '',
       answerOptions: [],
       answer: '',
-      answersCount: {},
+      answersCount: { ['Correct']: 0 },
       result: ''
     };
 
@@ -90,15 +90,12 @@ class QuizApp extends Component {
 
   getResults() {
     const answersCount = this.state.answersCount;
-    const answersCountKeys = Object.keys(answersCount);
-    const answersCountValues = answersCountKeys.map(key => answersCount[key]);
-    const maxAnswerCount = Math.max.apply(null, answersCountValues);
-
-    return answersCount["Correct"]);
+    if (answersCount['Correct'] == 0) return <Result quizResult="0" />;
+    else return answersCount['Correct'];
   }
 
   setResults(result) {
-      this.setState({ result: result });
+    this.setState({ result: result });
   }
 
   renderQuiz() {
@@ -119,11 +116,7 @@ class QuizApp extends Component {
   }
 
   render() {
-    return(
-      <div>
-      {this.state.result ? this.renderResult() : this.renderQuiz()}
-      </div>
-    );
+    return <div>{this.state.result ? this.renderResult() : this.renderQuiz()}</div>;
   }
 }
 
