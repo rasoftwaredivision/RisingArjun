@@ -94,15 +94,11 @@ class QuizApp extends Component {
     const answersCountValues = answersCountKeys.map(key => answersCount[key]);
     const maxAnswerCount = Math.max.apply(null, answersCountValues);
 
-    return answersCountKeys.filter(key => answersCount[key] === maxAnswerCount);
+    return answersCount["Correct"]);
   }
 
   setResults(result) {
-    if (result.length === 1) {
-      this.setState({ result: result[0] });
-    } else {
-      this.setState({ result: 'Undetermined' });
-    }
+      this.setState({ result: result });
   }
 
   renderQuiz() {
@@ -123,7 +119,11 @@ class QuizApp extends Component {
   }
 
   render() {
-    return <div>{this.state.result ? this.renderResult() : this.renderQuiz()}</div>;
+    return(
+      <div>
+      {this.state.result ? this.renderResult() : this.renderQuiz()}
+      </div>
+    );
   }
 }
 

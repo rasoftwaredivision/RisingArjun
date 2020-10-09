@@ -1,86 +1,52 @@
 var quizQuestions = [
   {
-      question: "What franchise would you rather play a game from?",
+      question: "What is the laplace transform of u(t)?",
       answers: [
           {
-              type: "Microsoft",
-              content: "Halo"
+              type: "Correct",
+              content: "1/s"
           },
           {
-              type: "Nintendo",
-              content: "Pokemon"
+              type: "Wrong1",
+              content: "s"
           },
           {
-              type: "Sony",
-              content: "Uncharted"
+              type: "Wrong2",
+              content: "s^2"
           }
       ]
   },
   {
-      question: "Which console would you prefer to play with friends?",
+      question: "Is merge sort a stable sort?",
       answers: [
           {
-              type: "Microsoft",
-              content: "X-Box"
+              type: "Correct",
+              content: "Yes"
           },
           {
-              type: "Nintendo",
-              content: "Nintendo 64"
+              type: "Wrong1",
+              content: "No"
           },
           {
-              type: "Sony",
-              content: "Playstation 1"
+              type: "Wrong2",
+              content: "Depends on implementation"
           }
       ]
   },
   {
-      question: "Which of these racing franchises would you prefer to play a game from?",
+      question: "What is the integral of x?",
       answers: [
           {
-              type: "Microsoft",
-              content: "Forza"
+              type: "Correct",
+              content: "x^2/2+c"
           },
           {
-              type: "Nintendo",
-              content: "Mario Kart"
+              type: "Wrong1",
+              content: "x+c"
           },
           {
-              type: "Sony",
-              content: "Gran Turismo"
-          }
-      ]
-  },
-  {
-      question: "Which of these games do you think is best?",
-      answers: [
-          {
-              type: "Microsoft",
-              content: "BioShock"
-          },
-          {
-              type: "Nintendo",
-              content: "The Legend of Zelda: Ocarina of Time"
-          },
-          {
-              type: "Sony",
-              content: "Final Fantasy VII"
-          }
-      ]
-  },
-  {
-      question: "What console would you prefer to own?",
-      answers: [
-          {
-              type: "Microsoft",
-              content: "X-Box One"
-          },
-          {
-              type: "Nintendo",
-              content: "Wii U"
-          },
-          {
-              type: "Sony",
-              content: "Playstation 4"
+              type: "Wrong2",
+              content: "2x+c"
           }
       ]
   }
