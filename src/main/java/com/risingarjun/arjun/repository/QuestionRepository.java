@@ -1,6 +1,5 @@
 package com.risingarjun.arjun.repository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,10 +29,10 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
 	@Query("select question from Question question left join fetch question.fundamentals where question.id =:id")
 	Optional<Question> findOneWithEagerRelationships(@Param("id") Long id);
 
-	@Query("select question from Question question left join fetch question.fundamentals where question.level =:level")
+	@Query(value="select * from Question question where question.course_id =:courseid and question.subject_id =:subjectid ",nativeQuery=true)
 	//@Query("select q from Question q where q.level=:level and q.course_id=:course_id and q.subject_id=:subject_id")
 	//List<Question> findAllForTestPaper(@Param("level") Questionlevel level, @Param("subject_id") Long subjectId,
 		//	@Param("topicids") ArrayList<Long> topicids, @Param("course_id") Long courseId);
-	List<Question> findAllForTestPaper(@Param("level") Questionlevel level);
+	List<Question> findAllForTestPaper(@Param("courseid") Long courseid,@Param("subjectid") Long subjectid);
 
 }

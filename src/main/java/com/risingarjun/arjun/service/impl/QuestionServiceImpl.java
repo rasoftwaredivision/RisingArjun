@@ -110,7 +110,7 @@ public class QuestionServiceImpl implements QuestionService {
 		 * return questionRepository.findAllForTestPaper(testpaperdto.getLevel(),
 		 * testpaperdto.getSubjectId(), topicids, testpaperdto.getCourseId());
 		 */
-		List<Question> questions = questionRepository.findAllForTestPaper(testpaperdto.getLevel());
+		List<Question> questions = questionRepository.findAllForTestPaper(testpaperdto.getCourseId(),testpaperdto.getSubjectId());
 		return questionMapper.toDto(questions);
 	}
 }
