@@ -5,7 +5,6 @@ import com.risingarjun.arjun.service.dto.StudentsubjectDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -24,9 +23,10 @@ public interface StudentsubjectService {
     /**
      * Get all the studentsubjects.
      *
+     * @param pageable the pagination information.
      * @return the list of entities.
      */
-    List<StudentsubjectDTO> findAll();
+    Page<StudentsubjectDTO> findAll(Pageable pageable);
 
     /**
      * Get all the studentsubjects with eager load of many-to-many relationships.
