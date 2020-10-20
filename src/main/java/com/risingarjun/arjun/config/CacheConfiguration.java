@@ -87,6 +87,13 @@ public class CacheConfiguration {
             createCache(cm, com.risingarjun.arjun.domain.Answersheet.class.getName());
             createCache(cm, com.risingarjun.arjun.domain.Answersheet.class.getName() + ".questions");
             createCache(cm, com.risingarjun.arjun.domain.Testresult.class.getName());
+            createCache(cm, com.risingarjun.arjun.domain.Answersheet.class.getName() + ".testresults");
+            createCache(cm, com.risingarjun.arjun.domain.Enterprise.class.getName() + ".testpapers");
+            createCache(cm, com.risingarjun.arjun.domain.Testpaper.class.getName() + ".enterprises");
+            createCache(cm, com.risingarjun.arjun.domain.Testpaper.class.getName() + ".testresults");
+            createCache(cm, com.risingarjun.arjun.domain.Testresult.class.getName() + ".answersheets");
+            createCache(cm, com.risingarjun.arjun.domain.Testresult.class.getName() + ".testpapers");
+            createCache(cm, com.risingarjun.arjun.domain.Testimonial.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

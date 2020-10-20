@@ -1,0 +1,22 @@
+{
+  "risingarjunApp": {
+    "Answeroption": {
+      "null": "",
+      "A": "A",
+      "B": "B",
+      "C": "C",
+      "D": "D",
+      "A_B": "A_B",
+      "A_C": "A_C",
+      "A_D": "A_D",
+      "B_C": "B_C",
+      "B_D": "B_D",
+      "C_D": "C_D",
+      "A_B_C": "A_B_C",
+      "A_B_D": "A_B_D",
+      "A_C_D": "A_C_D",
+      "B_C_D": "B_C_D",
+      "A_B_C_D": "A_B_C_D"
+    }
+  }
+}

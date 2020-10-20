@@ -55,29 +55,29 @@ export class QuestionMySuffixDetail extends React.Component<IQuestionMySuffixDet
               ) : null}
             </dd>
             <dt>
-              <span id="option1">
-                <Translate contentKey="risingarjunApp.question.option1">Option 1</Translate>
+              <span id="optionA">
+                <Translate contentKey="risingarjunApp.question.optionA">Option A</Translate>
               </span>
             </dt>
-            <dd>{questionEntity.option1}</dd>
+            <dd>{questionEntity.optionA}</dd>
             <dt>
-              <span id="option2">
-                <Translate contentKey="risingarjunApp.question.option2">Option 2</Translate>
+              <span id="optionB">
+                <Translate contentKey="risingarjunApp.question.optionB">Option B</Translate>
               </span>
             </dt>
-            <dd>{questionEntity.option2}</dd>
+            <dd>{questionEntity.optionB}</dd>
             <dt>
-              <span id="option3">
-                <Translate contentKey="risingarjunApp.question.option3">Option 3</Translate>
+              <span id="optionC">
+                <Translate contentKey="risingarjunApp.question.optionC">Option C</Translate>
               </span>
             </dt>
-            <dd>{questionEntity.option3}</dd>
+            <dd>{questionEntity.optionC}</dd>
             <dt>
-              <span id="option4">
-                <Translate contentKey="risingarjunApp.question.option4">Option 4</Translate>
+              <span id="optionD">
+                <Translate contentKey="risingarjunApp.question.optionD">Option D</Translate>
               </span>
             </dt>
-            <dd>{questionEntity.option4}</dd>
+            <dd>{questionEntity.optionD}</dd>
             <dt>
               <span id="multiChoice">
                 <Translate contentKey="risingarjunApp.question.multiChoice">Multi Choice</Translate>

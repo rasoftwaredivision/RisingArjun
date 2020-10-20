@@ -2,7 +2,9 @@ package com.risingarjun.arjun.service;
 
 import com.risingarjun.arjun.service.dto.TestresultDTO;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import java.util.Optional;
 
 /**
@@ -21,11 +23,18 @@ public interface TestresultService {
     /**
      * Get all the testresults.
      *
+     * @param pageable the pagination information.
      * @return the list of entities.
      */
-    List<TestresultDTO> findAll();
+    Page<TestresultDTO> findAll(Pageable pageable);
 
-
+    /**
+     * Get all the testresults with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    Page<TestresultDTO> findAllWithEagerRelationships(Pageable pageable);
+    
     /**
      * Get the "id" testresult.
      *

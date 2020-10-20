@@ -12,6 +12,9 @@ import org.mapstruct.*;
 public interface EnterpriseMapper extends EntityMapper<EnterpriseDTO, Enterprise> {
 
 
+    @Mapping(target = "testpapers", ignore = true)
+    @Mapping(target = "removeTestpaper", ignore = true)
+    Enterprise toEntity(EnterpriseDTO enterpriseDTO);
 
     default Enterprise fromId(Long id) {
         if (id == null) {

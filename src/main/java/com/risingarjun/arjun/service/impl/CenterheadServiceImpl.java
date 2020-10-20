@@ -8,13 +8,12 @@ import com.risingarjun.arjun.service.mapper.CenterheadMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * Service Implementation for managing {@link Centerhead}.
@@ -51,17 +50,26 @@ public class CenterheadServiceImpl implements CenterheadService {
     /**
      * Get all the centerheads.
      *
+     * @param pageable the pagination information.
      * @return the list of entities.
      */
     @Override
     @Transactional(readOnly = true)
-    public List<CenterheadDTO> findAll() {
+    public Page<CenterheadDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Centerheads");
-        return centerheadRepository.findAll().stream()
-            .map(centerheadMapper::toDto)
-            .collect(Collectors.toCollection(LinkedList::new));
+        return centerheadRepository.findAll(pageable)
+            .map(centerheadMapper::toDto);
     }
 
+    /**
+     * Get all the centerheads with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    public Page<CenterheadDTO> findAllWithEagerRelationships(Pageable pageable) {
+        return centerheadRepository.findAllWithEagerRelationships(pageable).map(centerheadMapper::toDto);
+    }
+    
 
     /**
      * Get one centerhead by id.
@@ -73,7 +81,7 @@ public class CenterheadServiceImpl implements CenterheadService {
     @Transactional(readOnly = true)
     public Optional<CenterheadDTO> findOne(Long id) {
         log.debug("Request to get Centerhead : {}", id);
-        return centerheadRepository.findById(id)
+        return centerheadRepository.findOneWithEagerRelationships(id)
             .map(centerheadMapper::toDto);
     }
 

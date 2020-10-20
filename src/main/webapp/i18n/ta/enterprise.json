@@ -33,7 +33,8 @@
       "city": "City",
       "state": "State",
       "country": "Country",
-      "pincode": "Pincode"
+      "pincode": "Pincode",
+      "testpaper": "Testpaper"
     }
   }
 }

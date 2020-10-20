@@ -65,9 +65,18 @@ export class TestresultMySuffixDetail extends React.Component<ITestresultMySuffi
             </dt>
             <dd>{testresultEntity.studentStudentRegId ? testresultEntity.studentStudentRegId : ''}</dd>
             <dt>
-              <Translate contentKey="risingarjunApp.testresult.testPaperId">Test Paper Id</Translate>
+              <Translate contentKey="risingarjunApp.testresult.answersheet">Answersheet</Translate>
             </dt>
-            <dd>{testresultEntity.testPaperIdId ? testresultEntity.testPaperIdId : ''}</dd>
+            <dd>
+              {testresultEntity.answersheets
+                ? testresultEntity.answersheets.map((val, i) => (
+                    <span key={val.id}>
+                      <a>{val.id}</a>
+                      {i === testresultEntity.answersheets.length - 1 ? '' : ', '}
+                    </span>
+                  ))
+                : null}
+            </dd>
           </dl>
           <Button tag={Link} to="/entity/testresult-my-suffix" replace color="info">
             <FontAwesomeIcon icon="arrow-left" />{' '}

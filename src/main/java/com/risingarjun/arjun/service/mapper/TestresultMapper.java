@@ -8,16 +8,17 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link Testresult} and its DTO {@link TestresultDTO}.
  */
-@Mapper(componentModel = "spring", uses = {StudentMapper.class, TestpaperMapper.class})
+@Mapper(componentModel = "spring", uses = {StudentMapper.class, AnswersheetMapper.class})
 public interface TestresultMapper extends EntityMapper<TestresultDTO, Testresult> {
 
     @Mapping(source = "student.id", target = "studentId")
     @Mapping(source = "student.studentRegId", target = "studentStudentRegId")
-    @Mapping(source = "testPaperId.id", target = "testPaperIdId")
     TestresultDTO toDto(Testresult testresult);
 
     @Mapping(source = "studentId", target = "student")
-    @Mapping(source = "testPaperIdId", target = "testPaperId")
+    @Mapping(target = "removeAnswersheet", ignore = true)
+    @Mapping(target = "testpapers", ignore = true)
+    @Mapping(target = "removeTestpaper", ignore = true)
     Testresult toEntity(TestresultDTO testresultDTO);
 
     default Testresult fromId(Long id) {

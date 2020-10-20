@@ -2,6 +2,8 @@ package com.risingarjun.arjun.service.dto;
 import java.time.LocalDate;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -21,7 +23,7 @@ public class TestresultDTO implements Serializable {
     private Integer score;
 
     @NotNull
-    private Integer timeTaken;
+    private Float timeTaken;
 
     @NotNull
     private LocalDate date;
@@ -31,7 +33,7 @@ public class TestresultDTO implements Serializable {
 
     private String studentStudentRegId;
 
-    private Long testPaperIdId;
+    private Set<AnswersheetDTO> answersheets = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -65,11 +67,11 @@ public class TestresultDTO implements Serializable {
         this.score = score;
     }
 
-    public Integer getTimeTaken() {
+    public Float getTimeTaken() {
         return timeTaken;
     }
 
-    public void setTimeTaken(Integer timeTaken) {
+    public void setTimeTaken(Float timeTaken) {
         this.timeTaken = timeTaken;
     }
 
@@ -97,12 +99,12 @@ public class TestresultDTO implements Serializable {
         this.studentStudentRegId = studentStudentRegId;
     }
 
-    public Long getTestPaperIdId() {
-        return testPaperIdId;
+    public Set<AnswersheetDTO> getAnswersheets() {
+        return answersheets;
     }
 
-    public void setTestPaperIdId(Long testpaperId) {
-        this.testPaperIdId = testpaperId;
+    public void setAnswersheets(Set<AnswersheetDTO> answersheets) {
+        this.answersheets = answersheets;
     }
 
     @Override
@@ -137,7 +139,6 @@ public class TestresultDTO implements Serializable {
             ", date='" + getDate() + "'" +
             ", student=" + getStudentId() +
             ", student='" + getStudentStudentRegId() + "'" +
-            ", testPaperId=" + getTestPaperIdId() +
             "}";
     }
 }

@@ -22,7 +22,8 @@
       "timeTaken": "Time Taken",
       "date": "Date",
       "student": "Student",
-      "testPaperId": "Test Paper Id"
+      "answersheet": "Answersheet",
+      "testpaper": "Testpaper"
     }
   }
 }

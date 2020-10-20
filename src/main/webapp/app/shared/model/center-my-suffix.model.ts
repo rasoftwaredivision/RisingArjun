@@ -1,3 +1,5 @@
+import { ICenterheadMySuffix } from 'app/shared/model/centerhead-my-suffix.model';
+
 export const enum City {
   DEHRADUN = 'DEHRADUN',
   DELHI = 'DELHI',
@@ -31,7 +33,7 @@ export interface ICenterMySuffix {
   pincode?: number;
   enterpriseEnterprisename?: string;
   enterpriseId?: number;
-  centerheadId?: number;
+  centerheads?: ICenterheadMySuffix[];
 }
 
 export const defaultValue: Readonly<ICenterMySuffix> = {};

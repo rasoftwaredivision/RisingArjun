@@ -1,6 +1,24 @@
 import { IFundamentaldetailMySuffix } from 'app/shared/model/fundamentaldetail-my-suffix.model';
 import { IAnswersheetMySuffix } from 'app/shared/model/answersheet-my-suffix.model';
 
+export const enum Answeroption {
+  A = 'A',
+  B = 'B',
+  C = 'C',
+  D = 'D',
+  A_B = 'A_B',
+  A_C = 'A_C',
+  A_D = 'A_D',
+  B_C = 'B_C',
+  B_D = 'B_D',
+  C_D = 'C_D',
+  A_B_C = 'A_B_C',
+  A_B_D = 'A_B_D',
+  A_C_D = 'A_C_D',
+  B_C_D = 'B_C_D',
+  A_B_C_D = 'A_B_C_D'
+}
+
 export const enum Questionlevel {
   BEGINNERS = 'BEGINNERS',
   MODERATE = 'MODERATE',
@@ -18,12 +36,12 @@ export interface IQuestionMySuffix {
   question?: any;
   questionDiagramContentType?: string;
   questionDiagram?: any;
-  option1?: string;
-  option2?: string;
-  option3?: string;
-  option4?: string;
+  optionA?: string;
+  optionB?: string;
+  optionC?: string;
+  optionD?: string;
   multiChoice?: boolean;
-  answer?: string;
+  answer?: Answeroption;
   maxMarks?: number;
   negativeMarks?: number;
   durationMins?: number;

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
 // tslint:disable-next-line:no-unused-variable
-import { Translate, ICrudGetAllAction } from 'react-jhipster';
+import { Translate, ICrudGetAllAction, getSortState, IPaginationBaseState, JhiPagination, JhiItemCount } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
@@ -11,16 +11,45 @@ import { getEntities } from './center-my-suffix.reducer';
 import { ICenterMySuffix } from 'app/shared/model/center-my-suffix.model';
 // tslint:disable-next-line:no-unused-variable
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 
 export interface ICenterMySuffixProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
-export class CenterMySuffix extends React.Component<ICenterMySuffixProps> {
+export type ICenterMySuffixState = IPaginationBaseState;
+
+export class CenterMySuffix extends React.Component<ICenterMySuffixProps, ICenterMySuffixState> {
+  state: ICenterMySuffixState = {
+    ...getSortState(this.props.location, ITEMS_PER_PAGE)
+  };
+
   componentDidMount() {
-    this.props.getEntities();
+    this.getEntities();
   }
 
+  sort = prop => () => {
+    this.setState(
+      {
+        order: this.state.order === 'asc' ? 'desc' : 'asc',
+        sort: prop
+      },
+      () => this.sortEntities()
+    );
+  };
+
+  sortEntities() {
+    this.getEntities();
+    this.props.history.push(`${this.props.location.pathname}?page=${this.state.activePage}&sort=${this.state.sort},${this.state.order}`);
+  }
+
+  handlePagination = activePage => this.setState({ activePage }, () => this.sortEntities());
+
+  getEntities = () => {
+    const { activePage, itemsPerPage, sort, order } = this.state;
+    this.props.getEntities(activePage - 1, itemsPerPage, `${sort},${order}`);
+  };
+
   render() {
-    const { centerList, match } = this.props;
+    const { centerList, match, totalItems } = this.props;
     return (
       <div>
         <h2 id="center-my-suffix-heading">
@@ -36,35 +65,32 @@ export class CenterMySuffix extends React.Component<ICenterMySuffixProps> {
             <Table responsive>
               <thead>
                 <tr>
-                  <th>
-                    <Translate contentKey="global.field.id">ID</Translate>
+                  <th className="hand" onClick={this.sort('id')}>
+                    <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('centerCode')}>
+                    <Translate contentKey="risingarjunApp.center.centerCode">Center Code</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('centerTitle')}>
+                    <Translate contentKey="risingarjunApp.center.centerTitle">Center Title</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('street')}>
+                    <Translate contentKey="risingarjunApp.center.street">Street</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('city')}>
+                    <Translate contentKey="risingarjunApp.center.city">City</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('state')}>
+                    <Translate contentKey="risingarjunApp.center.state">State</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('country')}>
+                    <Translate contentKey="risingarjunApp.center.country">Country</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('pincode')}>
+                    <Translate contentKey="risingarjunApp.center.pincode">Pincode</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th>
-                    <Translate contentKey="risingarjunApp.center.centerCode">Center Code</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.center.centerTitle">Center Title</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.center.street">Street</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.center.city">City</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.center.state">State</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.center.country">Country</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.center.pincode">Pincode</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.center.enterprise">Enterprise</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.center.centerhead">Centerhead</Translate>
+                    <Translate contentKey="risingarjunApp.center.enterprise">Enterprise</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th />
                 </tr>
@@ -96,9 +122,6 @@ export class CenterMySuffix extends React.Component<ICenterMySuffixProps> {
                       ) : (
                         ''
                       )}
-                    </td>
-                    <td>
-                      {center.centerheadId ? <Link to={`centerhead-my-suffix/${center.centerheadId}`}>{center.centerheadId}</Link> : ''}
                     </td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">
@@ -132,13 +155,28 @@ export class CenterMySuffix extends React.Component<ICenterMySuffixProps> {
             </div>
           )}
         </div>
+        <div className={centerList && centerList.length > 0 ? '' : 'd-none'}>
+          <Row className="justify-content-center">
+            <JhiItemCount page={this.state.activePage} total={totalItems} itemsPerPage={this.state.itemsPerPage} i18nEnabled />
+          </Row>
+          <Row className="justify-content-center">
+            <JhiPagination
+              activePage={this.state.activePage}
+              onSelect={this.handlePagination}
+              maxButtons={5}
+              itemsPerPage={this.state.itemsPerPage}
+              totalItems={this.props.totalItems}
+            />
+          </Row>
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = ({ center }: IRootState) => ({
-  centerList: center.entities
+  centerList: center.entities,
+  totalItems: center.totalItems
 });
 
 const mapDispatchToProps = {

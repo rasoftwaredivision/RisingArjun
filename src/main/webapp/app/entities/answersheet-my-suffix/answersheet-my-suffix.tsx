@@ -74,9 +74,8 @@ export class AnswersheetMySuffix extends React.Component<IAnswersheetMySuffixPro
                   <th className="hand" onClick={this.sort('marks')}>
                     <Translate contentKey="risingarjunApp.answersheet.marks">Marks</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.answersheet.testResultId">Test Result Id</Translate>{' '}
-                    <FontAwesomeIcon icon="sort" />
+                  <th className="hand" onClick={this.sort('status')}>
+                    <Translate contentKey="risingarjunApp.answersheet.status">Status</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th />
                 </tr>
@@ -89,14 +88,12 @@ export class AnswersheetMySuffix extends React.Component<IAnswersheetMySuffixPro
                         {answersheet.id}
                       </Button>
                     </td>
-                    <td>{answersheet.answer}</td>
+                    <td>
+                      <Translate contentKey={`risingarjunApp.Answeroption.${answersheet.answer}`} />
+                    </td>
                     <td>{answersheet.marks}</td>
                     <td>
-                      {answersheet.testResultIdId ? (
-                        <Link to={`testresult-my-suffix/${answersheet.testResultIdId}`}>{answersheet.testResultIdId}</Link>
-                      ) : (
-                        ''
-                      )}
+                      <Translate contentKey={`risingarjunApp.Answerstatus.${answersheet.status}`} />
                     </td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">

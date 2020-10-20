@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
 // tslint:disable-next-line:no-unused-variable
-import { Translate, ICrudGetAllAction } from 'react-jhipster';
+import { Translate, ICrudGetAllAction, getSortState, IPaginationBaseState, JhiPagination, JhiItemCount } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
@@ -11,16 +11,45 @@ import { getEntities } from './testpaper-my-suffix.reducer';
 import { ITestpaperMySuffix } from 'app/shared/model/testpaper-my-suffix.model';
 // tslint:disable-next-line:no-unused-variable
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 
 export interface ITestpaperMySuffixProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
-export class TestpaperMySuffix extends React.Component<ITestpaperMySuffixProps> {
+export type ITestpaperMySuffixState = IPaginationBaseState;
+
+export class TestpaperMySuffix extends React.Component<ITestpaperMySuffixProps, ITestpaperMySuffixState> {
+  state: ITestpaperMySuffixState = {
+    ...getSortState(this.props.location, ITEMS_PER_PAGE)
+  };
+
   componentDidMount() {
-    this.props.getEntities();
+    this.getEntities();
   }
 
+  sort = prop => () => {
+    this.setState(
+      {
+        order: this.state.order === 'asc' ? 'desc' : 'asc',
+        sort: prop
+      },
+      () => this.sortEntities()
+    );
+  };
+
+  sortEntities() {
+    this.getEntities();
+    this.props.history.push(`${this.props.location.pathname}?page=${this.state.activePage}&sort=${this.state.sort},${this.state.order}`);
+  }
+
+  handlePagination = activePage => this.setState({ activePage }, () => this.sortEntities());
+
+  getEntities = () => {
+    const { activePage, itemsPerPage, sort, order } = this.state;
+    this.props.getEntities(activePage - 1, itemsPerPage, `${sort},${order}`);
+  };
+
   render() {
-    const { testpaperList, match } = this.props;
+    const { testpaperList, match, totalItems } = this.props;
     return (
       <div>
         <h2 id="testpaper-my-suffix-heading">
@@ -36,29 +65,23 @@ export class TestpaperMySuffix extends React.Component<ITestpaperMySuffixProps> 
             <Table responsive>
               <thead>
                 <tr>
-                  <th>
-                    <Translate contentKey="global.field.id">ID</Translate>
+                  <th className="hand" onClick={this.sort('id')}>
+                    <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('maxMarks')}>
+                    <Translate contentKey="risingarjunApp.testpaper.maxMarks">Max Marks</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('durationMins')}>
+                    <Translate contentKey="risingarjunApp.testpaper.durationMins">Duration Mins</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('level')}>
+                    <Translate contentKey="risingarjunApp.testpaper.level">Level</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th>
-                    <Translate contentKey="risingarjunApp.testpaper.maxMarks">Max Marks</Translate>
+                    <Translate contentKey="risingarjunApp.testpaper.course">Course</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th>
-                    <Translate contentKey="risingarjunApp.testpaper.durationMins">Duration Mins</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.testpaper.level">Level</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.testpaper.enterprise">Enterprise</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.testpaper.course">Course</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.testpaper.subject">Subject</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.testpaper.topic">Topic</Translate>
+                    <Translate contentKey="risingarjunApp.testpaper.subject">Subject</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th />
                 </tr>
@@ -77,13 +100,6 @@ export class TestpaperMySuffix extends React.Component<ITestpaperMySuffixProps> 
                       <Translate contentKey={`risingarjunApp.Questionlevel.${testpaper.level}`} />
                     </td>
                     <td>
-                      {testpaper.enterpriseEnterprisename ? (
-                        <Link to={`enterprise-my-suffix/${testpaper.enterpriseId}`}>{testpaper.enterpriseEnterprisename}</Link>
-                      ) : (
-                        ''
-                      )}
-                    </td>
-                    <td>
                       {testpaper.courseCourse ? <Link to={`course-my-suffix/${testpaper.courseId}`}>{testpaper.courseCourse}</Link> : ''}
                     </td>
                     <td>
@@ -92,16 +108,6 @@ export class TestpaperMySuffix extends React.Component<ITestpaperMySuffixProps> 
                       ) : (
                         ''
                       )}
-                    </td>
-                    <td>
-                      {testpaper.topics
-                        ? testpaper.topics.map((val, j) => (
-                            <span key={j}>
-                              <Link to={`topic-my-suffix/${val.id}`}>{val.topicTitle}</Link>
-                              {j === testpaper.topics.length - 1 ? '' : ', '}
-                            </span>
-                          ))
-                        : null}
                     </td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">
@@ -135,13 +141,28 @@ export class TestpaperMySuffix extends React.Component<ITestpaperMySuffixProps> 
             </div>
           )}
         </div>
+        <div className={testpaperList && testpaperList.length > 0 ? '' : 'd-none'}>
+          <Row className="justify-content-center">
+            <JhiItemCount page={this.state.activePage} total={totalItems} itemsPerPage={this.state.itemsPerPage} i18nEnabled />
+          </Row>
+          <Row className="justify-content-center">
+            <JhiPagination
+              activePage={this.state.activePage}
+              onSelect={this.handlePagination}
+              maxButtons={5}
+              itemsPerPage={this.state.itemsPerPage}
+              totalItems={this.props.totalItems}
+            />
+          </Row>
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = ({ testpaper }: IRootState) => ({
-  testpaperList: testpaper.entities
+  testpaperList: testpaper.entities,
+  totalItems: testpaper.totalItems
 });
 
 const mapDispatchToProps = {

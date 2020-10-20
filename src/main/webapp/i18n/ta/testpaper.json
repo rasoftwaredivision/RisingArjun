@@ -19,9 +19,10 @@
       "maxMarks": "Max Marks",
       "durationMins": "Duration Mins",
       "level": "Level",
-      "enterprise": "Enterprise",
       "course": "Course",
       "subject": "Subject",
+      "enterprise": "Enterprise",
+      "testresult": "Testresult",
       "topic": "Topic"
     }
   }

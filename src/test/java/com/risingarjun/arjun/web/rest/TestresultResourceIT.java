@@ -10,9 +10,12 @@ import com.risingarjun.arjun.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -24,11 +27,13 @@ import org.springframework.validation.Validator;
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.risingarjun.arjun.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -47,8 +52,8 @@ public class TestresultResourceIT {
     private static final Integer DEFAULT_SCORE = 1;
     private static final Integer UPDATED_SCORE = 2;
 
-    private static final Integer DEFAULT_TIME_TAKEN = 1;
-    private static final Integer UPDATED_TIME_TAKEN = 2;
+    private static final Float DEFAULT_TIME_TAKEN = 1F;
+    private static final Float UPDATED_TIME_TAKEN = 2F;
 
     private static final LocalDate DEFAULT_DATE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_DATE = LocalDate.now(ZoneId.systemDefault());
@@ -56,8 +61,14 @@ public class TestresultResourceIT {
     @Autowired
     private TestresultRepository testresultRepository;
 
+    @Mock
+    private TestresultRepository testresultRepositoryMock;
+
     @Autowired
     private TestresultMapper testresultMapper;
+
+    @Mock
+    private TestresultService testresultServiceMock;
 
     @Autowired
     private TestresultService testresultService;
@@ -282,10 +293,43 @@ public class TestresultResourceIT {
             .andExpect(jsonPath("$.[*].positiveMarks").value(hasItem(DEFAULT_POSITIVE_MARKS)))
             .andExpect(jsonPath("$.[*].negativeMarks").value(hasItem(DEFAULT_NEGATIVE_MARKS)))
             .andExpect(jsonPath("$.[*].score").value(hasItem(DEFAULT_SCORE)))
-            .andExpect(jsonPath("$.[*].timeTaken").value(hasItem(DEFAULT_TIME_TAKEN)))
+            .andExpect(jsonPath("$.[*].timeTaken").value(hasItem(DEFAULT_TIME_TAKEN.doubleValue())))
             .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())));
     }
     
+    @SuppressWarnings({"unchecked"})
+    public void getAllTestresultsWithEagerRelationshipsIsEnabled() throws Exception {
+        TestresultResource testresultResource = new TestresultResource(testresultServiceMock);
+        when(testresultServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        MockMvc restTestresultMockMvc = MockMvcBuilders.standaloneSetup(testresultResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+
+        restTestresultMockMvc.perform(get("/api/testresults?eagerload=true"))
+        .andExpect(status().isOk());
+
+        verify(testresultServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({"unchecked"})
+    public void getAllTestresultsWithEagerRelationshipsIsNotEnabled() throws Exception {
+        TestresultResource testresultResource = new TestresultResource(testresultServiceMock);
+            when(testresultServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+            MockMvc restTestresultMockMvc = MockMvcBuilders.standaloneSetup(testresultResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+
+        restTestresultMockMvc.perform(get("/api/testresults?eagerload=true"))
+        .andExpect(status().isOk());
+
+            verify(testresultServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
     @Test
     @Transactional
     public void getTestresult() throws Exception {
@@ -300,7 +344,7 @@ public class TestresultResourceIT {
             .andExpect(jsonPath("$.positiveMarks").value(DEFAULT_POSITIVE_MARKS))
             .andExpect(jsonPath("$.negativeMarks").value(DEFAULT_NEGATIVE_MARKS))
             .andExpect(jsonPath("$.score").value(DEFAULT_SCORE))
-            .andExpect(jsonPath("$.timeTaken").value(DEFAULT_TIME_TAKEN))
+            .andExpect(jsonPath("$.timeTaken").value(DEFAULT_TIME_TAKEN.doubleValue()))
             .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()));
     }
 

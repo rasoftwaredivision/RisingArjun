@@ -21,6 +21,7 @@ const initialState = {
   entities: [] as ReadonlyArray<ITestresultMySuffix>,
   entity: defaultValue,
   updating: false,
+  totalItems: 0,
   updateSuccess: false
 };
 
@@ -63,7 +64,8 @@ export default (state: TestresultMySuffixState = initialState, action): Testresu
       return {
         ...state,
         loading: false,
-        entities: action.payload.data
+        entities: action.payload.data,
+        totalItems: parseInt(action.payload.headers['x-total-count'], 10)
       };
     case SUCCESS(ACTION_TYPES.FETCH_TESTRESULT):
       return {
@@ -99,10 +101,13 @@ const apiUrl = 'api/testresults';
 
 // Actions
 
-export const getEntities: ICrudGetAllAction<ITestresultMySuffix> = (page, size, sort) => ({
-  type: ACTION_TYPES.FETCH_TESTRESULT_LIST,
-  payload: axios.get<ITestresultMySuffix>(`${apiUrl}?cacheBuster=${new Date().getTime()}`)
-});
+export const getEntities: ICrudGetAllAction<ITestresultMySuffix> = (page, size, sort) => {
+  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+  return {
+    type: ACTION_TYPES.FETCH_TESTRESULT_LIST,
+    payload: axios.get<ITestresultMySuffix>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)
+  };
+};
 
 export const getEntity: ICrudGetAction<ITestresultMySuffix> = id => {
   const requestUrl = `${apiUrl}/${id}`;

@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 import javax.persistence.Lob;
+import com.risingarjun.arjun.domain.enumeration.Answeroption;
 import com.risingarjun.arjun.domain.enumeration.Questionlevel;
 import com.risingarjun.arjun.domain.enumeration.Questionstatus;
 
@@ -23,19 +24,21 @@ public class QuestionDTO implements Serializable {
     private byte[] questionDiagram;
 
     private String questionDiagramContentType;
-    private String option1;
+    @NotNull
+    private String optionA;
 
-    private String option2;
+    @NotNull
+    private String optionB;
 
-    private String option3;
+    private String optionC;
 
-    private String option4;
+    private String optionD;
 
     @NotNull
     private Boolean multiChoice;
 
     @NotNull
-    private String answer;
+    private Answeroption answer;
 
     @NotNull
     private Integer maxMarks;
@@ -118,36 +121,36 @@ public class QuestionDTO implements Serializable {
         this.questionDiagramContentType = questionDiagramContentType;
     }
 
-    public String getOption1() {
-        return option1;
+    public String getOptionA() {
+        return optionA;
     }
 
-    public void setOption1(String option1) {
-        this.option1 = option1;
+    public void setOptionA(String optionA) {
+        this.optionA = optionA;
     }
 
-    public String getOption2() {
-        return option2;
+    public String getOptionB() {
+        return optionB;
     }
 
-    public void setOption2(String option2) {
-        this.option2 = option2;
+    public void setOptionB(String optionB) {
+        this.optionB = optionB;
     }
 
-    public String getOption3() {
-        return option3;
+    public String getOptionC() {
+        return optionC;
     }
 
-    public void setOption3(String option3) {
-        this.option3 = option3;
+    public void setOptionC(String optionC) {
+        this.optionC = optionC;
     }
 
-    public String getOption4() {
-        return option4;
+    public String getOptionD() {
+        return optionD;
     }
 
-    public void setOption4(String option4) {
-        this.option4 = option4;
+    public void setOptionD(String optionD) {
+        this.optionD = optionD;
     }
 
     public Boolean isMultiChoice() {
@@ -158,11 +161,11 @@ public class QuestionDTO implements Serializable {
         this.multiChoice = multiChoice;
     }
 
-    public String getAnswer() {
+    public Answeroption getAnswer() {
         return answer;
     }
 
-    public void setAnswer(String answer) {
+    public void setAnswer(Answeroption answer) {
         this.answer = answer;
     }
 
@@ -369,10 +372,10 @@ public class QuestionDTO implements Serializable {
             "id=" + getId() +
             ", question='" + getQuestion() + "'" +
             ", questionDiagram='" + getQuestionDiagram() + "'" +
-            ", option1='" + getOption1() + "'" +
-            ", option2='" + getOption2() + "'" +
-            ", option3='" + getOption3() + "'" +
-            ", option4='" + getOption4() + "'" +
+            ", optionA='" + getOptionA() + "'" +
+            ", optionB='" + getOptionB() + "'" +
+            ", optionC='" + getOptionC() + "'" +
+            ", optionD='" + getOptionD() + "'" +
             ", multiChoice='" + isMultiChoice() + "'" +
             ", answer='" + getAnswer() + "'" +
             ", maxMarks=" + getMaxMarks() +

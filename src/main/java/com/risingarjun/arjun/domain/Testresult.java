@@ -1,4 +1,5 @@
 package com.risingarjun.arjun.domain;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -8,6 +9,8 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Testresult.
@@ -38,7 +41,7 @@ public class Testresult implements Serializable {
 
     @NotNull
     @Column(name = "time_taken", nullable = false)
-    private Integer timeTaken;
+    private Float timeTaken;
 
     @NotNull
     @Column(name = "date", nullable = false)
@@ -48,9 +51,17 @@ public class Testresult implements Serializable {
     @JsonIgnoreProperties("testresults")
     private Student student;
 
-    @ManyToOne
-    @JsonIgnoreProperties("testresults")
-    private Testpaper testPaperId;
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "testresult_answersheet",
+               joinColumns = @JoinColumn(name = "testresult_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "answersheet_id", referencedColumnName = "id"))
+    private Set<Answersheet> answersheets = new HashSet<>();
+
+    @ManyToMany(mappedBy = "testresults")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JsonIgnore
+    private Set<Testpaper> testpapers = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -100,16 +111,16 @@ public class Testresult implements Serializable {
         this.score = score;
     }
 
-    public Integer getTimeTaken() {
+    public Float getTimeTaken() {
         return timeTaken;
     }
 
-    public Testresult timeTaken(Integer timeTaken) {
+    public Testresult timeTaken(Float timeTaken) {
         this.timeTaken = timeTaken;
         return this;
     }
 
-    public void setTimeTaken(Integer timeTaken) {
+    public void setTimeTaken(Float timeTaken) {
         this.timeTaken = timeTaken;
     }
 
@@ -139,17 +150,54 @@ public class Testresult implements Serializable {
         this.student = student;
     }
 
-    public Testpaper getTestPaperId() {
-        return testPaperId;
+    public Set<Answersheet> getAnswersheets() {
+        return answersheets;
     }
 
-    public Testresult testPaperId(Testpaper testpaper) {
-        this.testPaperId = testpaper;
+    public Testresult answersheets(Set<Answersheet> answersheets) {
+        this.answersheets = answersheets;
         return this;
     }
 
-    public void setTestPaperId(Testpaper testpaper) {
-        this.testPaperId = testpaper;
+    public Testresult addAnswersheet(Answersheet answersheet) {
+        this.answersheets.add(answersheet);
+        answersheet.getTestresults().add(this);
+        return this;
+    }
+
+    public Testresult removeAnswersheet(Answersheet answersheet) {
+        this.answersheets.remove(answersheet);
+        answersheet.getTestresults().remove(this);
+        return this;
+    }
+
+    public void setAnswersheets(Set<Answersheet> answersheets) {
+        this.answersheets = answersheets;
+    }
+
+    public Set<Testpaper> getTestpapers() {
+        return testpapers;
+    }
+
+    public Testresult testpapers(Set<Testpaper> testpapers) {
+        this.testpapers = testpapers;
+        return this;
+    }
+
+    public Testresult addTestpaper(Testpaper testpaper) {
+        this.testpapers.add(testpaper);
+        testpaper.getTestresults().add(this);
+        return this;
+    }
+
+    public Testresult removeTestpaper(Testpaper testpaper) {
+        this.testpapers.remove(testpaper);
+        testpaper.getTestresults().remove(this);
+        return this;
+    }
+
+    public void setTestpapers(Set<Testpaper> testpapers) {
+        this.testpapers = testpapers;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

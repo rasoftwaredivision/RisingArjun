@@ -205,21 +205,6 @@ export class CenterMySuffixUpdate extends React.Component<ICenterMySuffixUpdateP
                       : null}
                   </AvInput>
                 </AvGroup>
-                <AvGroup>
-                  <Label for="center-my-suffix-centerhead">
-                    <Translate contentKey="risingarjunApp.center.centerhead">Centerhead</Translate>
-                  </Label>
-                  <AvInput id="center-my-suffix-centerhead" type="select" className="form-control" name="centerheadId">
-                    <option value="" key="0" />
-                    {centerheads
-                      ? centerheads.map(otherEntity => (
-                          <option value={otherEntity.id} key={otherEntity.id}>
-                            {otherEntity.id}
-                          </option>
-                        ))
-                      : null}
-                  </AvInput>
-                </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/center-my-suffix" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />
                   &nbsp;

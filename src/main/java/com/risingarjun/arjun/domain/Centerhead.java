@@ -27,8 +27,11 @@ public class Centerhead implements Serializable {
     @JoinColumn(unique = true)
     private Employee centerhead;
 
-    @OneToMany(mappedBy = "centerhead")
+    @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "centerhead_center",
+               joinColumns = @JoinColumn(name = "centerhead_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "center_id", referencedColumnName = "id"))
     private Set<Center> centers = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -64,13 +67,13 @@ public class Centerhead implements Serializable {
 
     public Centerhead addCenter(Center center) {
         this.centers.add(center);
-        center.setCenterhead(this);
+        center.getCenterheads().add(this);
         return this;
     }
 
     public Centerhead removeCenter(Center center) {
         this.centers.remove(center);
-        center.setCenterhead(null);
+        center.getCenterheads().remove(this);
         return this;
     }
 

@@ -41,9 +41,11 @@ export class AnswersheetMySuffixDetail extends React.Component<IAnswersheetMySuf
             </dt>
             <dd>{answersheetEntity.marks}</dd>
             <dt>
-              <Translate contentKey="risingarjunApp.answersheet.testResultId">Test Result Id</Translate>
+              <span id="status">
+                <Translate contentKey="risingarjunApp.answersheet.status">Status</Translate>
+              </span>
             </dt>
-            <dd>{answersheetEntity.testResultIdId ? answersheetEntity.testResultIdId : ''}</dd>
+            <dd>{answersheetEntity.status}</dd>
             <dt>
               <Translate contentKey="risingarjunApp.answersheet.question">Question</Translate>
             </dt>

@@ -2,7 +2,9 @@ package com.risingarjun.arjun.service;
 
 import com.risingarjun.arjun.service.dto.CenterheadDTO;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import java.util.Optional;
 
 /**
@@ -21,11 +23,18 @@ public interface CenterheadService {
     /**
      * Get all the centerheads.
      *
+     * @param pageable the pagination information.
      * @return the list of entities.
      */
-    List<CenterheadDTO> findAll();
+    Page<CenterheadDTO> findAll(Pageable pageable);
 
-
+    /**
+     * Get all the centerheads with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    Page<CenterheadDTO> findAllWithEagerRelationships(Pageable pageable);
+    
     /**
      * Get the "id" centerhead.
      *

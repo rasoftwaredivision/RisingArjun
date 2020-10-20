@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
+import com.risingarjun.arjun.domain.enumeration.Answeroption;
+import com.risingarjun.arjun.domain.enumeration.Answerstatus;
 
 /**
  * A DTO for the {@link com.risingarjun.arjun.domain.Answersheet} entity.
@@ -13,13 +15,13 @@ public class AnswersheetDTO implements Serializable {
     private Long id;
 
     @NotNull
-    private String answer;
+    private Answeroption answer;
 
     @NotNull
     private Integer marks;
 
+    private Answerstatus status;
 
-    private Long testResultIdId;
 
     private Set<QuestionDTO> questions = new HashSet<>();
 
@@ -31,11 +33,11 @@ public class AnswersheetDTO implements Serializable {
         this.id = id;
     }
 
-    public String getAnswer() {
+    public Answeroption getAnswer() {
         return answer;
     }
 
-    public void setAnswer(String answer) {
+    public void setAnswer(Answeroption answer) {
         this.answer = answer;
     }
 
@@ -47,12 +49,12 @@ public class AnswersheetDTO implements Serializable {
         this.marks = marks;
     }
 
-    public Long getTestResultIdId() {
-        return testResultIdId;
+    public Answerstatus getStatus() {
+        return status;
     }
 
-    public void setTestResultIdId(Long testresultId) {
-        this.testResultIdId = testresultId;
+    public void setStatus(Answerstatus status) {
+        this.status = status;
     }
 
     public Set<QuestionDTO> getQuestions() {
@@ -90,7 +92,7 @@ public class AnswersheetDTO implements Serializable {
             "id=" + getId() +
             ", answer='" + getAnswer() + "'" +
             ", marks=" + getMarks() +
-            ", testResultId=" + getTestResultIdId() +
+            ", status='" + getStatus() + "'" +
             "}";
     }
 }

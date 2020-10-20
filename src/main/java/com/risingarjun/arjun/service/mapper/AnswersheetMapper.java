@@ -8,14 +8,13 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link Answersheet} and its DTO {@link AnswersheetDTO}.
  */
-@Mapper(componentModel = "spring", uses = {TestresultMapper.class, QuestionMapper.class})
+@Mapper(componentModel = "spring", uses = {QuestionMapper.class})
 public interface AnswersheetMapper extends EntityMapper<AnswersheetDTO, Answersheet> {
 
-    @Mapping(source = "testResultId.id", target = "testResultIdId")
-    AnswersheetDTO toDto(Answersheet answersheet);
 
-    @Mapping(source = "testResultIdId", target = "testResultId")
     @Mapping(target = "removeQuestion", ignore = true)
+    @Mapping(target = "testresults", ignore = true)
+    @Mapping(target = "removeTestresult", ignore = true)
     Answersheet toEntity(AnswersheetDTO answersheetDTO);
 
     default Answersheet fromId(Long id) {

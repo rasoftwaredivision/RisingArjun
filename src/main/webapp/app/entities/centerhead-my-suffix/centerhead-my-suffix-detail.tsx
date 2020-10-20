@@ -32,6 +32,19 @@ export class CenterheadMySuffixDetail extends React.Component<ICenterheadMySuffi
               <Translate contentKey="risingarjunApp.centerhead.centerhead">Centerhead</Translate>
             </dt>
             <dd>{centerheadEntity.centerheadEmployeeId ? centerheadEntity.centerheadEmployeeId : ''}</dd>
+            <dt>
+              <Translate contentKey="risingarjunApp.centerhead.center">Center</Translate>
+            </dt>
+            <dd>
+              {centerheadEntity.centers
+                ? centerheadEntity.centers.map((val, i) => (
+                    <span key={val.id}>
+                      <a>{val.id}</a>
+                      {i === centerheadEntity.centers.length - 1 ? '' : ', '}
+                    </span>
+                  ))
+                : null}
+            </dd>
           </dl>
           <Button tag={Link} to="/entity/centerhead-my-suffix" replace color="info">
             <FontAwesomeIcon icon="arrow-left" />{' '}

@@ -42,15 +42,25 @@ public class Testpaper implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("testpapers")
-    private Enterprise enterprise;
-
-    @ManyToOne
-    @JsonIgnoreProperties("testpapers")
     private Course course;
 
     @ManyToOne
     @JsonIgnoreProperties("testpapers")
     private Subject subject;
+
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "testpaper_enterprise",
+               joinColumns = @JoinColumn(name = "testpaper_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "enterprise_id", referencedColumnName = "id"))
+    private Set<Enterprise> enterprises = new HashSet<>();
+
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "testpaper_testresult",
+               joinColumns = @JoinColumn(name = "testpaper_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "testresult_id", referencedColumnName = "id"))
+    private Set<Testresult> testresults = new HashSet<>();
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -107,19 +117,6 @@ public class Testpaper implements Serializable {
         this.level = level;
     }
 
-    public Enterprise getEnterprise() {
-        return enterprise;
-    }
-
-    public Testpaper enterprise(Enterprise enterprise) {
-        this.enterprise = enterprise;
-        return this;
-    }
-
-    public void setEnterprise(Enterprise enterprise) {
-        this.enterprise = enterprise;
-    }
-
     public Course getCourse() {
         return course;
     }
@@ -144,6 +141,56 @@ public class Testpaper implements Serializable {
 
     public void setSubject(Subject subject) {
         this.subject = subject;
+    }
+
+    public Set<Enterprise> getEnterprises() {
+        return enterprises;
+    }
+
+    public Testpaper enterprises(Set<Enterprise> enterprises) {
+        this.enterprises = enterprises;
+        return this;
+    }
+
+    public Testpaper addEnterprise(Enterprise enterprise) {
+        this.enterprises.add(enterprise);
+        enterprise.getTestpapers().add(this);
+        return this;
+    }
+
+    public Testpaper removeEnterprise(Enterprise enterprise) {
+        this.enterprises.remove(enterprise);
+        enterprise.getTestpapers().remove(this);
+        return this;
+    }
+
+    public void setEnterprises(Set<Enterprise> enterprises) {
+        this.enterprises = enterprises;
+    }
+
+    public Set<Testresult> getTestresults() {
+        return testresults;
+    }
+
+    public Testpaper testresults(Set<Testresult> testresults) {
+        this.testresults = testresults;
+        return this;
+    }
+
+    public Testpaper addTestresult(Testresult testresult) {
+        this.testresults.add(testresult);
+        testresult.getTestpapers().add(this);
+        return this;
+    }
+
+    public Testpaper removeTestresult(Testresult testresult) {
+        this.testresults.remove(testresult);
+        testresult.getTestpapers().remove(this);
+        return this;
+    }
+
+    public void setTestresults(Set<Testresult> testresults) {
+        this.testresults = testresults;
     }
 
     public Set<Topic> getTopics() {

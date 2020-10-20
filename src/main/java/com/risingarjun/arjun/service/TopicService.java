@@ -2,7 +2,9 @@ package com.risingarjun.arjun.service;
 
 import com.risingarjun.arjun.service.dto.TopicDTO;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import java.util.Optional;
 
 /**
@@ -21,9 +23,10 @@ public interface TopicService {
     /**
      * Get all the topics.
      *
+     * @param pageable the pagination information.
      * @return the list of entities.
      */
-    List<TopicDTO> findAll();
+    Page<TopicDTO> findAll(Pageable pageable);
 
 
     /**

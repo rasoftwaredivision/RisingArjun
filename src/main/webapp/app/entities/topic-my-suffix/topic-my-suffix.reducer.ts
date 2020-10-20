@@ -21,6 +21,7 @@ const initialState = {
   entities: [] as ReadonlyArray<ITopicMySuffix>,
   entity: defaultValue,
   updating: false,
+  totalItems: 0,
   updateSuccess: false
 };
 
@@ -63,7 +64,8 @@ export default (state: TopicMySuffixState = initialState, action): TopicMySuffix
       return {
         ...state,
         loading: false,
-        entities: action.payload.data
+        entities: action.payload.data,
+        totalItems: parseInt(action.payload.headers['x-total-count'], 10)
       };
     case SUCCESS(ACTION_TYPES.FETCH_TOPIC):
       return {
@@ -99,10 +101,13 @@ const apiUrl = 'api/topics';
 
 // Actions
 
-export const getEntities: ICrudGetAllAction<ITopicMySuffix> = (page, size, sort) => ({
-  type: ACTION_TYPES.FETCH_TOPIC_LIST,
-  payload: axios.get<ITopicMySuffix>(`${apiUrl}?cacheBuster=${new Date().getTime()}`)
-});
+export const getEntities: ICrudGetAllAction<ITopicMySuffix> = (page, size, sort) => {
+  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+  return {
+    type: ACTION_TYPES.FETCH_TOPIC_LIST,
+    payload: axios.get<ITopicMySuffix>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)
+  };
+};
 
 export const getEntity: ICrudGetAction<ITopicMySuffix> = id => {
   const requestUrl = `${apiUrl}/${id}`;

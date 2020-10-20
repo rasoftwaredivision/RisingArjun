@@ -1,0 +1,25 @@
+{
+  "risingarjunApp": {
+    "testimonial": {
+      "home": {
+        "title": "Testimonials",
+        "createLabel": "Testimonial-ஐ உருவாக்கு",
+        "createOrEditLabel": "Testimonial -ஐ மாற்று (அ) உருவாக்கு",
+        "notFound": "No Testimonial found"
+      },
+      "created": "Testimonial புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+      "updated": "Testimonial மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+      "deleted": "A Testimonial நீக்கப்பட்டது, அடையாளம {{ param }}",
+      "delete": {
+        "question": "நீக்குவதற்கு உறுதி செய் Testimonial {{ id }}?"
+      },
+      "detail": {
+        "title": "Testimonial"
+      },
+      "remarks": "Remarks",
+      "date": "Date",
+      "rating": "Rating",
+      "student": "Student"
+    }
+  }
+}

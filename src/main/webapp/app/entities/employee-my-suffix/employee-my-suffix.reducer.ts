@@ -22,6 +22,7 @@ const initialState = {
   entities: [] as ReadonlyArray<IEmployeeMySuffix>,
   entity: defaultValue,
   updating: false,
+  totalItems: 0,
   updateSuccess: false
 };
 
@@ -64,7 +65,8 @@ export default (state: EmployeeMySuffixState = initialState, action): EmployeeMy
       return {
         ...state,
         loading: false,
-        entities: action.payload.data
+        entities: action.payload.data,
+        totalItems: parseInt(action.payload.headers['x-total-count'], 10)
       };
     case SUCCESS(ACTION_TYPES.FETCH_EMPLOYEE):
       return {
@@ -110,10 +112,13 @@ const apiUrl = 'api/employees';
 
 // Actions
 
-export const getEntities: ICrudGetAllAction<IEmployeeMySuffix> = (page, size, sort) => ({
-  type: ACTION_TYPES.FETCH_EMPLOYEE_LIST,
-  payload: axios.get<IEmployeeMySuffix>(`${apiUrl}?cacheBuster=${new Date().getTime()}`)
-});
+export const getEntities: ICrudGetAllAction<IEmployeeMySuffix> = (page, size, sort) => {
+  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+  return {
+    type: ACTION_TYPES.FETCH_EMPLOYEE_LIST,
+    payload: axios.get<IEmployeeMySuffix>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)
+  };
+};
 
 export const getEntity: ICrudGetAction<IEmployeeMySuffix> = id => {
   const requestUrl = `${apiUrl}/${id}`;

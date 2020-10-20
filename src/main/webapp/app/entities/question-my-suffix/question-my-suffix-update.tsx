@@ -193,28 +193,42 @@ export class QuestionMySuffixUpdate extends React.Component<IQuestionMySuffixUpd
                   </AvGroup>
                 </AvGroup>
                 <AvGroup>
-                  <Label id="option1Label" for="question-my-suffix-option1">
-                    <Translate contentKey="risingarjunApp.question.option1">Option 1</Translate>
+                  <Label id="optionALabel" for="question-my-suffix-optionA">
+                    <Translate contentKey="risingarjunApp.question.optionA">Option A</Translate>
                   </Label>
-                  <AvField id="question-my-suffix-option1" type="text" name="option1" />
+                  <AvField
+                    id="question-my-suffix-optionA"
+                    type="text"
+                    name="optionA"
+                    validate={{
+                      required: { value: true, errorMessage: translate('entity.validation.required') }
+                    }}
+                  />
                 </AvGroup>
                 <AvGroup>
-                  <Label id="option2Label" for="question-my-suffix-option2">
-                    <Translate contentKey="risingarjunApp.question.option2">Option 2</Translate>
+                  <Label id="optionBLabel" for="question-my-suffix-optionB">
+                    <Translate contentKey="risingarjunApp.question.optionB">Option B</Translate>
                   </Label>
-                  <AvField id="question-my-suffix-option2" type="text" name="option2" />
+                  <AvField
+                    id="question-my-suffix-optionB"
+                    type="text"
+                    name="optionB"
+                    validate={{
+                      required: { value: true, errorMessage: translate('entity.validation.required') }
+                    }}
+                  />
                 </AvGroup>
                 <AvGroup>
-                  <Label id="option3Label" for="question-my-suffix-option3">
-                    <Translate contentKey="risingarjunApp.question.option3">Option 3</Translate>
+                  <Label id="optionCLabel" for="question-my-suffix-optionC">
+                    <Translate contentKey="risingarjunApp.question.optionC">Option C</Translate>
                   </Label>
-                  <AvField id="question-my-suffix-option3" type="text" name="option3" />
+                  <AvField id="question-my-suffix-optionC" type="text" name="optionC" />
                 </AvGroup>
                 <AvGroup>
-                  <Label id="option4Label" for="question-my-suffix-option4">
-                    <Translate contentKey="risingarjunApp.question.option4">Option 4</Translate>
+                  <Label id="optionDLabel" for="question-my-suffix-optionD">
+                    <Translate contentKey="risingarjunApp.question.optionD">Option D</Translate>
                   </Label>
-                  <AvField id="question-my-suffix-option4" type="text" name="option4" />
+                  <AvField id="question-my-suffix-optionD" type="text" name="optionD" />
                 </AvGroup>
                 <AvGroup>
                   <Label id="multiChoiceLabel" check>
@@ -226,14 +240,29 @@ export class QuestionMySuffixUpdate extends React.Component<IQuestionMySuffixUpd
                   <Label id="answerLabel" for="question-my-suffix-answer">
                     <Translate contentKey="risingarjunApp.question.answer">Answer</Translate>
                   </Label>
-                  <AvField
+                  <AvInput
                     id="question-my-suffix-answer"
-                    type="text"
+                    type="select"
+                    className="form-control"
                     name="answer"
-                    validate={{
-                      required: { value: true, errorMessage: translate('entity.validation.required') }
-                    }}
-                  />
+                    value={(!isNew && questionEntity.answer) || 'A'}
+                  >
+                    <option value="A">{translate('risingarjunApp.Answeroption.A')}</option>
+                    <option value="B">{translate('risingarjunApp.Answeroption.B')}</option>
+                    <option value="C">{translate('risingarjunApp.Answeroption.C')}</option>
+                    <option value="D">{translate('risingarjunApp.Answeroption.D')}</option>
+                    <option value="A_B">{translate('risingarjunApp.Answeroption.A_B')}</option>
+                    <option value="A_C">{translate('risingarjunApp.Answeroption.A_C')}</option>
+                    <option value="A_D">{translate('risingarjunApp.Answeroption.A_D')}</option>
+                    <option value="B_C">{translate('risingarjunApp.Answeroption.B_C')}</option>
+                    <option value="B_D">{translate('risingarjunApp.Answeroption.B_D')}</option>
+                    <option value="C_D">{translate('risingarjunApp.Answeroption.C_D')}</option>
+                    <option value="A_B_C">{translate('risingarjunApp.Answeroption.A_B_C')}</option>
+                    <option value="A_B_D">{translate('risingarjunApp.Answeroption.A_B_D')}</option>
+                    <option value="A_C_D">{translate('risingarjunApp.Answeroption.A_C_D')}</option>
+                    <option value="B_C_D">{translate('risingarjunApp.Answeroption.B_C_D')}</option>
+                    <option value="A_B_C_D">{translate('risingarjunApp.Answeroption.A_B_C_D')}</option>
+                  </AvInput>
                 </AvGroup>
                 <AvGroup>
                   <Label id="maxMarksLabel" for="question-my-suffix-maxMarks">

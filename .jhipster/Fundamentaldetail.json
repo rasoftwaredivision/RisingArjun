@@ -21,10 +21,10 @@
             "ownerSide": false
         }
     ],
-    "changelogDate": "20200930095450",
+    "changelogDate": "20201019223053",
     "entityTableName": "fundamentaldetail",
     "dto": "mapstruct",
-    "pagination": "no",
+    "pagination": "pagination",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,

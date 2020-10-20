@@ -1,3 +1,5 @@
+import { ITestpaperMySuffix } from 'app/shared/model/testpaper-my-suffix.model';
+
 export const enum Natureofbusiness {
   COACHING = 'COACHING'
 }
@@ -45,6 +47,7 @@ export interface IEnterpriseMySuffix {
   state?: State;
   country?: Country;
   pincode?: number;
+  testpapers?: ITestpaperMySuffix[];
 }
 
 export const defaultValue: Readonly<IEnterpriseMySuffix> = {};

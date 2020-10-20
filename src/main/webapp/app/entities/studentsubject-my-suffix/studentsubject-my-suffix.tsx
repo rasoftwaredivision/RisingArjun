@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
 // tslint:disable-next-line:no-unused-variable
-import { Translate, ICrudGetAllAction } from 'react-jhipster';
+import { Translate, ICrudGetAllAction, getSortState, IPaginationBaseState, JhiPagination, JhiItemCount } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
@@ -11,16 +11,45 @@ import { getEntities } from './studentsubject-my-suffix.reducer';
 import { IStudentsubjectMySuffix } from 'app/shared/model/studentsubject-my-suffix.model';
 // tslint:disable-next-line:no-unused-variable
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 
 export interface IStudentsubjectMySuffixProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
-export class StudentsubjectMySuffix extends React.Component<IStudentsubjectMySuffixProps> {
+export type IStudentsubjectMySuffixState = IPaginationBaseState;
+
+export class StudentsubjectMySuffix extends React.Component<IStudentsubjectMySuffixProps, IStudentsubjectMySuffixState> {
+  state: IStudentsubjectMySuffixState = {
+    ...getSortState(this.props.location, ITEMS_PER_PAGE)
+  };
+
   componentDidMount() {
-    this.props.getEntities();
+    this.getEntities();
   }
 
+  sort = prop => () => {
+    this.setState(
+      {
+        order: this.state.order === 'asc' ? 'desc' : 'asc',
+        sort: prop
+      },
+      () => this.sortEntities()
+    );
+  };
+
+  sortEntities() {
+    this.getEntities();
+    this.props.history.push(`${this.props.location.pathname}?page=${this.state.activePage}&sort=${this.state.sort},${this.state.order}`);
+  }
+
+  handlePagination = activePage => this.setState({ activePage }, () => this.sortEntities());
+
+  getEntities = () => {
+    const { activePage, itemsPerPage, sort, order } = this.state;
+    this.props.getEntities(activePage - 1, itemsPerPage, `${sort},${order}`);
+  };
+
   render() {
-    const { studentsubjectList, match } = this.props;
+    const { studentsubjectList, match, totalItems } = this.props;
     return (
       <div>
         <h2 id="studentsubject-my-suffix-heading">
@@ -36,23 +65,18 @@ export class StudentsubjectMySuffix extends React.Component<IStudentsubjectMySuf
             <Table responsive>
               <thead>
                 <tr>
-                  <th>
-                    <Translate contentKey="global.field.id">ID</Translate>
+                  <th className="hand" onClick={this.sort('id')}>
+                    <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('month')}>
+                    <Translate contentKey="risingarjunApp.studentsubject.month">Month</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th>
-                    <Translate contentKey="risingarjunApp.studentsubject.month">Month</Translate>
+                    <Translate contentKey="risingarjunApp.studentsubject.registrationno">Registrationno</Translate>{' '}
+                    <FontAwesomeIcon icon="sort" />
                   </th>
                   <th>
-                    <Translate contentKey="risingarjunApp.studentsubject.registrationno">Registrationno</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.studentsubject.session">Session</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.studentsubject.subject">Subject</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.studentsubject.course">Course</Translate>
+                    <Translate contentKey="risingarjunApp.studentsubject.session">Session</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th />
                 </tr>
@@ -81,26 +105,6 @@ export class StudentsubjectMySuffix extends React.Component<IStudentsubjectMySuf
                       ) : (
                         ''
                       )}
-                    </td>
-                    <td>
-                      {studentsubject.subjects
-                        ? studentsubject.subjects.map((val, j) => (
-                            <span key={j}>
-                              <Link to={`subject-my-suffix/${val.id}`}>{val.subjectTitle}</Link>
-                              {j === studentsubject.subjects.length - 1 ? '' : ', '}
-                            </span>
-                          ))
-                        : null}
-                    </td>
-                    <td>
-                      {studentsubject.courses
-                        ? studentsubject.courses.map((val, j) => (
-                            <span key={j}>
-                              <Link to={`course-my-suffix/${val.id}`}>{val.course}</Link>
-                              {j === studentsubject.courses.length - 1 ? '' : ', '}
-                            </span>
-                          ))
-                        : null}
                     </td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">
@@ -134,13 +138,28 @@ export class StudentsubjectMySuffix extends React.Component<IStudentsubjectMySuf
             </div>
           )}
         </div>
+        <div className={studentsubjectList && studentsubjectList.length > 0 ? '' : 'd-none'}>
+          <Row className="justify-content-center">
+            <JhiItemCount page={this.state.activePage} total={totalItems} itemsPerPage={this.state.itemsPerPage} i18nEnabled />
+          </Row>
+          <Row className="justify-content-center">
+            <JhiPagination
+              activePage={this.state.activePage}
+              onSelect={this.handlePagination}
+              maxButtons={5}
+              itemsPerPage={this.state.itemsPerPage}
+              totalItems={this.props.totalItems}
+            />
+          </Row>
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = ({ studentsubject }: IRootState) => ({
-  studentsubjectList: studentsubject.entities
+  studentsubjectList: studentsubject.entities,
+  totalItems: studentsubject.totalItems
 });
 
 const mapDispatchToProps = {

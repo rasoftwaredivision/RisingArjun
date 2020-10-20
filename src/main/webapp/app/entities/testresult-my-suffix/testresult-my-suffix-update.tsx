@@ -10,6 +10,8 @@ import { IRootState } from 'app/shared/reducers';
 
 import { IStudentMySuffix } from 'app/shared/model/student-my-suffix.model';
 import { getEntities as getStudents } from 'app/entities/student-my-suffix/student-my-suffix.reducer';
+import { IAnswersheetMySuffix } from 'app/shared/model/answersheet-my-suffix.model';
+import { getEntities as getAnswersheets } from 'app/entities/answersheet-my-suffix/answersheet-my-suffix.reducer';
 import { ITestpaperMySuffix } from 'app/shared/model/testpaper-my-suffix.model';
 import { getEntities as getTestpapers } from 'app/entities/testpaper-my-suffix/testpaper-my-suffix.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './testresult-my-suffix.reducer';
@@ -22,16 +24,18 @@ export interface ITestresultMySuffixUpdateProps extends StateProps, DispatchProp
 
 export interface ITestresultMySuffixUpdateState {
   isNew: boolean;
+  idsanswersheet: any[];
   studentId: string;
-  testPaperIdId: string;
+  testpaperId: string;
 }
 
 export class TestresultMySuffixUpdate extends React.Component<ITestresultMySuffixUpdateProps, ITestresultMySuffixUpdateState> {
   constructor(props) {
     super(props);
     this.state = {
+      idsanswersheet: [],
       studentId: '0',
-      testPaperIdId: '0',
+      testpaperId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
   }
@@ -50,6 +54,7 @@ export class TestresultMySuffixUpdate extends React.Component<ITestresultMySuffi
     }
 
     this.props.getStudents();
+    this.props.getAnswersheets();
     this.props.getTestpapers();
   }
 
@@ -58,7 +63,8 @@ export class TestresultMySuffixUpdate extends React.Component<ITestresultMySuffi
       const { testresultEntity } = this.props;
       const entity = {
         ...testresultEntity,
-        ...values
+        ...values,
+        answersheets: mapIdList(values.answersheets)
       };
 
       if (this.state.isNew) {
@@ -74,7 +80,7 @@ export class TestresultMySuffixUpdate extends React.Component<ITestresultMySuffi
   };
 
   render() {
-    const { testresultEntity, students, testpapers, loading, updating } = this.props;
+    const { testresultEntity, students, answersheets, testpapers, loading, updating } = this.props;
     const { isNew } = this.state;
 
     return (
@@ -190,13 +196,20 @@ export class TestresultMySuffixUpdate extends React.Component<ITestresultMySuffi
                   </AvInput>
                 </AvGroup>
                 <AvGroup>
-                  <Label for="testresult-my-suffix-testPaperId">
-                    <Translate contentKey="risingarjunApp.testresult.testPaperId">Test Paper Id</Translate>
+                  <Label for="testresult-my-suffix-answersheet">
+                    <Translate contentKey="risingarjunApp.testresult.answersheet">Answersheet</Translate>
                   </Label>
-                  <AvInput id="testresult-my-suffix-testPaperId" type="select" className="form-control" name="testPaperIdId">
+                  <AvInput
+                    id="testresult-my-suffix-answersheet"
+                    type="select"
+                    multiple
+                    className="form-control"
+                    name="answersheets"
+                    value={testresultEntity.answersheets && testresultEntity.answersheets.map(e => e.id)}
+                  >
                     <option value="" key="0" />
-                    {testpapers
-                      ? testpapers.map(otherEntity => (
+                    {answersheets
+                      ? answersheets.map(otherEntity => (
                           <option value={otherEntity.id} key={otherEntity.id}>
                             {otherEntity.id}
                           </option>
@@ -228,6 +241,7 @@ export class TestresultMySuffixUpdate extends React.Component<ITestresultMySuffi
 
 const mapStateToProps = (storeState: IRootState) => ({
   students: storeState.student.entities,
+  answersheets: storeState.answersheet.entities,
   testpapers: storeState.testpaper.entities,
   testresultEntity: storeState.testresult.entity,
   loading: storeState.testresult.loading,
@@ -237,6 +251,7 @@ const mapStateToProps = (storeState: IRootState) => ({
 
 const mapDispatchToProps = {
   getStudents,
+  getAnswersheets,
   getTestpapers,
   getEntity,
   updateEntity,

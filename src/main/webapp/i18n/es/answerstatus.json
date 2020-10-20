@@ -1,0 +1,9 @@
+{
+  "risingarjunApp": {
+    "Answerstatus": {
+      "null": "",
+      "DRAFT": "DRAFT",
+      "FINAL": "FINAL"
+    }
+  }
+}

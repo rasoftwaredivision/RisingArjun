@@ -35,17 +35,22 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.risingarjun.arjun.domain.enumeration.Answeroption;
+import com.risingarjun.arjun.domain.enumeration.Answerstatus;
 /**
  * Integration tests for the {@Link AnswersheetResource} REST controller.
  */
 @SpringBootTest(classes = RisingarjunApp.class)
 public class AnswersheetResourceIT {
 
-    private static final String DEFAULT_ANSWER = "AAAAAAAAAA";
-    private static final String UPDATED_ANSWER = "BBBBBBBBBB";
+    private static final Answeroption DEFAULT_ANSWER = Answeroption.A;
+    private static final Answeroption UPDATED_ANSWER = Answeroption.B;
 
     private static final Integer DEFAULT_MARKS = 1;
     private static final Integer UPDATED_MARKS = 2;
+
+    private static final Answerstatus DEFAULT_STATUS = Answerstatus.DRAFT;
+    private static final Answerstatus UPDATED_STATUS = Answerstatus.FINAL;
 
     @Autowired
     private AnswersheetRepository answersheetRepository;
@@ -102,7 +107,8 @@ public class AnswersheetResourceIT {
     public static Answersheet createEntity(EntityManager em) {
         Answersheet answersheet = new Answersheet()
             .answer(DEFAULT_ANSWER)
-            .marks(DEFAULT_MARKS);
+            .marks(DEFAULT_MARKS)
+            .status(DEFAULT_STATUS);
         return answersheet;
     }
     /**
@@ -114,7 +120,8 @@ public class AnswersheetResourceIT {
     public static Answersheet createUpdatedEntity(EntityManager em) {
         Answersheet answersheet = new Answersheet()
             .answer(UPDATED_ANSWER)
-            .marks(UPDATED_MARKS);
+            .marks(UPDATED_MARKS)
+            .status(UPDATED_STATUS);
         return answersheet;
     }
 
@@ -141,6 +148,7 @@ public class AnswersheetResourceIT {
         Answersheet testAnswersheet = answersheetList.get(answersheetList.size() - 1);
         assertThat(testAnswersheet.getAnswer()).isEqualTo(DEFAULT_ANSWER);
         assertThat(testAnswersheet.getMarks()).isEqualTo(DEFAULT_MARKS);
+        assertThat(testAnswersheet.getStatus()).isEqualTo(DEFAULT_STATUS);
     }
 
     @Test
@@ -214,7 +222,8 @@ public class AnswersheetResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(answersheet.getId().intValue())))
             .andExpect(jsonPath("$.[*].answer").value(hasItem(DEFAULT_ANSWER.toString())))
-            .andExpect(jsonPath("$.[*].marks").value(hasItem(DEFAULT_MARKS)));
+            .andExpect(jsonPath("$.[*].marks").value(hasItem(DEFAULT_MARKS)))
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
     }
     
     @SuppressWarnings({"unchecked"})
@@ -262,7 +271,8 @@ public class AnswersheetResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(answersheet.getId().intValue()))
             .andExpect(jsonPath("$.answer").value(DEFAULT_ANSWER.toString()))
-            .andExpect(jsonPath("$.marks").value(DEFAULT_MARKS));
+            .andExpect(jsonPath("$.marks").value(DEFAULT_MARKS))
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
     }
 
     @Test
@@ -287,7 +297,8 @@ public class AnswersheetResourceIT {
         em.detach(updatedAnswersheet);
         updatedAnswersheet
             .answer(UPDATED_ANSWER)
-            .marks(UPDATED_MARKS);
+            .marks(UPDATED_MARKS)
+            .status(UPDATED_STATUS);
         AnswersheetDTO answersheetDTO = answersheetMapper.toDto(updatedAnswersheet);
 
         restAnswersheetMockMvc.perform(put("/api/answersheets")
@@ -301,6 +312,7 @@ public class AnswersheetResourceIT {
         Answersheet testAnswersheet = answersheetList.get(answersheetList.size() - 1);
         assertThat(testAnswersheet.getAnswer()).isEqualTo(UPDATED_ANSWER);
         assertThat(testAnswersheet.getMarks()).isEqualTo(UPDATED_MARKS);
+        assertThat(testAnswersheet.getStatus()).isEqualTo(UPDATED_STATUS);
     }
 
     @Test

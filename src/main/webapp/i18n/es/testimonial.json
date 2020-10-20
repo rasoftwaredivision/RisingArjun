@@ -1,0 +1,25 @@
+{
+  "risingarjunApp": {
+    "testimonial": {
+      "home": {
+        "title": "Testimonials",
+        "createLabel": "Crear nuevo Testimonial",
+        "createOrEditLabel": "Crear o editar Testimonial",
+        "notFound": "No Testimonial found"
+      },
+      "created": "Un nuevo Testimonial ha sido creado con el identificador {{ param }}",
+      "updated": "Un Testimonial ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Testimonial ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Testimonial {{ id }}?"
+      },
+      "detail": {
+        "title": "Testimonial"
+      },
+      "remarks": "Remarks",
+      "date": "Date",
+      "rating": "Rating",
+      "student": "Student"
+    }
+  }
+}

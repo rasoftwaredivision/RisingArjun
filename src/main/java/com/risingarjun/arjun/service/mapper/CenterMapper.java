@@ -8,16 +8,16 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link Center} and its DTO {@link CenterDTO}.
  */
-@Mapper(componentModel = "spring", uses = {EnterpriseMapper.class, CenterheadMapper.class})
+@Mapper(componentModel = "spring", uses = {EnterpriseMapper.class})
 public interface CenterMapper extends EntityMapper<CenterDTO, Center> {
 
     @Mapping(source = "enterprise.id", target = "enterpriseId")
     @Mapping(source = "enterprise.enterprisename", target = "enterpriseEnterprisename")
-    @Mapping(source = "centerhead.id", target = "centerheadId")
     CenterDTO toDto(Center center);
 
     @Mapping(source = "enterpriseId", target = "enterprise")
-    @Mapping(source = "centerheadId", target = "centerhead")
+    @Mapping(target = "centerheads", ignore = true)
+    @Mapping(target = "removeCenterhead", ignore = true)
     Center toEntity(CenterDTO centerDTO);
 
     default Center fromId(Long id) {

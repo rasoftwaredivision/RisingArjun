@@ -1,5 +1,7 @@
 package com.risingarjun.arjun.service.dto;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -13,6 +15,8 @@ public class CenterheadDTO implements Serializable {
     private Long centerheadId;
 
     private String centerheadEmployeeId;
+
+    private Set<CenterDTO> centers = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -36,6 +40,14 @@ public class CenterheadDTO implements Serializable {
 
     public void setCenterheadEmployeeId(String employeeEmployeeId) {
         this.centerheadEmployeeId = employeeEmployeeId;
+    }
+
+    public Set<CenterDTO> getCenters() {
+        return centers;
+    }
+
+    public void setCenters(Set<CenterDTO> centers) {
+        this.centers = centers;
     }
 
     @Override

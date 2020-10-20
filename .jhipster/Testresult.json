@@ -24,7 +24,7 @@
         },
         {
             "fieldName": "timeTaken",
-            "fieldType": "Integer",
+            "fieldType": "Float",
             "fieldValidateRules": [
                 "required"
             ]
@@ -46,17 +46,26 @@
             "otherEntityField": "studentRegId"
         },
         {
-            "relationshipType": "many-to-one",
+            "relationshipType": "many-to-many",
+            "otherEntityName": "answersheet",
+            "otherEntityRelationshipName": "testresult",
+            "relationshipName": "answersheet",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
             "otherEntityName": "testpaper",
             "otherEntityRelationshipName": "testresult",
-            "relationshipName": "testPaperId",
-            "otherEntityField": "id"
+            "relationshipName": "testpaper",
+            "otherEntityField": "id",
+            "ownerSide": false
         }
     ],
-    "changelogDate": "20200930095454",
+    "changelogDate": "20201019223057",
     "entityTableName": "testresult",
     "dto": "mapstruct",
-    "pagination": "no",
+    "pagination": "pagination",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,

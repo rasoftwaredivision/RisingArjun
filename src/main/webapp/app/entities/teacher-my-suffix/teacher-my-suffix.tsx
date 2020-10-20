@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
 // tslint:disable-next-line:no-unused-variable
-import { Translate, ICrudGetAllAction } from 'react-jhipster';
+import { Translate, ICrudGetAllAction, getSortState, IPaginationBaseState, JhiPagination, JhiItemCount } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
@@ -11,16 +11,45 @@ import { getEntities } from './teacher-my-suffix.reducer';
 import { ITeacherMySuffix } from 'app/shared/model/teacher-my-suffix.model';
 // tslint:disable-next-line:no-unused-variable
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 
 export interface ITeacherMySuffixProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
-export class TeacherMySuffix extends React.Component<ITeacherMySuffixProps> {
+export type ITeacherMySuffixState = IPaginationBaseState;
+
+export class TeacherMySuffix extends React.Component<ITeacherMySuffixProps, ITeacherMySuffixState> {
+  state: ITeacherMySuffixState = {
+    ...getSortState(this.props.location, ITEMS_PER_PAGE)
+  };
+
   componentDidMount() {
-    this.props.getEntities();
+    this.getEntities();
   }
 
+  sort = prop => () => {
+    this.setState(
+      {
+        order: this.state.order === 'asc' ? 'desc' : 'asc',
+        sort: prop
+      },
+      () => this.sortEntities()
+    );
+  };
+
+  sortEntities() {
+    this.getEntities();
+    this.props.history.push(`${this.props.location.pathname}?page=${this.state.activePage}&sort=${this.state.sort},${this.state.order}`);
+  }
+
+  handlePagination = activePage => this.setState({ activePage }, () => this.sortEntities());
+
+  getEntities = () => {
+    const { activePage, itemsPerPage, sort, order } = this.state;
+    this.props.getEntities(activePage - 1, itemsPerPage, `${sort},${order}`);
+  };
+
   render() {
-    const { teacherList, match } = this.props;
+    const { teacherList, match, totalItems } = this.props;
     return (
       <div>
         <h2 id="teacher-my-suffix-heading">
@@ -36,17 +65,11 @@ export class TeacherMySuffix extends React.Component<ITeacherMySuffixProps> {
             <Table responsive>
               <thead>
                 <tr>
-                  <th>
-                    <Translate contentKey="global.field.id">ID</Translate>
+                  <th className="hand" onClick={this.sort('id')}>
+                    <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th>
-                    <Translate contentKey="risingarjunApp.teacher.teacherId">Teacher Id</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.teacher.subject">Subject</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.teacher.course">Course</Translate>
+                    <Translate contentKey="risingarjunApp.teacher.teacherId">Teacher Id</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th />
                 </tr>
@@ -65,26 +88,6 @@ export class TeacherMySuffix extends React.Component<ITeacherMySuffixProps> {
                       ) : (
                         ''
                       )}
-                    </td>
-                    <td>
-                      {teacher.subjects
-                        ? teacher.subjects.map((val, j) => (
-                            <span key={j}>
-                              <Link to={`subject-my-suffix/${val.id}`}>{val.subjectTitle}</Link>
-                              {j === teacher.subjects.length - 1 ? '' : ', '}
-                            </span>
-                          ))
-                        : null}
-                    </td>
-                    <td>
-                      {teacher.courses
-                        ? teacher.courses.map((val, j) => (
-                            <span key={j}>
-                              <Link to={`course-my-suffix/${val.id}`}>{val.course}</Link>
-                              {j === teacher.courses.length - 1 ? '' : ', '}
-                            </span>
-                          ))
-                        : null}
                     </td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">
@@ -118,13 +121,28 @@ export class TeacherMySuffix extends React.Component<ITeacherMySuffixProps> {
             </div>
           )}
         </div>
+        <div className={teacherList && teacherList.length > 0 ? '' : 'd-none'}>
+          <Row className="justify-content-center">
+            <JhiItemCount page={this.state.activePage} total={totalItems} itemsPerPage={this.state.itemsPerPage} i18nEnabled />
+          </Row>
+          <Row className="justify-content-center">
+            <JhiPagination
+              activePage={this.state.activePage}
+              onSelect={this.handlePagination}
+              maxButtons={5}
+              itemsPerPage={this.state.itemsPerPage}
+              totalItems={this.props.totalItems}
+            />
+          </Row>
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = ({ teacher }: IRootState) => ({
-  teacherList: teacher.entities
+  teacherList: teacher.entities,
+  totalItems: teacher.totalItems
 });
 
 const mapDispatchToProps = {

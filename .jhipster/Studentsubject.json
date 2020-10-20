@@ -42,10 +42,10 @@
             "ownerSide": true
         }
     ],
-    "changelogDate": "20200930095437",
+    "changelogDate": "20201019223040",
     "entityTableName": "studentsubject",
     "dto": "mapstruct",
-    "pagination": "no",
+    "pagination": "pagination",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,

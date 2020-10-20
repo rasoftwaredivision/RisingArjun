@@ -1,0 +1,25 @@
+{
+  "risingarjunApp": {
+    "testimonial": {
+      "home": {
+        "title": "Testimonials",
+        "createLabel": "नया Testimonial बनाएँ",
+        "createOrEditLabel": "Testimonial बनाएँ या संपादित करें",
+        "notFound": "No Testimonial found"
+      },
+      "created": "एक नया Testimonial [identifier: {{ param }}] तैयार है",
+      "updated": "एक Testimonial [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Testimonial [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Testimonial [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Testimonial"
+      },
+      "remarks": "Remarks",
+      "date": "Date",
+      "rating": "Rating",
+      "student": "Student"
+    }
+  }
+}

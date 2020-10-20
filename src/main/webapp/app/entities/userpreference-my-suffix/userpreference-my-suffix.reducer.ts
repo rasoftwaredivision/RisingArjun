@@ -21,6 +21,7 @@ const initialState = {
   entities: [] as ReadonlyArray<IUserpreferenceMySuffix>,
   entity: defaultValue,
   updating: false,
+  totalItems: 0,
   updateSuccess: false
 };
 
@@ -63,7 +64,8 @@ export default (state: UserpreferenceMySuffixState = initialState, action): User
       return {
         ...state,
         loading: false,
-        entities: action.payload.data
+        entities: action.payload.data,
+        totalItems: parseInt(action.payload.headers['x-total-count'], 10)
       };
     case SUCCESS(ACTION_TYPES.FETCH_USERPREFERENCE):
       return {
@@ -99,10 +101,13 @@ const apiUrl = 'api/userpreferences';
 
 // Actions
 
-export const getEntities: ICrudGetAllAction<IUserpreferenceMySuffix> = (page, size, sort) => ({
-  type: ACTION_TYPES.FETCH_USERPREFERENCE_LIST,
-  payload: axios.get<IUserpreferenceMySuffix>(`${apiUrl}?cacheBuster=${new Date().getTime()}`)
-});
+export const getEntities: ICrudGetAllAction<IUserpreferenceMySuffix> = (page, size, sort) => {
+  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+  return {
+    type: ACTION_TYPES.FETCH_USERPREFERENCE_LIST,
+    payload: axios.get<IUserpreferenceMySuffix>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)
+  };
+};
 
 export const getEntity: ICrudGetAction<IUserpreferenceMySuffix> = id => {
   const requestUrl = `${apiUrl}/${id}`;

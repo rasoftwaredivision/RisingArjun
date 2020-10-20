@@ -16,14 +16,14 @@ import java.util.Optional;
 @Repository
 public interface TestpaperRepository extends JpaRepository<Testpaper, Long> {
 
-    @Query(value = "select distinct testpaper from Testpaper testpaper left join fetch testpaper.topics",
+    @Query(value = "select distinct testpaper from Testpaper testpaper left join fetch testpaper.enterprises left join fetch testpaper.testresults left join fetch testpaper.topics",
         countQuery = "select count(distinct testpaper) from Testpaper testpaper")
     Page<Testpaper> findAllWithEagerRelationships(Pageable pageable);
 
-    @Query("select distinct testpaper from Testpaper testpaper left join fetch testpaper.topics")
+    @Query("select distinct testpaper from Testpaper testpaper left join fetch testpaper.enterprises left join fetch testpaper.testresults left join fetch testpaper.topics")
     List<Testpaper> findAllWithEagerRelationships();
 
-    @Query("select testpaper from Testpaper testpaper left join fetch testpaper.topics where testpaper.id =:id")
+    @Query("select testpaper from Testpaper testpaper left join fetch testpaper.enterprises left join fetch testpaper.testresults left join fetch testpaper.topics where testpaper.id =:id")
     Optional<Testpaper> findOneWithEagerRelationships(@Param("id") Long id);
 
 }

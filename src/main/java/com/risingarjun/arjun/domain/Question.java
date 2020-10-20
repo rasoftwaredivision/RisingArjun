@@ -12,6 +12,8 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.risingarjun.arjun.domain.enumeration.Answeroption;
+
 import com.risingarjun.arjun.domain.enumeration.Questionlevel;
 
 import com.risingarjun.arjun.domain.enumeration.Questionstatus;
@@ -44,25 +46,28 @@ public class Question implements Serializable {
     @Column(name = "question_diagram_content_type")
     private String questionDiagramContentType;
 
-    @Column(name = "option_1")
-    private String option1;
+    @NotNull
+    @Column(name = "option_a", nullable = false)
+    private String optionA;
 
-    @Column(name = "option_2")
-    private String option2;
+    @NotNull
+    @Column(name = "option_b", nullable = false)
+    private String optionB;
 
-    @Column(name = "option_3")
-    private String option3;
+    @Column(name = "option_c")
+    private String optionC;
 
-    @Column(name = "option_4")
-    private String option4;
+    @Column(name = "option_d")
+    private String optionD;
 
     @NotNull
     @Column(name = "multi_choice", nullable = false)
     private Boolean multiChoice;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(name = "answer", nullable = false)
-    private String answer;
+    private Answeroption answer;
 
     @NotNull
     @Column(name = "max_marks", nullable = false)
@@ -182,56 +187,56 @@ public class Question implements Serializable {
         this.questionDiagramContentType = questionDiagramContentType;
     }
 
-    public String getOption1() {
-        return option1;
+    public String getOptionA() {
+        return optionA;
     }
 
-    public Question option1(String option1) {
-        this.option1 = option1;
+    public Question optionA(String optionA) {
+        this.optionA = optionA;
         return this;
     }
 
-    public void setOption1(String option1) {
-        this.option1 = option1;
+    public void setOptionA(String optionA) {
+        this.optionA = optionA;
     }
 
-    public String getOption2() {
-        return option2;
+    public String getOptionB() {
+        return optionB;
     }
 
-    public Question option2(String option2) {
-        this.option2 = option2;
+    public Question optionB(String optionB) {
+        this.optionB = optionB;
         return this;
     }
 
-    public void setOption2(String option2) {
-        this.option2 = option2;
+    public void setOptionB(String optionB) {
+        this.optionB = optionB;
     }
 
-    public String getOption3() {
-        return option3;
+    public String getOptionC() {
+        return optionC;
     }
 
-    public Question option3(String option3) {
-        this.option3 = option3;
+    public Question optionC(String optionC) {
+        this.optionC = optionC;
         return this;
     }
 
-    public void setOption3(String option3) {
-        this.option3 = option3;
+    public void setOptionC(String optionC) {
+        this.optionC = optionC;
     }
 
-    public String getOption4() {
-        return option4;
+    public String getOptionD() {
+        return optionD;
     }
 
-    public Question option4(String option4) {
-        this.option4 = option4;
+    public Question optionD(String optionD) {
+        this.optionD = optionD;
         return this;
     }
 
-    public void setOption4(String option4) {
-        this.option4 = option4;
+    public void setOptionD(String optionD) {
+        this.optionD = optionD;
     }
 
     public Boolean isMultiChoice() {
@@ -247,16 +252,16 @@ public class Question implements Serializable {
         this.multiChoice = multiChoice;
     }
 
-    public String getAnswer() {
+    public Answeroption getAnswer() {
         return answer;
     }
 
-    public Question answer(String answer) {
+    public Question answer(Answeroption answer) {
         this.answer = answer;
         return this;
     }
 
-    public void setAnswer(String answer) {
+    public void setAnswer(Answeroption answer) {
         this.answer = answer;
     }
 
@@ -529,10 +534,10 @@ public class Question implements Serializable {
             ", question='" + getQuestion() + "'" +
             ", questionDiagram='" + getQuestionDiagram() + "'" +
             ", questionDiagramContentType='" + getQuestionDiagramContentType() + "'" +
-            ", option1='" + getOption1() + "'" +
-            ", option2='" + getOption2() + "'" +
-            ", option3='" + getOption3() + "'" +
-            ", option4='" + getOption4() + "'" +
+            ", optionA='" + getOptionA() + "'" +
+            ", optionB='" + getOptionB() + "'" +
+            ", optionC='" + getOptionC() + "'" +
+            ", optionD='" + getOptionD() + "'" +
             ", multiChoice='" + isMultiChoice() + "'" +
             ", answer='" + getAnswer() + "'" +
             ", maxMarks=" + getMaxMarks() +

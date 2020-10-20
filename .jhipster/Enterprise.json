@@ -115,8 +115,17 @@
             "fieldType": "Integer"
         }
     ],
-    "relationships": [],
-    "changelogDate": "20200917055204",
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "testpaper",
+            "otherEntityRelationshipName": "enterprise",
+            "relationshipName": "testpaper",
+            "otherEntityField": "id",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20201019223058",
     "entityTableName": "enterprise",
     "dto": "mapstruct",
     "pagination": "pagination",

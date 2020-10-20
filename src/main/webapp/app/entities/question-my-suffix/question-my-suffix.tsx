@@ -84,17 +84,17 @@ export class QuestionMySuffix extends React.Component<IQuestionMySuffixProps, IQ
                     <Translate contentKey="risingarjunApp.question.questionDiagram">Question Diagram</Translate>{' '}
                     <FontAwesomeIcon icon="sort" />
                   </th>
-                  <th className="hand" onClick={this.sort('option1')}>
-                    <Translate contentKey="risingarjunApp.question.option1">Option 1</Translate> <FontAwesomeIcon icon="sort" />
+                  <th className="hand" onClick={this.sort('optionA')}>
+                    <Translate contentKey="risingarjunApp.question.optionA">Option A</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
-                  <th className="hand" onClick={this.sort('option2')}>
-                    <Translate contentKey="risingarjunApp.question.option2">Option 2</Translate> <FontAwesomeIcon icon="sort" />
+                  <th className="hand" onClick={this.sort('optionB')}>
+                    <Translate contentKey="risingarjunApp.question.optionB">Option B</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
-                  <th className="hand" onClick={this.sort('option3')}>
-                    <Translate contentKey="risingarjunApp.question.option3">Option 3</Translate> <FontAwesomeIcon icon="sort" />
+                  <th className="hand" onClick={this.sort('optionC')}>
+                    <Translate contentKey="risingarjunApp.question.optionC">Option C</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
-                  <th className="hand" onClick={this.sort('option4')}>
-                    <Translate contentKey="risingarjunApp.question.option4">Option 4</Translate> <FontAwesomeIcon icon="sort" />
+                  <th className="hand" onClick={this.sort('optionD')}>
+                    <Translate contentKey="risingarjunApp.question.optionD">Option D</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th className="hand" onClick={this.sort('multiChoice')}>
                     <Translate contentKey="risingarjunApp.question.multiChoice">Multi Choice</Translate> <FontAwesomeIcon icon="sort" />
@@ -172,12 +172,14 @@ export class QuestionMySuffix extends React.Component<IQuestionMySuffixProps, IQ
                         </div>
                       ) : null}
                     </td>
-                    <td>{question.option1}</td>
-                    <td>{question.option2}</td>
-                    <td>{question.option3}</td>
-                    <td>{question.option4}</td>
+                    <td>{question.optionA}</td>
+                    <td>{question.optionB}</td>
+                    <td>{question.optionC}</td>
+                    <td>{question.optionD}</td>
                     <td>{question.multiChoice ? 'true' : 'false'}</td>
-                    <td>{question.answer}</td>
+                    <td>
+                      <Translate contentKey={`risingarjunApp.Answeroption.${question.answer}`} />
+                    </td>
                     <td>{question.maxMarks}</td>
                     <td>{question.negativeMarks}</td>
                     <td>{question.durationMins}</td>

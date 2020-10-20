@@ -116,6 +116,10 @@ import enterprise, {
 import enterprisesettings, {
   EnterprisesettingsMySuffixState
 } from 'app/entities/enterprisesettings-my-suffix/enterprisesettings-my-suffix.reducer';
+// prettier-ignore
+import testimonial, {
+  TestimonialMySuffixState
+} from 'app/entities/testimonial-my-suffix/testimonial-my-suffix.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {
@@ -155,6 +159,7 @@ export interface IRootState {
   readonly testpaper: TestpaperMySuffixState;
   readonly answersheet: AnswersheetMySuffixState;
   readonly testresult: TestresultMySuffixState;
+  readonly testimonial: TestimonialMySuffixState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -196,6 +201,7 @@ const rootReducer = combineReducers<IRootState>({
   testpaper,
   answersheet,
   testresult,
+  testimonial,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar
 });

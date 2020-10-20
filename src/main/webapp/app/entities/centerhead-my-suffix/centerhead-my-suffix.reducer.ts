@@ -21,6 +21,7 @@ const initialState = {
   entities: [] as ReadonlyArray<ICenterheadMySuffix>,
   entity: defaultValue,
   updating: false,
+  totalItems: 0,
   updateSuccess: false
 };
 
@@ -63,7 +64,8 @@ export default (state: CenterheadMySuffixState = initialState, action): Centerhe
       return {
         ...state,
         loading: false,
-        entities: action.payload.data
+        entities: action.payload.data,
+        totalItems: parseInt(action.payload.headers['x-total-count'], 10)
       };
     case SUCCESS(ACTION_TYPES.FETCH_CENTERHEAD):
       return {
@@ -99,10 +101,13 @@ const apiUrl = 'api/centerheads';
 
 // Actions
 
-export const getEntities: ICrudGetAllAction<ICenterheadMySuffix> = (page, size, sort) => ({
-  type: ACTION_TYPES.FETCH_CENTERHEAD_LIST,
-  payload: axios.get<ICenterheadMySuffix>(`${apiUrl}?cacheBuster=${new Date().getTime()}`)
-});
+export const getEntities: ICrudGetAllAction<ICenterheadMySuffix> = (page, size, sort) => {
+  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+  return {
+    type: ACTION_TYPES.FETCH_CENTERHEAD_LIST,
+    payload: axios.get<ICenterheadMySuffix>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)
+  };
+};
 
 export const getEntity: ICrudGetAction<ICenterheadMySuffix> = id => {
   const requestUrl = `${apiUrl}/${id}`;

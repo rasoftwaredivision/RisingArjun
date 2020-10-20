@@ -34,7 +34,9 @@ export const EntitiesMenu = props => (
     <MenuItem icon="asterisk" to="/entity/testresult-my-suffix">
       <Translate contentKey="global.menu.entities.testresultMySuffix" />
     </MenuItem>
-
+    <MenuItem icon="asterisk" to="/entity/testimonial-my-suffix">
+      <Translate contentKey="global.menu.entities.testimonialMySuffix" />
+    </MenuItem>
     {/* student, studentsubject,studentfee  can be viewed by all except user */}
     {(props.admin || props.enterpriseadmin || props.centerhead || props.accountant || props.student) && (
       <MenuItem icon="asterisk" to="/entity/student-my-suffix">

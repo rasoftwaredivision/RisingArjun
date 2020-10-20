@@ -36,6 +36,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.risingarjun.arjun.domain.enumeration.Answeroption;
 import com.risingarjun.arjun.domain.enumeration.Questionlevel;
 import com.risingarjun.arjun.domain.enumeration.Questionstatus;
 /**
@@ -52,23 +53,23 @@ public class QuestionResourceIT {
     private static final String DEFAULT_QUESTION_DIAGRAM_CONTENT_TYPE = "image/jpg";
     private static final String UPDATED_QUESTION_DIAGRAM_CONTENT_TYPE = "image/png";
 
-    private static final String DEFAULT_OPTION_1 = "AAAAAAAAAA";
-    private static final String UPDATED_OPTION_1 = "BBBBBBBBBB";
+    private static final String DEFAULT_OPTION_A = "AAAAAAAAAA";
+    private static final String UPDATED_OPTION_A = "BBBBBBBBBB";
 
-    private static final String DEFAULT_OPTION_2 = "AAAAAAAAAA";
-    private static final String UPDATED_OPTION_2 = "BBBBBBBBBB";
+    private static final String DEFAULT_OPTION_B = "AAAAAAAAAA";
+    private static final String UPDATED_OPTION_B = "BBBBBBBBBB";
 
-    private static final String DEFAULT_OPTION_3 = "AAAAAAAAAA";
-    private static final String UPDATED_OPTION_3 = "BBBBBBBBBB";
+    private static final String DEFAULT_OPTION_C = "AAAAAAAAAA";
+    private static final String UPDATED_OPTION_C = "BBBBBBBBBB";
 
-    private static final String DEFAULT_OPTION_4 = "AAAAAAAAAA";
-    private static final String UPDATED_OPTION_4 = "BBBBBBBBBB";
+    private static final String DEFAULT_OPTION_D = "AAAAAAAAAA";
+    private static final String UPDATED_OPTION_D = "BBBBBBBBBB";
 
     private static final Boolean DEFAULT_MULTI_CHOICE = false;
     private static final Boolean UPDATED_MULTI_CHOICE = true;
 
-    private static final String DEFAULT_ANSWER = "AAAAAAAAAA";
-    private static final String UPDATED_ANSWER = "BBBBBBBBBB";
+    private static final Answeroption DEFAULT_ANSWER = Answeroption.A;
+    private static final Answeroption UPDATED_ANSWER = Answeroption.B;
 
     private static final Integer DEFAULT_MAX_MARKS = 1;
     private static final Integer UPDATED_MAX_MARKS = 2;
@@ -153,10 +154,10 @@ public class QuestionResourceIT {
             .question(DEFAULT_QUESTION)
             .questionDiagram(DEFAULT_QUESTION_DIAGRAM)
             .questionDiagramContentType(DEFAULT_QUESTION_DIAGRAM_CONTENT_TYPE)
-            .option1(DEFAULT_OPTION_1)
-            .option2(DEFAULT_OPTION_2)
-            .option3(DEFAULT_OPTION_3)
-            .option4(DEFAULT_OPTION_4)
+            .optionA(DEFAULT_OPTION_A)
+            .optionB(DEFAULT_OPTION_B)
+            .optionC(DEFAULT_OPTION_C)
+            .optionD(DEFAULT_OPTION_D)
             .multiChoice(DEFAULT_MULTI_CHOICE)
             .answer(DEFAULT_ANSWER)
             .maxMarks(DEFAULT_MAX_MARKS)
@@ -181,10 +182,10 @@ public class QuestionResourceIT {
             .question(UPDATED_QUESTION)
             .questionDiagram(UPDATED_QUESTION_DIAGRAM)
             .questionDiagramContentType(UPDATED_QUESTION_DIAGRAM_CONTENT_TYPE)
-            .option1(UPDATED_OPTION_1)
-            .option2(UPDATED_OPTION_2)
-            .option3(UPDATED_OPTION_3)
-            .option4(UPDATED_OPTION_4)
+            .optionA(UPDATED_OPTION_A)
+            .optionB(UPDATED_OPTION_B)
+            .optionC(UPDATED_OPTION_C)
+            .optionD(UPDATED_OPTION_D)
             .multiChoice(UPDATED_MULTI_CHOICE)
             .answer(UPDATED_ANSWER)
             .maxMarks(UPDATED_MAX_MARKS)
@@ -223,10 +224,10 @@ public class QuestionResourceIT {
         assertThat(testQuestion.getQuestion()).isEqualTo(DEFAULT_QUESTION);
         assertThat(testQuestion.getQuestionDiagram()).isEqualTo(DEFAULT_QUESTION_DIAGRAM);
         assertThat(testQuestion.getQuestionDiagramContentType()).isEqualTo(DEFAULT_QUESTION_DIAGRAM_CONTENT_TYPE);
-        assertThat(testQuestion.getOption1()).isEqualTo(DEFAULT_OPTION_1);
-        assertThat(testQuestion.getOption2()).isEqualTo(DEFAULT_OPTION_2);
-        assertThat(testQuestion.getOption3()).isEqualTo(DEFAULT_OPTION_3);
-        assertThat(testQuestion.getOption4()).isEqualTo(DEFAULT_OPTION_4);
+        assertThat(testQuestion.getOptionA()).isEqualTo(DEFAULT_OPTION_A);
+        assertThat(testQuestion.getOptionB()).isEqualTo(DEFAULT_OPTION_B);
+        assertThat(testQuestion.getOptionC()).isEqualTo(DEFAULT_OPTION_C);
+        assertThat(testQuestion.getOptionD()).isEqualTo(DEFAULT_OPTION_D);
         assertThat(testQuestion.isMultiChoice()).isEqualTo(DEFAULT_MULTI_CHOICE);
         assertThat(testQuestion.getAnswer()).isEqualTo(DEFAULT_ANSWER);
         assertThat(testQuestion.getMaxMarks()).isEqualTo(DEFAULT_MAX_MARKS);
@@ -260,6 +261,44 @@ public class QuestionResourceIT {
         assertThat(questionList).hasSize(databaseSizeBeforeCreate);
     }
 
+
+    @Test
+    @Transactional
+    public void checkOptionAIsRequired() throws Exception {
+        int databaseSizeBeforeTest = questionRepository.findAll().size();
+        // set the field null
+        question.setOptionA(null);
+
+        // Create the Question, which fails.
+        QuestionDTO questionDTO = questionMapper.toDto(question);
+
+        restQuestionMockMvc.perform(post("/api/questions")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(questionDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Question> questionList = questionRepository.findAll();
+        assertThat(questionList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkOptionBIsRequired() throws Exception {
+        int databaseSizeBeforeTest = questionRepository.findAll().size();
+        // set the field null
+        question.setOptionB(null);
+
+        // Create the Question, which fails.
+        QuestionDTO questionDTO = questionMapper.toDto(question);
+
+        restQuestionMockMvc.perform(post("/api/questions")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(questionDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Question> questionList = questionRepository.findAll();
+        assertThat(questionList).hasSize(databaseSizeBeforeTest);
+    }
 
     @Test
     @Transactional
@@ -389,10 +428,10 @@ public class QuestionResourceIT {
             .andExpect(jsonPath("$.[*].question").value(hasItem(DEFAULT_QUESTION.toString())))
             .andExpect(jsonPath("$.[*].questionDiagramContentType").value(hasItem(DEFAULT_QUESTION_DIAGRAM_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].questionDiagram").value(hasItem(Base64Utils.encodeToString(DEFAULT_QUESTION_DIAGRAM))))
-            .andExpect(jsonPath("$.[*].option1").value(hasItem(DEFAULT_OPTION_1.toString())))
-            .andExpect(jsonPath("$.[*].option2").value(hasItem(DEFAULT_OPTION_2.toString())))
-            .andExpect(jsonPath("$.[*].option3").value(hasItem(DEFAULT_OPTION_3.toString())))
-            .andExpect(jsonPath("$.[*].option4").value(hasItem(DEFAULT_OPTION_4.toString())))
+            .andExpect(jsonPath("$.[*].optionA").value(hasItem(DEFAULT_OPTION_A.toString())))
+            .andExpect(jsonPath("$.[*].optionB").value(hasItem(DEFAULT_OPTION_B.toString())))
+            .andExpect(jsonPath("$.[*].optionC").value(hasItem(DEFAULT_OPTION_C.toString())))
+            .andExpect(jsonPath("$.[*].optionD").value(hasItem(DEFAULT_OPTION_D.toString())))
             .andExpect(jsonPath("$.[*].multiChoice").value(hasItem(DEFAULT_MULTI_CHOICE.booleanValue())))
             .andExpect(jsonPath("$.[*].answer").value(hasItem(DEFAULT_ANSWER.toString())))
             .andExpect(jsonPath("$.[*].maxMarks").value(hasItem(DEFAULT_MAX_MARKS)))
@@ -453,10 +492,10 @@ public class QuestionResourceIT {
             .andExpect(jsonPath("$.question").value(DEFAULT_QUESTION.toString()))
             .andExpect(jsonPath("$.questionDiagramContentType").value(DEFAULT_QUESTION_DIAGRAM_CONTENT_TYPE))
             .andExpect(jsonPath("$.questionDiagram").value(Base64Utils.encodeToString(DEFAULT_QUESTION_DIAGRAM)))
-            .andExpect(jsonPath("$.option1").value(DEFAULT_OPTION_1.toString()))
-            .andExpect(jsonPath("$.option2").value(DEFAULT_OPTION_2.toString()))
-            .andExpect(jsonPath("$.option3").value(DEFAULT_OPTION_3.toString()))
-            .andExpect(jsonPath("$.option4").value(DEFAULT_OPTION_4.toString()))
+            .andExpect(jsonPath("$.optionA").value(DEFAULT_OPTION_A.toString()))
+            .andExpect(jsonPath("$.optionB").value(DEFAULT_OPTION_B.toString()))
+            .andExpect(jsonPath("$.optionC").value(DEFAULT_OPTION_C.toString()))
+            .andExpect(jsonPath("$.optionD").value(DEFAULT_OPTION_D.toString()))
             .andExpect(jsonPath("$.multiChoice").value(DEFAULT_MULTI_CHOICE.booleanValue()))
             .andExpect(jsonPath("$.answer").value(DEFAULT_ANSWER.toString()))
             .andExpect(jsonPath("$.maxMarks").value(DEFAULT_MAX_MARKS))
@@ -494,10 +533,10 @@ public class QuestionResourceIT {
             .question(UPDATED_QUESTION)
             .questionDiagram(UPDATED_QUESTION_DIAGRAM)
             .questionDiagramContentType(UPDATED_QUESTION_DIAGRAM_CONTENT_TYPE)
-            .option1(UPDATED_OPTION_1)
-            .option2(UPDATED_OPTION_2)
-            .option3(UPDATED_OPTION_3)
-            .option4(UPDATED_OPTION_4)
+            .optionA(UPDATED_OPTION_A)
+            .optionB(UPDATED_OPTION_B)
+            .optionC(UPDATED_OPTION_C)
+            .optionD(UPDATED_OPTION_D)
             .multiChoice(UPDATED_MULTI_CHOICE)
             .answer(UPDATED_ANSWER)
             .maxMarks(UPDATED_MAX_MARKS)
@@ -523,10 +562,10 @@ public class QuestionResourceIT {
         assertThat(testQuestion.getQuestion()).isEqualTo(UPDATED_QUESTION);
         assertThat(testQuestion.getQuestionDiagram()).isEqualTo(UPDATED_QUESTION_DIAGRAM);
         assertThat(testQuestion.getQuestionDiagramContentType()).isEqualTo(UPDATED_QUESTION_DIAGRAM_CONTENT_TYPE);
-        assertThat(testQuestion.getOption1()).isEqualTo(UPDATED_OPTION_1);
-        assertThat(testQuestion.getOption2()).isEqualTo(UPDATED_OPTION_2);
-        assertThat(testQuestion.getOption3()).isEqualTo(UPDATED_OPTION_3);
-        assertThat(testQuestion.getOption4()).isEqualTo(UPDATED_OPTION_4);
+        assertThat(testQuestion.getOptionA()).isEqualTo(UPDATED_OPTION_A);
+        assertThat(testQuestion.getOptionB()).isEqualTo(UPDATED_OPTION_B);
+        assertThat(testQuestion.getOptionC()).isEqualTo(UPDATED_OPTION_C);
+        assertThat(testQuestion.getOptionD()).isEqualTo(UPDATED_OPTION_D);
         assertThat(testQuestion.isMultiChoice()).isEqualTo(UPDATED_MULTI_CHOICE);
         assertThat(testQuestion.getAnswer()).isEqualTo(UPDATED_ANSWER);
         assertThat(testQuestion.getMaxMarks()).isEqualTo(UPDATED_MAX_MARKS);

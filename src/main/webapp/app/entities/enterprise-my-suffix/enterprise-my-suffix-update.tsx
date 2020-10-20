@@ -8,6 +8,8 @@ import { Translate, translate, ICrudGetAction, ICrudGetAllAction, setFileData, o
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
+import { ITestpaperMySuffix } from 'app/shared/model/testpaper-my-suffix.model';
+import { getEntities as getTestpapers } from 'app/entities/testpaper-my-suffix/testpaper-my-suffix.reducer';
 import { getEntity, updateEntity, createEntity, setBlob, reset } from './enterprise-my-suffix.reducer';
 import { IEnterpriseMySuffix } from 'app/shared/model/enterprise-my-suffix.model';
 // tslint:disable-next-line:no-unused-variable
@@ -18,12 +20,14 @@ export interface IEnterpriseMySuffixUpdateProps extends StateProps, DispatchProp
 
 export interface IEnterpriseMySuffixUpdateState {
   isNew: boolean;
+  testpaperId: string;
 }
 
 export class EnterpriseMySuffixUpdate extends React.Component<IEnterpriseMySuffixUpdateProps, IEnterpriseMySuffixUpdateState> {
   constructor(props) {
     super(props);
     this.state = {
+      testpaperId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
   }
@@ -40,6 +44,8 @@ export class EnterpriseMySuffixUpdate extends React.Component<IEnterpriseMySuffi
     } else {
       this.props.getEntity(this.props.match.params.id);
     }
+
+    this.props.getTestpapers();
   }
 
   onBlobChange = (isAnImage, name) => event => {
@@ -71,7 +77,7 @@ export class EnterpriseMySuffixUpdate extends React.Component<IEnterpriseMySuffi
   };
 
   render() {
-    const { enterpriseEntity, loading, updating } = this.props;
+    const { enterpriseEntity, testpapers, loading, updating } = this.props;
     const { isNew } = this.state;
 
     const { logo, logoContentType } = enterpriseEntity;
@@ -338,6 +344,7 @@ export class EnterpriseMySuffixUpdate extends React.Component<IEnterpriseMySuffi
 }
 
 const mapStateToProps = (storeState: IRootState) => ({
+  testpapers: storeState.testpaper.entities,
   enterpriseEntity: storeState.enterprise.entity,
   loading: storeState.enterprise.loading,
   updating: storeState.enterprise.updating,
@@ -345,6 +352,7 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
+  getTestpapers,
   getEntity,
   updateEntity,
   setBlob,

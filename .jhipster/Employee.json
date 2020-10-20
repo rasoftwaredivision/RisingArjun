@@ -50,10 +50,10 @@
             "ownerSide": true
         }
     ],
-    "changelogDate": "20200917055153",
+    "changelogDate": "20201019223045",
     "entityTableName": "employee",
     "dto": "mapstruct",
-    "pagination": "no",
+    "pagination": "pagination",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,

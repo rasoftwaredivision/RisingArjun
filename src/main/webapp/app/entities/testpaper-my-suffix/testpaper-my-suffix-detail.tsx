@@ -47,10 +47,6 @@ export class TestpaperMySuffixDetail extends React.Component<ITestpaperMySuffixD
             </dt>
             <dd>{testpaperEntity.level}</dd>
             <dt>
-              <Translate contentKey="risingarjunApp.testpaper.enterprise">Enterprise</Translate>
-            </dt>
-            <dd>{testpaperEntity.enterpriseEnterprisename ? testpaperEntity.enterpriseEnterprisename : ''}</dd>
-            <dt>
               <Translate contentKey="risingarjunApp.testpaper.course">Course</Translate>
             </dt>
             <dd>{testpaperEntity.courseCourse ? testpaperEntity.courseCourse : ''}</dd>
@@ -58,6 +54,32 @@ export class TestpaperMySuffixDetail extends React.Component<ITestpaperMySuffixD
               <Translate contentKey="risingarjunApp.testpaper.subject">Subject</Translate>
             </dt>
             <dd>{testpaperEntity.subjectSubjectTitle ? testpaperEntity.subjectSubjectTitle : ''}</dd>
+            <dt>
+              <Translate contentKey="risingarjunApp.testpaper.enterprise">Enterprise</Translate>
+            </dt>
+            <dd>
+              {testpaperEntity.enterprises
+                ? testpaperEntity.enterprises.map((val, i) => (
+                    <span key={val.id}>
+                      <a>{val.enterprisename}</a>
+                      {i === testpaperEntity.enterprises.length - 1 ? '' : ', '}
+                    </span>
+                  ))
+                : null}
+            </dd>
+            <dt>
+              <Translate contentKey="risingarjunApp.testpaper.testresult">Testresult</Translate>
+            </dt>
+            <dd>
+              {testpaperEntity.testresults
+                ? testpaperEntity.testresults.map((val, i) => (
+                    <span key={val.id}>
+                      <a>{val.id}</a>
+                      {i === testpaperEntity.testresults.length - 1 ? '' : ', '}
+                    </span>
+                  ))
+                : null}
+            </dd>
             <dt>
               <Translate contentKey="risingarjunApp.testpaper.topic">Topic</Translate>
             </dt>

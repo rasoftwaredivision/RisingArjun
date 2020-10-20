@@ -2,7 +2,9 @@ package com.risingarjun.arjun.service;
 
 import com.risingarjun.arjun.service.dto.CenterDTO;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import java.util.Optional;
 
 /**
@@ -21,9 +23,10 @@ public interface CenterService {
     /**
      * Get all the centers.
      *
+     * @param pageable the pagination information.
      * @return the list of entities.
      */
-    List<CenterDTO> findAll();
+    Page<CenterDTO> findAll(Pageable pageable);
 
 
     /**

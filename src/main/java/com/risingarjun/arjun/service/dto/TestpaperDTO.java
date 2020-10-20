@@ -23,10 +23,6 @@ public class TestpaperDTO implements Serializable {
     private Questionlevel level;
 
 
-    private Long enterpriseId;
-
-    private String enterpriseEnterprisename;
-
     private Long courseId;
 
     private String courseCourse;
@@ -34,6 +30,10 @@ public class TestpaperDTO implements Serializable {
     private Long subjectId;
 
     private String subjectSubjectTitle;
+
+    private Set<EnterpriseDTO> enterprises = new HashSet<>();
+
+    private Set<TestresultDTO> testresults = new HashSet<>();
 
     private Set<TopicDTO> topics = new HashSet<>();
 
@@ -69,22 +69,6 @@ public class TestpaperDTO implements Serializable {
         this.level = level;
     }
 
-    public Long getEnterpriseId() {
-        return enterpriseId;
-    }
-
-    public void setEnterpriseId(Long enterpriseId) {
-        this.enterpriseId = enterpriseId;
-    }
-
-    public String getEnterpriseEnterprisename() {
-        return enterpriseEnterprisename;
-    }
-
-    public void setEnterpriseEnterprisename(String enterpriseEnterprisename) {
-        this.enterpriseEnterprisename = enterpriseEnterprisename;
-    }
-
     public Long getCourseId() {
         return courseId;
     }
@@ -117,11 +101,25 @@ public class TestpaperDTO implements Serializable {
         this.subjectSubjectTitle = subjectSubjectTitle;
     }
 
+    public Set<EnterpriseDTO> getEnterprises() {
+        return enterprises;
+    }
+
+    public void setEnterprises(Set<EnterpriseDTO> enterprises) {
+        this.enterprises = enterprises;
+    }
+
+    public Set<TestresultDTO> getTestresults() {
+        return testresults;
+    }
+
+    public void setTestresults(Set<TestresultDTO> testresults) {
+        this.testresults = testresults;
+    }
+
     public Set<TopicDTO> getTopics() {
         return topics;
     }
-
-    
 
     public void setTopics(Set<TopicDTO> topics) {
         this.topics = topics;
@@ -155,8 +153,6 @@ public class TestpaperDTO implements Serializable {
             ", maxMarks=" + getMaxMarks() +
             ", durationMins=" + getDurationMins() +
             ", level='" + getLevel() + "'" +
-            ", enterprise=" + getEnterpriseId() +
-            ", enterprise='" + getEnterpriseEnterprisename() + "'" +
             ", course=" + getCourseId() +
             ", course='" + getCourseCourse() + "'" +
             ", subject=" + getSubjectId() +

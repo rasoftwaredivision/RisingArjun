@@ -1,4 +1,5 @@
 package com.risingarjun.arjun.domain;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -8,6 +9,10 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+
+import com.risingarjun.arjun.domain.enumeration.Answeroption;
+
+import com.risingarjun.arjun.domain.enumeration.Answerstatus;
 
 /**
  * A Answersheet.
@@ -25,16 +30,17 @@ public class Answersheet implements Serializable {
     private Long id;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(name = "answer", nullable = false)
-    private String answer;
+    private Answeroption answer;
 
     @NotNull
     @Column(name = "marks", nullable = false)
     private Integer marks;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Testresult testResultId;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private Answerstatus status;
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -42,6 +48,11 @@ public class Answersheet implements Serializable {
                joinColumns = @JoinColumn(name = "answersheet_id", referencedColumnName = "id"),
                inverseJoinColumns = @JoinColumn(name = "question_id", referencedColumnName = "id"))
     private Set<Question> questions = new HashSet<>();
+
+    @ManyToMany(mappedBy = "answersheets")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JsonIgnore
+    private Set<Testresult> testresults = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -52,16 +63,16 @@ public class Answersheet implements Serializable {
         this.id = id;
     }
 
-    public String getAnswer() {
+    public Answeroption getAnswer() {
         return answer;
     }
 
-    public Answersheet answer(String answer) {
+    public Answersheet answer(Answeroption answer) {
         this.answer = answer;
         return this;
     }
 
-    public void setAnswer(String answer) {
+    public void setAnswer(Answeroption answer) {
         this.answer = answer;
     }
 
@@ -78,17 +89,17 @@ public class Answersheet implements Serializable {
         this.marks = marks;
     }
 
-    public Testresult getTestResultId() {
-        return testResultId;
+    public Answerstatus getStatus() {
+        return status;
     }
 
-    public Answersheet testResultId(Testresult testresult) {
-        this.testResultId = testresult;
+    public Answersheet status(Answerstatus status) {
+        this.status = status;
         return this;
     }
 
-    public void setTestResultId(Testresult testresult) {
-        this.testResultId = testresult;
+    public void setStatus(Answerstatus status) {
+        this.status = status;
     }
 
     public Set<Question> getQuestions() {
@@ -115,6 +126,31 @@ public class Answersheet implements Serializable {
     public void setQuestions(Set<Question> questions) {
         this.questions = questions;
     }
+
+    public Set<Testresult> getTestresults() {
+        return testresults;
+    }
+
+    public Answersheet testresults(Set<Testresult> testresults) {
+        this.testresults = testresults;
+        return this;
+    }
+
+    public Answersheet addTestresult(Testresult testresult) {
+        this.testresults.add(testresult);
+        testresult.getAnswersheets().add(this);
+        return this;
+    }
+
+    public Answersheet removeTestresult(Testresult testresult) {
+        this.testresults.remove(testresult);
+        testresult.getAnswersheets().remove(this);
+        return this;
+    }
+
+    public void setTestresults(Set<Testresult> testresults) {
+        this.testresults = testresults;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -139,6 +175,7 @@ public class Answersheet implements Serializable {
             "id=" + getId() +
             ", answer='" + getAnswer() + "'" +
             ", marks=" + getMarks() +
+            ", status='" + getStatus() + "'" +
             "}";
     }
 }

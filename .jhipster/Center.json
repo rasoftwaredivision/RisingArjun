@@ -59,17 +59,18 @@
             "otherEntityField": "enterprisename"
         },
         {
-            "relationshipType": "many-to-one",
+            "relationshipType": "many-to-many",
             "otherEntityName": "centerhead",
             "otherEntityRelationshipName": "center",
             "relationshipName": "centerhead",
-            "otherEntityField": "id"
+            "otherEntityField": "id",
+            "ownerSide": false
         }
     ],
-    "changelogDate": "20200930095443",
+    "changelogDate": "20201019223046",
     "entityTableName": "center",
     "dto": "mapstruct",
-    "pagination": "no",
+    "pagination": "pagination",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,

@@ -33,6 +33,7 @@
         "testpaperMySuffix": "Testpaper",
         "answersheetMySuffix": "Answersheet",
         "testresultMySuffix": "Testresult",
+        "testimonialMySuffix": "Testimonial",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

@@ -18,8 +18,9 @@
       },
       "answer": "Answer",
       "marks": "Marks",
-      "testResultId": "Test Result Id",
-      "question": "Question"
+      "status": "Status",
+      "question": "Question",
+      "testresult": "Testresult"
     }
   }
 }

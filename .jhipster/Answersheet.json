@@ -3,7 +3,8 @@
     "fields": [
         {
             "fieldName": "answer",
-            "fieldType": "String",
+            "fieldType": "Answeroption",
+            "fieldValues": "A,B,C,D,A_B,A_C,A_D,B_C,B_D,C_D,A_B_C,A_B_D,A_C_D,B_C_D,A_B_C_D",
             "fieldValidateRules": [
                 "required"
             ]
@@ -14,17 +15,14 @@
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Answerstatus",
+            "fieldValues": "DRAFT,FINAL"
         }
     ],
     "relationships": [
-        {
-            "relationshipType": "one-to-one",
-            "otherEntityName": "testresult",
-            "otherEntityRelationshipName": "answersheet",
-            "relationshipName": "testResultId",
-            "otherEntityField": "id",
-            "ownerSide": true
-        },
         {
             "relationshipType": "many-to-many",
             "otherEntityName": "question",
@@ -32,9 +30,17 @@
             "relationshipName": "question",
             "otherEntityField": "question",
             "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "testresult",
+            "otherEntityRelationshipName": "answersheet",
+            "relationshipName": "testresult",
+            "otherEntityField": "id",
+            "ownerSide": false
         }
     ],
-    "changelogDate": "20200930095453",
+    "changelogDate": "20201019223056",
     "entityTableName": "answersheet",
     "dto": "mapstruct",
     "pagination": "pagination",

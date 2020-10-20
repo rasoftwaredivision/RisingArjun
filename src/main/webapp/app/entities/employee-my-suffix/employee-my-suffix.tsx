@@ -3,7 +3,16 @@ import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
 // tslint:disable-next-line:no-unused-variable
-import { openFile, byteSize, Translate, ICrudGetAllAction } from 'react-jhipster';
+import {
+  openFile,
+  byteSize,
+  Translate,
+  ICrudGetAllAction,
+  getSortState,
+  IPaginationBaseState,
+  JhiPagination,
+  JhiItemCount
+} from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
@@ -11,16 +20,45 @@ import { getEntities } from './employee-my-suffix.reducer';
 import { IEmployeeMySuffix } from 'app/shared/model/employee-my-suffix.model';
 // tslint:disable-next-line:no-unused-variable
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 
 export interface IEmployeeMySuffixProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
-export class EmployeeMySuffix extends React.Component<IEmployeeMySuffixProps> {
+export type IEmployeeMySuffixState = IPaginationBaseState;
+
+export class EmployeeMySuffix extends React.Component<IEmployeeMySuffixProps, IEmployeeMySuffixState> {
+  state: IEmployeeMySuffixState = {
+    ...getSortState(this.props.location, ITEMS_PER_PAGE)
+  };
+
   componentDidMount() {
-    this.props.getEntities();
+    this.getEntities();
   }
 
+  sort = prop => () => {
+    this.setState(
+      {
+        order: this.state.order === 'asc' ? 'desc' : 'asc',
+        sort: prop
+      },
+      () => this.sortEntities()
+    );
+  };
+
+  sortEntities() {
+    this.getEntities();
+    this.props.history.push(`${this.props.location.pathname}?page=${this.state.activePage}&sort=${this.state.sort},${this.state.order}`);
+  }
+
+  handlePagination = activePage => this.setState({ activePage }, () => this.sortEntities());
+
+  getEntities = () => {
+    const { activePage, itemsPerPage, sort, order } = this.state;
+    this.props.getEntities(activePage - 1, itemsPerPage, `${sort},${order}`);
+  };
+
   render() {
-    const { employeeList, match } = this.props;
+    const { employeeList, match, totalItems } = this.props;
     return (
       <div>
         <h2 id="employee-my-suffix-heading">
@@ -36,35 +74,35 @@ export class EmployeeMySuffix extends React.Component<IEmployeeMySuffixProps> {
             <Table responsive>
               <thead>
                 <tr>
-                  <th>
-                    <Translate contentKey="global.field.id">ID</Translate>
+                  <th className="hand" onClick={this.sort('id')}>
+                    <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('employeeId')}>
+                    <Translate contentKey="risingarjunApp.employee.employeeId">Employee Id</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('jobNature')}>
+                    <Translate contentKey="risingarjunApp.employee.jobNature">Job Nature</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('bgc')}>
+                    <Translate contentKey="risingarjunApp.employee.bgc">Bgc</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('resume')}>
+                    <Translate contentKey="risingarjunApp.employee.resume">Resume</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('pan')}>
+                    <Translate contentKey="risingarjunApp.employee.pan">Pan</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('accountNo')}>
+                    <Translate contentKey="risingarjunApp.employee.accountNo">Account No</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('bank')}>
+                    <Translate contentKey="risingarjunApp.employee.bank">Bank</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('ifsc')}>
+                    <Translate contentKey="risingarjunApp.employee.ifsc">Ifsc</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th>
-                    <Translate contentKey="risingarjunApp.employee.employeeId">Employee Id</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.employee.jobNature">Job Nature</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.employee.bgc">Bgc</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.employee.resume">Resume</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.employee.pan">Pan</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.employee.accountNo">Account No</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.employee.bank">Bank</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.employee.ifsc">Ifsc</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.employee.user">User</Translate>
+                    <Translate contentKey="risingarjunApp.employee.user">User</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th />
                 </tr>
@@ -132,13 +170,28 @@ export class EmployeeMySuffix extends React.Component<IEmployeeMySuffixProps> {
             </div>
           )}
         </div>
+        <div className={employeeList && employeeList.length > 0 ? '' : 'd-none'}>
+          <Row className="justify-content-center">
+            <JhiItemCount page={this.state.activePage} total={totalItems} itemsPerPage={this.state.itemsPerPage} i18nEnabled />
+          </Row>
+          <Row className="justify-content-center">
+            <JhiPagination
+              activePage={this.state.activePage}
+              onSelect={this.handlePagination}
+              maxButtons={5}
+              itemsPerPage={this.state.itemsPerPage}
+              totalItems={this.props.totalItems}
+            />
+          </Row>
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = ({ employee }: IRootState) => ({
-  employeeList: employee.entities
+  employeeList: employee.entities,
+  totalItems: employee.totalItems
 });
 
 const mapDispatchToProps = {

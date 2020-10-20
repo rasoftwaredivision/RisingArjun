@@ -27,10 +27,10 @@
             "ownerSide": true
         }
     ],
-    "changelogDate": "20200930095445",
+    "changelogDate": "20201019223048",
     "entityTableName": "teacher",
     "dto": "mapstruct",
-    "pagination": "no",
+    "pagination": "pagination",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,

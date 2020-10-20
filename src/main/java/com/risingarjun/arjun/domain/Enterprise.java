@@ -1,4 +1,5 @@
 package com.risingarjun.arjun.domain;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -6,6 +7,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.risingarjun.arjun.domain.enumeration.Natureofbusiness;
 
@@ -102,6 +105,11 @@ public class Enterprise implements Serializable {
 
     @Column(name = "pincode")
     private Integer pincode;
+
+    @ManyToMany(mappedBy = "enterprises")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JsonIgnore
+    private Set<Testpaper> testpapers = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -357,6 +365,31 @@ public class Enterprise implements Serializable {
 
     public void setPincode(Integer pincode) {
         this.pincode = pincode;
+    }
+
+    public Set<Testpaper> getTestpapers() {
+        return testpapers;
+    }
+
+    public Enterprise testpapers(Set<Testpaper> testpapers) {
+        this.testpapers = testpapers;
+        return this;
+    }
+
+    public Enterprise addTestpaper(Testpaper testpaper) {
+        this.testpapers.add(testpaper);
+        testpaper.getEnterprises().add(this);
+        return this;
+    }
+
+    public Enterprise removeTestpaper(Testpaper testpaper) {
+        this.testpapers.remove(testpaper);
+        testpaper.getEnterprises().remove(this);
+        return this;
+    }
+
+    public void setTestpapers(Set<Testpaper> testpapers) {
+        this.testpapers = testpapers;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

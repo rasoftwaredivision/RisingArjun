@@ -27,13 +27,6 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
-            "otherEntityName": "enterprise",
-            "otherEntityRelationshipName": "testpaper",
-            "relationshipName": "enterprise",
-            "otherEntityField": "enterprisename"
-        },
-        {
-            "relationshipType": "many-to-one",
             "otherEntityName": "course",
             "otherEntityRelationshipName": "testpaper",
             "relationshipName": "course",
@@ -48,6 +41,22 @@
         },
         {
             "relationshipType": "many-to-many",
+            "otherEntityName": "enterprise",
+            "otherEntityRelationshipName": "testpaper",
+            "relationshipName": "enterprise",
+            "otherEntityField": "enterprisename",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "testresult",
+            "otherEntityRelationshipName": "testpaper",
+            "relationshipName": "testresult",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
             "otherEntityName": "topic",
             "otherEntityRelationshipName": "testpaper",
             "relationshipName": "topic",
@@ -55,10 +64,10 @@
             "ownerSide": true
         }
     ],
-    "changelogDate": "20200930095452",
+    "changelogDate": "20201019223055",
     "entityTableName": "testpaper",
     "dto": "mapstruct",
-    "pagination": "no",
+    "pagination": "pagination",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,

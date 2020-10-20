@@ -11,16 +11,18 @@
             "ownerSide": true
         },
         {
-            "relationshipType": "one-to-many",
+            "relationshipType": "many-to-many",
             "otherEntityName": "center",
             "otherEntityRelationshipName": "centerhead",
-            "relationshipName": "center"
+            "relationshipName": "center",
+            "otherEntityField": "id",
+            "ownerSide": true
         }
     ],
-    "changelogDate": "20200930095444",
+    "changelogDate": "20201019223047",
     "entityTableName": "centerhead",
     "dto": "mapstruct",
-    "pagination": "no",
+    "pagination": "pagination",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,

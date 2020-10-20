@@ -8,12 +8,14 @@ import { Translate, translate, ICrudGetAction, ICrudGetAllAction, ICrudPutAction
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
-import { IEnterpriseMySuffix } from 'app/shared/model/enterprise-my-suffix.model';
-import { getEntities as getEnterprises } from 'app/entities/enterprise-my-suffix/enterprise-my-suffix.reducer';
 import { ICourseMySuffix } from 'app/shared/model/course-my-suffix.model';
 import { getEntities as getCourses } from 'app/entities/course-my-suffix/course-my-suffix.reducer';
 import { ISubjectMySuffix } from 'app/shared/model/subject-my-suffix.model';
 import { getEntities as getSubjects } from 'app/entities/subject-my-suffix/subject-my-suffix.reducer';
+import { IEnterpriseMySuffix } from 'app/shared/model/enterprise-my-suffix.model';
+import { getEntities as getEnterprises } from 'app/entities/enterprise-my-suffix/enterprise-my-suffix.reducer';
+import { ITestresultMySuffix } from 'app/shared/model/testresult-my-suffix.model';
+import { getEntities as getTestresults } from 'app/entities/testresult-my-suffix/testresult-my-suffix.reducer';
 import { ITopicMySuffix } from 'app/shared/model/topic-my-suffix.model';
 import { getEntities as getTopics } from 'app/entities/topic-my-suffix/topic-my-suffix.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './testpaper-my-suffix.reducer';
@@ -26,8 +28,9 @@ export interface ITestpaperMySuffixUpdateProps extends StateProps, DispatchProps
 
 export interface ITestpaperMySuffixUpdateState {
   isNew: boolean;
+  idsenterprise: any[];
+  idstestresult: any[];
   idstopic: any[];
-  enterpriseId: string;
   courseId: string;
   subjectId: string;
 }
@@ -36,8 +39,9 @@ export class TestpaperMySuffixUpdate extends React.Component<ITestpaperMySuffixU
   constructor(props) {
     super(props);
     this.state = {
+      idsenterprise: [],
+      idstestresult: [],
       idstopic: [],
-      enterpriseId: '0',
       courseId: '0',
       subjectId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
@@ -57,9 +61,10 @@ export class TestpaperMySuffixUpdate extends React.Component<ITestpaperMySuffixU
       this.props.getEntity(this.props.match.params.id);
     }
 
-    this.props.getEnterprises();
     this.props.getCourses();
     this.props.getSubjects();
+    this.props.getEnterprises();
+    this.props.getTestresults();
     this.props.getTopics();
   }
 
@@ -69,6 +74,8 @@ export class TestpaperMySuffixUpdate extends React.Component<ITestpaperMySuffixU
       const entity = {
         ...testpaperEntity,
         ...values,
+        enterprises: mapIdList(values.enterprises),
+        testresults: mapIdList(values.testresults),
         topics: mapIdList(values.topics)
       };
 
@@ -85,7 +92,7 @@ export class TestpaperMySuffixUpdate extends React.Component<ITestpaperMySuffixU
   };
 
   render() {
-    const { testpaperEntity, enterprises, courses, subjects, topics, loading, updating } = this.props;
+    const { testpaperEntity, courses, subjects, enterprises, testresults, topics, loading, updating } = this.props;
     const { isNew } = this.state;
 
     return (
@@ -158,21 +165,6 @@ export class TestpaperMySuffixUpdate extends React.Component<ITestpaperMySuffixU
                   </AvInput>
                 </AvGroup>
                 <AvGroup>
-                  <Label for="testpaper-my-suffix-enterprise">
-                    <Translate contentKey="risingarjunApp.testpaper.enterprise">Enterprise</Translate>
-                  </Label>
-                  <AvInput id="testpaper-my-suffix-enterprise" type="select" className="form-control" name="enterpriseId">
-                    <option value="" key="0" />
-                    {enterprises
-                      ? enterprises.map(otherEntity => (
-                          <option value={otherEntity.id} key={otherEntity.id}>
-                            {otherEntity.enterprisename}
-                          </option>
-                        ))
-                      : null}
-                  </AvInput>
-                </AvGroup>
-                <AvGroup>
                   <Label for="testpaper-my-suffix-course">
                     <Translate contentKey="risingarjunApp.testpaper.course">Course</Translate>
                   </Label>
@@ -197,6 +189,50 @@ export class TestpaperMySuffixUpdate extends React.Component<ITestpaperMySuffixU
                       ? subjects.map(otherEntity => (
                           <option value={otherEntity.id} key={otherEntity.id}>
                             {otherEntity.subjectTitle}
+                          </option>
+                        ))
+                      : null}
+                  </AvInput>
+                </AvGroup>
+                <AvGroup>
+                  <Label for="testpaper-my-suffix-enterprise">
+                    <Translate contentKey="risingarjunApp.testpaper.enterprise">Enterprise</Translate>
+                  </Label>
+                  <AvInput
+                    id="testpaper-my-suffix-enterprise"
+                    type="select"
+                    multiple
+                    className="form-control"
+                    name="enterprises"
+                    value={testpaperEntity.enterprises && testpaperEntity.enterprises.map(e => e.id)}
+                  >
+                    <option value="" key="0" />
+                    {enterprises
+                      ? enterprises.map(otherEntity => (
+                          <option value={otherEntity.id} key={otherEntity.id}>
+                            {otherEntity.enterprisename}
+                          </option>
+                        ))
+                      : null}
+                  </AvInput>
+                </AvGroup>
+                <AvGroup>
+                  <Label for="testpaper-my-suffix-testresult">
+                    <Translate contentKey="risingarjunApp.testpaper.testresult">Testresult</Translate>
+                  </Label>
+                  <AvInput
+                    id="testpaper-my-suffix-testresult"
+                    type="select"
+                    multiple
+                    className="form-control"
+                    name="testresults"
+                    value={testpaperEntity.testresults && testpaperEntity.testresults.map(e => e.id)}
+                  >
+                    <option value="" key="0" />
+                    {testresults
+                      ? testresults.map(otherEntity => (
+                          <option value={otherEntity.id} key={otherEntity.id}>
+                            {otherEntity.id}
                           </option>
                         ))
                       : null}
@@ -247,9 +283,10 @@ export class TestpaperMySuffixUpdate extends React.Component<ITestpaperMySuffixU
 }
 
 const mapStateToProps = (storeState: IRootState) => ({
-  enterprises: storeState.enterprise.entities,
   courses: storeState.course.entities,
   subjects: storeState.subject.entities,
+  enterprises: storeState.enterprise.entities,
+  testresults: storeState.testresult.entities,
   topics: storeState.topic.entities,
   testpaperEntity: storeState.testpaper.entity,
   loading: storeState.testpaper.loading,
@@ -258,9 +295,10 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
-  getEnterprises,
   getCourses,
   getSubjects,
+  getEnterprises,
+  getTestresults,
   getTopics,
   getEntity,
   updateEntity,

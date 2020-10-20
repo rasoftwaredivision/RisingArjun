@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
 // tslint:disable-next-line:no-unused-variable
-import { Translate, ICrudGetAllAction } from 'react-jhipster';
+import { Translate, ICrudGetAllAction, getSortState, IPaginationBaseState, JhiPagination, JhiItemCount } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
@@ -11,16 +11,45 @@ import { getEntities } from './fundamentaldetail-my-suffix.reducer';
 import { IFundamentaldetailMySuffix } from 'app/shared/model/fundamentaldetail-my-suffix.model';
 // tslint:disable-next-line:no-unused-variable
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 
 export interface IFundamentaldetailMySuffixProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
-export class FundamentaldetailMySuffix extends React.Component<IFundamentaldetailMySuffixProps> {
+export type IFundamentaldetailMySuffixState = IPaginationBaseState;
+
+export class FundamentaldetailMySuffix extends React.Component<IFundamentaldetailMySuffixProps, IFundamentaldetailMySuffixState> {
+  state: IFundamentaldetailMySuffixState = {
+    ...getSortState(this.props.location, ITEMS_PER_PAGE)
+  };
+
   componentDidMount() {
-    this.props.getEntities();
+    this.getEntities();
   }
 
+  sort = prop => () => {
+    this.setState(
+      {
+        order: this.state.order === 'asc' ? 'desc' : 'asc',
+        sort: prop
+      },
+      () => this.sortEntities()
+    );
+  };
+
+  sortEntities() {
+    this.getEntities();
+    this.props.history.push(`${this.props.location.pathname}?page=${this.state.activePage}&sort=${this.state.sort},${this.state.order}`);
+  }
+
+  handlePagination = activePage => this.setState({ activePage }, () => this.sortEntities());
+
+  getEntities = () => {
+    const { activePage, itemsPerPage, sort, order } = this.state;
+    this.props.getEntities(activePage - 1, itemsPerPage, `${sort},${order}`);
+  };
+
   render() {
-    const { fundamentaldetailList, match } = this.props;
+    const { fundamentaldetailList, match, totalItems } = this.props;
     return (
       <div>
         <h2 id="fundamentaldetail-my-suffix-heading">
@@ -36,14 +65,14 @@ export class FundamentaldetailMySuffix extends React.Component<IFundamentaldetai
             <Table responsive>
               <thead>
                 <tr>
-                  <th>
-                    <Translate contentKey="global.field.id">ID</Translate>
+                  <th className="hand" onClick={this.sort('id')}>
+                    <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.fundamentaldetail.concept">Concept</Translate>
+                  <th className="hand" onClick={this.sort('concept')}>
+                    <Translate contentKey="risingarjunApp.fundamentaldetail.concept">Concept</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
-                  <th>
-                    <Translate contentKey="risingarjunApp.fundamentaldetail.details">Details</Translate>
+                  <th className="hand" onClick={this.sort('details')}>
+                    <Translate contentKey="risingarjunApp.fundamentaldetail.details">Details</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th />
                 </tr>
@@ -92,13 +121,28 @@ export class FundamentaldetailMySuffix extends React.Component<IFundamentaldetai
             </div>
           )}
         </div>
+        <div className={fundamentaldetailList && fundamentaldetailList.length > 0 ? '' : 'd-none'}>
+          <Row className="justify-content-center">
+            <JhiItemCount page={this.state.activePage} total={totalItems} itemsPerPage={this.state.itemsPerPage} i18nEnabled />
+          </Row>
+          <Row className="justify-content-center">
+            <JhiPagination
+              activePage={this.state.activePage}
+              onSelect={this.handlePagination}
+              maxButtons={5}
+              itemsPerPage={this.state.itemsPerPage}
+              totalItems={this.props.totalItems}
+            />
+          </Row>
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = ({ fundamentaldetail }: IRootState) => ({
-  fundamentaldetailList: fundamentaldetail.entities
+  fundamentaldetailList: fundamentaldetail.entities,
+  totalItems: fundamentaldetail.totalItems
 });
 
 const mapDispatchToProps = {

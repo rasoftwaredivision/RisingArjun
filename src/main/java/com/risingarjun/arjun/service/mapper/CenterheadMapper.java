@@ -8,7 +8,7 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link Centerhead} and its DTO {@link CenterheadDTO}.
  */
-@Mapper(componentModel = "spring", uses = {EmployeeMapper.class})
+@Mapper(componentModel = "spring", uses = {EmployeeMapper.class, CenterMapper.class})
 public interface CenterheadMapper extends EntityMapper<CenterheadDTO, Centerhead> {
 
     @Mapping(source = "centerhead.id", target = "centerheadId")
@@ -16,7 +16,6 @@ public interface CenterheadMapper extends EntityMapper<CenterheadDTO, Centerhead
     CenterheadDTO toDto(Centerhead centerhead);
 
     @Mapping(source = "centerheadId", target = "centerhead")
-    @Mapping(target = "centers", ignore = true)
     @Mapping(target = "removeCenter", ignore = true)
     Centerhead toEntity(CenterheadDTO centerheadDTO);
 

@@ -13,10 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * Service Implementation for managing {@link Studentsubject}.
@@ -53,15 +50,15 @@ public class StudentsubjectServiceImpl implements StudentsubjectService {
     /**
      * Get all the studentsubjects.
      *
+     * @param pageable the pagination information.
      * @return the list of entities.
      */
     @Override
     @Transactional(readOnly = true)
-    public List<StudentsubjectDTO> findAll() {
+    public Page<StudentsubjectDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Studentsubjects");
-        return studentsubjectRepository.findAllWithEagerRelationships().stream()
-            .map(studentsubjectMapper::toDto)
-            .collect(Collectors.toCollection(LinkedList::new));
+        return studentsubjectRepository.findAll(pageable)
+            .map(studentsubjectMapper::toDto);
     }
 
     /**

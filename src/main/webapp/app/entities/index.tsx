@@ -30,6 +30,7 @@ import TopicMySuffix from './topic-my-suffix';
 import TestpaperMySuffix from './testpaper-my-suffix';
 import AnswersheetMySuffix from './answersheet-my-suffix';
 import TestresultMySuffix from './testresult-my-suffix';
+import TestimonialMySuffix from './testimonial-my-suffix';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 const Routes = ({ match }) => (
@@ -62,6 +63,7 @@ const Routes = ({ match }) => (
       <ErrorBoundaryRoute path={`${match.url}/testpaper-my-suffix`} component={TestpaperMySuffix} />
       <ErrorBoundaryRoute path={`${match.url}/answersheet-my-suffix`} component={AnswersheetMySuffix} />
       <ErrorBoundaryRoute path={`${match.url}/testresult-my-suffix`} component={TestresultMySuffix} />
+      <ErrorBoundaryRoute path={`${match.url}/testimonial-my-suffix`} component={TestimonialMySuffix} />
       {/* jhipster-needle-add-route-path - JHipster will add routes here */}
     </Switch>
   </div>

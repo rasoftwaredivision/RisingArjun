@@ -15,19 +15,25 @@
             "fieldTypeBlobContent": "image"
         },
         {
-            "fieldName": "option1",
+            "fieldName": "optionA",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "optionB",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "optionC",
             "fieldType": "String"
         },
         {
-            "fieldName": "option2",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "option3",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "option4",
+            "fieldName": "optionD",
             "fieldType": "String"
         },
         {
@@ -39,7 +45,8 @@
         },
         {
             "fieldName": "answer",
-            "fieldType": "String",
+            "fieldType": "Answeroption",
+            "fieldValues": "A,B,C,D,A_B,A_C,A_D,B_C,B_D,C_D,A_B_C,A_B_D,A_C_D,B_C_D,A_B_C_D",
             "fieldValidateRules": [
                 "required"
             ]
@@ -152,7 +159,7 @@
             "ownerSide": false
         }
     ],
-    "changelogDate": "20200930095451",
+    "changelogDate": "20201019223054",
     "entityTableName": "question",
     "dto": "mapstruct",
     "pagination": "pagination",

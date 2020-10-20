@@ -16,10 +16,10 @@
             "ownerSide": true
         }
     ],
-    "changelogDate": "20200917055143",
+    "changelogDate": "20201019223035",
     "entityTableName": "userpreference",
     "dto": "mapstruct",
-    "pagination": "no",
+    "pagination": "pagination",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,

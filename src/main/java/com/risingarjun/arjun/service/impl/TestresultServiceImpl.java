@@ -8,13 +8,12 @@ import com.risingarjun.arjun.service.mapper.TestresultMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * Service Implementation for managing {@link Testresult}.
@@ -51,17 +50,26 @@ public class TestresultServiceImpl implements TestresultService {
     /**
      * Get all the testresults.
      *
+     * @param pageable the pagination information.
      * @return the list of entities.
      */
     @Override
     @Transactional(readOnly = true)
-    public List<TestresultDTO> findAll() {
+    public Page<TestresultDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Testresults");
-        return testresultRepository.findAll().stream()
-            .map(testresultMapper::toDto)
-            .collect(Collectors.toCollection(LinkedList::new));
+        return testresultRepository.findAll(pageable)
+            .map(testresultMapper::toDto);
     }
 
+    /**
+     * Get all the testresults with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    public Page<TestresultDTO> findAllWithEagerRelationships(Pageable pageable) {
+        return testresultRepository.findAllWithEagerRelationships(pageable).map(testresultMapper::toDto);
+    }
+    
 
     /**
      * Get one testresult by id.
@@ -73,7 +81,7 @@ public class TestresultServiceImpl implements TestresultService {
     @Transactional(readOnly = true)
     public Optional<TestresultDTO> findOne(Long id) {
         log.debug("Request to get Testresult : {}", id);
-        return testresultRepository.findById(id)
+        return testresultRepository.findOneWithEagerRelationships(id)
             .map(testresultMapper::toDto);
     }
 

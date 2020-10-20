@@ -74,10 +74,6 @@ export class CenterMySuffixDetail extends React.Component<ICenterMySuffixDetailP
               <Translate contentKey="risingarjunApp.center.enterprise">Enterprise</Translate>
             </dt>
             <dd>{centerEntity.enterpriseEnterprisename ? centerEntity.enterpriseEnterprisename : ''}</dd>
-            <dt>
-              <Translate contentKey="risingarjunApp.center.centerhead">Centerhead</Translate>
-            </dt>
-            <dd>{centerEntity.centerheadId ? centerEntity.centerheadId : ''}</dd>
           </dl>
           <Button tag={Link} to="/entity/center-my-suffix" replace color="info">
             <FontAwesomeIcon icon="arrow-left" />{' '}
