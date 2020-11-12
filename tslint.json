@@ -38,7 +38,7 @@
     "arrow-return-shorthand": [true],
     "import-spacing": true,
     "no-consecutive-blank-lines": [true],
-    "object-literal-shorthand": true,
+    "object-literal-shorthand": false,
     "space-before-function-paren": [true, { "named": "never", "asyncArrow": "always" }],
     "trailing-comma": [
       true,
@@ -128,7 +128,7 @@
     "arrow-return-shorthand": [true],
     "import-spacing": true,
     "no-consecutive-blank-lines": [true],
-    "object-literal-shorthand": true,
+    "object-literal-shorthand": false,
     "space-before-function-paren": [true, { "named": "never", "asyncArrow": "always" }],
     "trailing-comma": [
       true,
