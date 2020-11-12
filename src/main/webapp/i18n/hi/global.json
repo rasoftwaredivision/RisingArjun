@@ -4,6 +4,7 @@
     "browsehappy": "à¤†à¤ª à¤�à¤• <strong>à¤ªà¥�à¤°à¤¾à¤¨à¥‡</strong> à¤¬à¥�à¤°à¤¾à¤‰à¤œà¤¼à¤° à¤•à¤¾ à¤‰à¤ªà¤¯à¥‹à¤— à¤•à¤° à¤°à¤¹à¥‡ à¤¹à¥ˆà¤‚à¥¤ à¤•à¥ƒà¤ªà¤¯à¤¾ à¤…à¤ªà¤¨à¥‡ à¤…à¤¨à¥�à¤­à¤µ à¤®à¥‡à¤‚ à¤¸à¥�à¤§à¤¾à¤° à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤� à¤…à¤ªà¤¨à¥‡ <a href=\"http://browsehappy.com/?locale=en\">à¤¬à¥�à¤°à¤¾à¤‰à¤œà¤¼à¤° à¤•à¥‹ à¤…à¤ªà¤—à¥�à¤°à¥‡à¤¡ à¤•à¤°à¥‡à¤‚</a>",
     "menu": {
       "home": "à¤¹à¥‹à¤®",
+      "default": "[HI] Default",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "à¤�à¤‚à¤Ÿà¤¿à¤Ÿà¥€à¤œà¤¼",

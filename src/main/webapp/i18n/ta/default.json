@@ -1,0 +1,17 @@
+{
+  "default": {
+    "page": {
+      "title": "[TA] Default"
+    },
+    "title": "[TA] What is coverb?",
+    "description": "[TA] It is a page generator for jhipster application",
+    "feature": {
+      "title": "[TA] Features",
+      "description": "[TA] What we offer?"
+    },
+    "portafolio": {
+      "title": "[TA] Portafolio",
+      "description": "[TA] What did we already created?"
+    }
+  }
+}
