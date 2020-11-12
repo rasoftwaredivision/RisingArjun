@@ -42,6 +42,11 @@ Also update PATH variable to point to Graphviz bin folder eg C:\Program Files (x
     auto-refreshes when files change on your hard drive.
     ./mvnw
     npm start
+    
+ 11. Debugging: If you get any build failures do this: 
+     mvnw clean
+     npm run cleanup && npm run webpack:build:main
+     mvnw
 
 Npm is also used to manage CSS and JavaScript dependencies used in this application. You can upgrade dependencies by
 specifying a newer version in [package.json](package.json). You can also run `npm update` and `npm install` to manage dependencies.
