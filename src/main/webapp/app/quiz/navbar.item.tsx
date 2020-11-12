@@ -9,7 +9,7 @@ const Default = props => (
     <NavLink tag={Link} to="/default" className="d-flex align-items-center">
       <FontAwesomeIcon icon="cube" />
       <span>
-        <Translate contentKey="global.menu.default">Default</Translate>
+        <Translate contentKey="global.menu.default">Quiz</Translate>
       </span>
     </NavLink>
   </NavItem>
