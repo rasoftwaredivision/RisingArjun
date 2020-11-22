@@ -84,6 +84,11 @@ Option 2:
 
 12. Application opens on 8080 port.
     Application is not able to fetch data is DB connection is already established by some other process.
+    
+13. Debugging: If you are getting build failure do the following 
+    a. mvnw clean
+    b. npm run cleanup && npm run webpack:build:main
+    c. mvnw
 
 B)Additional Steps
 Refer below sites for creating dev environment
